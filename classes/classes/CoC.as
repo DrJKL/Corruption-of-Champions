@@ -78,8 +78,7 @@
 		
 	[SWF( width="1000", height="800", pageTitle="Corruption of Champions" )]
 
-	public class CoC extends MovieClip
-	{
+	public class CoC extends MovieClip {
 
 		// Include the functions. ALL THE FUNCTIONS
 		include "../../includes/charCreation.as";

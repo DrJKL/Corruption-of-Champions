@@ -5,6 +5,7 @@ package classes.Scenes.Areas.Forest
 {
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 
@@ -484,7 +485,7 @@ package classes.Scenes.Areas.Forest
 				outputText("Your body trembles as the demon sags down onto your lower back, clutching your equine hips lightly, as you want nothing more but to simply sag down with him, his weight oddly comfortable on your back. Shaking your head to clear it, you begin to turn round, careful not to dislodge Akbal from his obviously comfortable position as you feel him slowly start to shift back into his quadruped form, his dripping shaft slipping out of your pussy with an obscene slurping noise. Lowering your tail, you let the demon slip off, fumbling with the vines around his feet, releasing him as he sprawls on the ground in pure contentment. As you straighten up and start to head back to camp, you realise you feel the same way; perfectly content. Maybe it wouldn't be a bad idea to look out for the God in the future...", false);
 				//Imp pregnancy
 				//Preggers chance!
-				player.knockUp(1, 432, 101);
+				player.knockUp(PregnancyTypeEnum.IMP, 432, 101);
 
 				player.cuntChange(monster.cockArea(0), true, true, false);
 				dynStats("lus=", 0, "cor", 1);
@@ -579,7 +580,7 @@ package classes.Scenes.Areas.Forest
 				dynStats("lus=", 0, "cor", 1);
 				//Imp pregnancy
 				//Preggers chance!
-				player.knockUp(1, 432, 101);
+				player.knockUp(PregnancyTypeEnum.IMP, 432, 101);
 			}
 			cleanupAfterCombat();
 		}
@@ -1449,7 +1450,7 @@ package classes.Scenes.Areas.Forest
 			outputText("\n\nYou look back at your new bitch with a grin while he regains his senses.  As you leave the forest, you hear a promise from Akbal’s chorus of voices, \"<i>You will regret this... Champion.</i>\"");
 			dynStats("lus=", 0, "cor", 3);
 			if (player.hasVagina())
-				player.knockUp(1, 432, 101);
+				player.knockUp(PregnancyTypeEnum.IMP, 432, 101);
 			doNext(13);
 		}
 
@@ -1570,7 +1571,7 @@ package classes.Scenes.Areas.Forest
 
 				dynStats("lus=", 0, "cor", 3);
 				if (player.hasVagina())
-					player.knockUp(1, 432, 101);
+					player.knockUp(PregnancyTypeEnum.IMP, 432, 101);
 				doNext(13);
 			}
 		}
@@ -1667,7 +1668,7 @@ package classes.Scenes.Areas.Forest
 					outputText("\n\nYour body begins to convulse as you call out. Your [ass] feels as though the demon’s dick is a lightning rod expelling a constant torrent of elation.");
 				outputText("\n\nYour [vagOrAss] is blissfully sore and crazy sensitive as you ease yourself off the demon’s wonderful dick.  With a smile on your [face] you gather your [armor] and turn to leave the forest.  Lost in giddy elation you walk, each movement sending an almost painful jolt of post orgasm pleasure through your [vagOrAss].  It isn’t until you hear the cackling of imps and goblins that you remember that you left Akbal bound and vulnerable... oops.");
 				if (player.hasVagina())
-					player.knockUp(1, 432, 101);
+					player.knockUp(PregnancyTypeEnum.IMP, 432, 101);
 			}
 			dynStats("lus=", 0, "cor", 3);
 			doNext(13);
@@ -1819,7 +1820,7 @@ package classes.Scenes.Areas.Forest
 				outputText("\n\nWithout a backwards glance, you gather your [armor] and leave the forest with a big smile on your [face].");
 			}
 			if (player.hasVagina())
-				player.knockUp(1, 432, 101);
+				player.knockUp(PregnancyTypeEnum.IMP, 432, 101);
 			dynStats("lus=", 0, "cor", 3);
 			doNext(13);
 		}

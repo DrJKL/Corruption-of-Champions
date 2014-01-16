@@ -1,12 +1,11 @@
 ﻿package classes.Scenes.Places.TelAdre {
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.GlobalFlags.kGAMECLASS;
 
 	public class Cotton extends TelAdreAbstractContent {
-public function Cotton(){
-
-}
+		public function Cotton() {}
 //176 TIMES HAD YOGA
 //177 MET/FUCKED - 0 = never met.  1 = met but not fucked. 2 = fucked
 //24"x3" wang
@@ -66,11 +65,11 @@ private function pregCottonChance(bonusMult:Number = 1):void {
 private function cottonPregPCChance():void {
 	//No kids yet - lucky!
 	if(flags[kFLAGS.COTTON_KID_COUNT] == 0 && flags[kFLAGS.COTTON_HERBS_OFF] == 0) {
-		player.knockUp(20,350,600);
+		player.knockUp(PregnancyTypeEnum.COTTON,350,600);
 	}
 	else {
-		if(flags[kFLAGS.COTTON_HERBS_OFF] == 0) player.knockUp(20,350,1000);
-		else player.knockUp(20,350,100);
+		if(flags[kFLAGS.COTTON_HERBS_OFF] == 0) player.knockUp(PregnancyTypeEnum.COTTON,350,1000);
+		else player.knockUp(PregnancyTypeEnum.COTTON,350,100);
 	}
 }
 
@@ -139,7 +138,7 @@ public function cottonGreeting():void {
 			return;*/
 			centaurNagaBodyBookStuff();
 		}
-		else if((player.pregnancyIncubation <= 225 && player.pregnancyIncubation > 0) && player.pregnancyType == 20)
+		else if((player.pregnancyIncubation <= 225 && player.pregnancyIncubation > 0) && player.pregnancyType == PregnancyTypeEnum.COTTON)
 		{
 			//Lamaze Class*
 			//Approach Cotton, PC visibly pregnant (at least 2nd trimester, or whatever is equivalent in CoC-land)
@@ -217,7 +216,7 @@ private function centaurNagaBodyBookStuff():void {
 		flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00244]++;
 		cottonMenu();
 	}
-	else if((player.pregnancyIncubation <= 225 && player.pregnancyIncubation > 0) && player.pregnancyType == 20)
+	else if((player.pregnancyIncubation <= 225 && player.pregnancyIncubation > 0) && player.pregnancyType == PregnancyTypeEnum.COTTON)
 	{
 		//Lamaze Class*
 		//Approach Cotton, PC visibly pregnant (at least 2nd trimester, or whatever is equivalent in CoC-land)
@@ -292,7 +291,7 @@ private function acceptYoga():void {
 		outputText("The centauress collects ten gems for gym fees before the two of you can get into it.\n\n", false);
 	}
 	//(Yes) LAMAZE
-	if((player.pregnancyIncubation <= 225 && player.pregnancyIncubation > 0) && player.pregnancyType == 20) 
+	if((player.pregnancyIncubation <= 225 && player.pregnancyIncubation > 0) && player.pregnancyType == PregnancyTypeEnum.COTTON) 
 	{
 		outputText("You change into your yoga clothes and approach Cotton, saying you'd love a lamaze class. Cotton smiles and sets up a mat for you, then sits down, urging you to sit in front of her.  You do so, feeling the bulge in her pants pressing against your rump, and her breasts at your back.  You spend the next fifteen minutes doing breathing exercises like this, and another fifteen minutes doing stretches on an exercise ball.  As you're working out, Cotton presses her body against yours, running her hands around your swollen belly at every opportunity.\n\n");
 	
@@ -1607,7 +1606,7 @@ public function birthingCottonsKids():void {
 	flags[kFLAGS.COTTON_KID_COUNT]++;
 	if(flags[kFLAGS.COTTON_KID_COUNT] == 1) flags[kFLAGS.COTTON_OLDEST_KID_AGE] = 1;
 	player.pregnancyIncubation = 0;
-	player.pregnancyType = 0;
+	player.pregnancyType = PregnancyTypeEnum.NONE;
 }
 
 

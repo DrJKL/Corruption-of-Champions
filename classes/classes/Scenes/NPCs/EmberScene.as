@@ -1,16 +1,13 @@
 /**
  * Created by aimozg on 04.01.14.
  */
-package classes.Scenes.NPCs
-{
+package classes.Scenes.NPCs{
 	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kFLAGS;
 
-	public class EmberScene extends NPCAwareContent
-	{
-		public function EmberScene()
-		{
-		}
+	public class EmberScene extends NPCAwareContent {
+		public function EmberScene() {}
 
 //import flash.media.Video;
 
@@ -939,17 +936,17 @@ package classes.Scenes.NPCs
 		{
 			//Checks for special scenes go here!
 			//If the PC fulfills one of the requirements for the Special Scenes, they occur the moment the player picks the talk option.
-			if (flags[kFLAGS.EMBER_OVI_BITCHED_YET] == 0 && player.pregnancyType == 5) {
+			if (flags[kFLAGS.EMBER_OVI_BITCHED_YET] == 0 && player.pregnancyType == PregnancyTypeEnum.EGGZ) {
 				emberBitchesAboutPCBeingFullOfEggs();
 				doNext(13);
 				return;
 			}
-			if (player.pregnancyIncubation > 0 && player.pregnancyIncubation < 200 && player.pregnancyType != 17 && flags[kFLAGS.EMBER_BITCHES_ABOUT_PREGNANT_PC] == 0) {
+			if (player.pregnancyIncubation > 0 && player.pregnancyIncubation < 200 && player.pregnancyType != PregnancyTypeEnum.EMBER && flags[kFLAGS.EMBER_BITCHES_ABOUT_PREGNANT_PC] == 0) {
 				manEmberBitchesAboutPCPregnancy();
 				doNext(13);
 				return;
 			}
-			if (player.pregnancyIncubation > 0 && player.pregnancyType == 17 && player.pregnancyType < 300 && flags[kFLAGS.EMBER_TALKS_TO_PC_ABOUT_PC_MOTHERING_DRAGONS] == 0) {
+			if (player.pregnancyIncubation > 0 && player.pregnancyType == PregnancyTypeEnum.EMBER && player.pregnancyType.val < 300 && flags[kFLAGS.EMBER_TALKS_TO_PC_ABOUT_PC_MOTHERING_DRAGONS] == 0) {
 				emberTalksToPCAboutPCDragoNPregnancy();
 				doNext(13);
 				return;
@@ -3443,7 +3440,7 @@ package classes.Scenes.NPCs
 			outputText(".  Yawning, you curl up to the dragon for a quick nap of your own.");
 			dynStats("sen", -2, "lus=", 0);
 			//Preg shit goez hurdur
-			player.knockUp(17, 336, 1, 1);
+			player.knockUp(PregnancyTypeEnum.EMBER, 336, 1, 1);
 			player.createStatusAffect("ember fuck cooldown", 36, 0, 0, 0);
 			doNext(createCallBackFunction(emberBreedingAfterMathWatchOutForRadioactiveFallout,false));
 		}

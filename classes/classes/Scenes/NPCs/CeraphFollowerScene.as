@@ -1,16 +1,14 @@
 /**
  * Created by aimozg on 03.01.14.
  */
-package classes.Scenes.NPCs
-{
+package classes.Scenes.NPCs {
 	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 
-	public class CeraphFollowerScene extends NPCAwareContent
-	{
-		public function CeraphFollowerScene()
-		{
+	public class CeraphFollowerScene extends NPCAwareContent {
+		public function CeraphFollowerScene() {
 		}
 
 // CERAPH_ROLEPLAY_AS_DOMINIKA_COUNT:int = 389;
@@ -19,14 +17,12 @@ package classes.Scenes.NPCs
 //Capacity = 115;
 
 //Is Ceraph a follower?
-		override public function ceraphIsFollower():Boolean
-		{
+		override public function ceraphIsFollower():Boolean {
 			return flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00286] > 0 || flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00287] > 0;
 		}
 
 //[Actually Ceraph] - 
-		public function ceraphFollowerAppearance(output:Boolean = true):void
-		{
+		public function ceraphFollowerAppearance(output:Boolean = true):void {
 			if (output) outputText("", true);
 			spriteSelect(87);
 			if (output) {
@@ -43,8 +39,8 @@ package classes.Scenes.NPCs
 			var dickToggle:String = "";
 			if (flags[kFLAGS.CERAPH_HIDING_DICK] == 0) dickToggle = "Go Female";
 			else dickToggle = "Go Herm";
-			var gainFetish:Function =null;
-			var loseFetish:Function =null;
+			var gainFetish:Function = null;
+			var loseFetish:Function = null;
 			if (flags[kFLAGS.PC_FETISH] < 3) gainFetish = CeraphHandsOutNewFetishesLikePervCandy;
 			if (flags[kFLAGS.PC_FETISH] > 0) loseFetish = unfetishifyYourselfWithFollowerCeraph;
 			var rp:Function =null;
@@ -613,7 +609,7 @@ package classes.Scenes.NPCs
 			outputText("You come to in a puddle of cum, both yours and Ceraph's.  The demoness is sitting down across from you, her appearance returned to normal.  She brightens when she wakes and kneels, saying, \"<i>Thank you for allowing me to serve you so... completely, " + player.mf("Master", "Mistress") + ".  It was... thrilling.</i>\"\n\n", false);
 
 			dynStats("sen", -2, "lus=", 0, "cor", .25);
-			player.knockUp(1, 400, 61);
+			player.knockUp(PregnancyTypeEnum.IMP, 400, 61);
 			if (flags[kFLAGS.CERAPH_HIDING_DICK] == 0 && flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00290] == 0) {
 				outputText("You smirk and wonder if you should punish her for stuffing her cock down your throat.  Do you?", false);
 				simpleChoices("Punish", punishCeraphForSurpriseThroatFuck, "", 0, "", 0, "", 0, "Leave", 13);
@@ -769,7 +765,7 @@ package classes.Scenes.NPCs
 			dynStats("lib", -1, "sen", -2, "lus=", 0, "cor", 2);
 			//Preggers chance!
 			if (player.hasVagina() && player.totalFertility() >= rand(45) && player.pregnancyIncubation == 0) {
-				player.knockUp(1, 432);
+				player.knockUp(PregnancyTypeEnum.IMP, 432);
 				trace("PC KNOCKED UP WITH CERAPH IMPS");
 			}
 			doNext(13);

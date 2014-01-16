@@ -1,6 +1,7 @@
 ﻿package classes.Scenes.Areas.Desert {
-	import classes.GlobalFlags.kFLAGS;
 	import classes.BaseContent;
+	import classes.PregnancyTypeEnum;
+	import classes.GlobalFlags.kFLAGS;
 	public class Oasis extends BaseContent{
 
 		public function Oasis()
@@ -129,7 +130,7 @@ internal function oasisSexing():void {
 		//IZ OVER! NEWLINE BITCH
 		outputText("\n\n", false);
 		//Preggers chance!
-		player.knockUp(1,432,90);
+		player.knockUp(PregnancyTypeEnum.IMP,432,90);
 	}
 	//Buttbutt buuuuuttt
 	if(player.gender > 0) outputText("But the demons are interested in every part of you, not just your crotch.  ");

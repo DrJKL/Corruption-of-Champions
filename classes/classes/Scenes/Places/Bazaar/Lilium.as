@@ -1,10 +1,9 @@
-﻿package classes.Scenes.Places.Bazaar{
-import classes.GlobalFlags.kFLAGS;
-public class Lilium extends BazaarAbstractContent{
-
-	public function Lilium()
-	{
-	}
+﻿package classes.Scenes.Places.Bazaar {
+	import classes.PregnancyTypeEnum;
+	import classes.GlobalFlags.kFLAGS;
+	public class Lilium extends BazaarAbstractContent {
+		public function Lilium() {
+		}
 
 //I dunno about the term 'satanic streetwalker', and it
 //probably needs to increment your corruption if you're fucking
@@ -199,7 +198,7 @@ private function liliumDickRidah():void {
 
 	dynStats("lus=", 0, "cor", 1);
 	//(imp preg check)
-	player.knockUp(1,418);
+	player.knockUp(PregnancyTypeEnum.IMP,418);
 	doNext(13);
 }
 

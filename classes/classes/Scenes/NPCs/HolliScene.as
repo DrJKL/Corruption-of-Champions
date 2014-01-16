@@ -1,11 +1,10 @@
 ﻿package classes.Scenes.NPCs{
-import classes.GlobalFlags.kFLAGS;
-import classes.CockTypesEnum;
-public class HolliScene extends NPCAwareContent {
-
-	public function HolliScene()
-	{
-	}
+	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
+	import classes.GlobalFlags.kFLAGS;
+	public class HolliScene extends NPCAwareContent {
+		public function HolliScene(){
+		}
 
 //VARS
 //const TIMES_FUCKED_FLOWER:int = 594;
@@ -541,7 +540,9 @@ private function stayQuietWhileAmilyBitchesAboutFuckingArborday():void {
 	//Enable village encounters
 	flags[kFLAGS.AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 0;
 	//Change to plain mouse birth!
-	if(player.pregnancyType == 11) player.pregnancyType = 4;
+	if (player.pregnancyType == PregnancyTypeEnum.AMILY) {
+		player.pregnancyType = PregnancyTypeEnum.MOUSE;
+	}
 	doNext(1);
 }
 

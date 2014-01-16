@@ -5,14 +5,11 @@ package classes.Scenes.Areas.Mountain
 {
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kFLAGS;
 
-	public class HellHoundScene extends BaseContent
-	{
-		public function HellHoundScene()
-		{
-		}
-
+	public class HellHoundScene extends BaseContent {
+		public function HellHoundScene() {}
 		/*
 		 Attacks:
 		 1. Attack (claw); 
@@ -26,8 +23,7 @@ package classes.Scenes.Areas.Mountain
 		 Upon defeat, the flames in the hellhound's mouth goes out. It submits to its foe by licking their gear.
 		 */
 
-		public function hellhoundEncounter():void
-		{
+		public function hellhoundEncounter():void {
 			outputText("You hear a fiery howl as a demonic, two-headed beast-man leaps out in front of you!", true);
 			doNext(1);
 			startCombat(new HellHound());
@@ -35,8 +31,7 @@ package classes.Scenes.Areas.Mountain
 		}
 
 
-		public function hellhoundRapesPlayer():void
-		{
+		public function hellhoundRapesPlayer():void {
 			//Lust or HP loss texts here
 			if (player.lust >= 100) outputText("Overcome by sexual desire, you submit to the hungry hellhound.\n\n", true);
 			else outputText("Too weak to continue fighting, you fall to your knees.\n\n", true);
@@ -59,7 +54,7 @@ package classes.Scenes.Areas.Mountain
 				if (player.cor < 40) outputText("You moan as your insides begin to heat up. The uncomfortably hot sensation only grows as more and more of its fiery seed is pumped into your body. After what feels like an eternity, the beast pulls out of you. He gives your " + vaginaDescript(0) + " and your " + assholeDescript() + " a single extended lick with its long dog-like tongue before running off out of sight. The tainted heat inside you proves to be too much and you pass out. After some time passes, you wake up to find the corrupt warmth inside you has thankfully faded away. You're able to stand up again, but the damage is done and the creature's seed has left you feeling rather weak.", false);
 				else outputText("His flaming seed brings about a pleasure you had not expected; your insides feel like they are burning with passion and power.  It is an incredible and fiery experience, one that you don't think you could have had if it wasn't for the power of corruption that you've gained since you got here. Too soon, the beast pulls out of you.  He gives your " + vaginaDescript(0) + " and your " + assholeDescript() + " a single extended lick with his long dog-like tongue before he runs off. You quickly look over and manage to catch a glimpse of its tail before it disappears from view, just before your body falls into a deep sleep. When you wake, you can still feel the afterglow of the hot seed inside you.", false);
 				//Preggers chance!
-				player.knockUp(6, 352, 101);
+				player.knockUp(PregnancyTypeEnum.HELLHOUND, 352, 101);
 
 			}
 			else {
@@ -367,7 +362,7 @@ package classes.Scenes.Areas.Mountain
 				//[if corrupt]
 				else dynStats("lus=", 0, "cor", 1.5);
 				//Preggers chance!
-				player.knockUp(6, 352, 101);
+				player.knockUp(PregnancyTypeEnum.HELLHOUND, 352, 101);
 			}
 			cleanupAfterCombat();
 		}

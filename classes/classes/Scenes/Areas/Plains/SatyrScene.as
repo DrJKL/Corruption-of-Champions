@@ -1,14 +1,12 @@
 ﻿package classes.Scenes.Areas.Plains{
-import classes.GlobalFlags.kGAMECLASS;
-import classes.GlobalFlags.kFLAGS;
-import classes.Appearance;
-import classes.CockTypesEnum;
-import classes.BaseContent;
-public class SatyrScene extends BaseContent{
-
-	public function SatyrScene()
-	{
-	}
+	import classes.Appearance;
+	import classes.BaseContent;
+	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
+	import classes.GlobalFlags.kGAMECLASS;
+	import classes.GlobalFlags.kFLAGS;
+	public class SatyrScene extends BaseContent {
+		public function SatyrScene() {}
 
 //const SATYR_KIDS:int = 603;
 //Game Implementation (code from here)
@@ -397,8 +395,8 @@ private function willinglyBoneSatyr():void {
 //Pregnancy Stuff (Z)
 private function satyrPreggo():void {
 	if(player.hasVagina()) {
-		if(player.pregnancyIncubation == 0 && player.pregnancyType == 0) {
-			player.knockUp(19,160);
+		if(player.pregnancyIncubation == 0 && player.pregnancyType == PregnancyTypeEnum.NONE) {
+			player.knockUp(PregnancyTypeEnum.SATYR,160);
 		}
 	}
 	else {

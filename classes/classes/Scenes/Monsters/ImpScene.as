@@ -6,6 +6,7 @@ package classes.Scenes.Monsters
 	import classes.Appearance;
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.Scenes.Camp.ImpGang;
 
@@ -142,7 +143,7 @@ package classes.Scenes.Monsters
 				//Taking it internal is more corruptive!
 				dynStats("cor", 1);
 				//Preggers chance!
-				player.knockUp(1,432);
+				player.knockUp(PregnancyTypeEnum.IMP,432);
 				player.cuntChange(monster.cockArea(0), true, true, false);
 			}
 			dynStats("lus=", 0, "cor", 1);
@@ -411,7 +412,7 @@ package classes.Scenes.Monsters
 			//PREGGERS CHANCE HERE - unfinished
 			//{{Player has a cunt}}
 			player.slimeFeed();
-			player.knockUp(1,432);
+			player.knockUp(PregnancyTypeEnum.IMP,432);
 			outputText("As the Imp lays beaten its hands stroke its " + eCockDescript(0) + " as its eyes look over you in the hope that you might abuse it in some manner.  You lick your lips as you stare at the large member and you turn around to display your " + vaginaDescript(0) + ".  ", false);
 			//Not gaping?
 			if(player.vaginas[0].vaginalLooseness <= VAGINA_LOOSENESS_GAPING) {
@@ -758,7 +759,7 @@ package classes.Scenes.Monsters
 					//(High corruption)
 					else outputText("Your last coherent thought is to find a way to make your own mutated master imp, maybe even a stable full of them...", false);
 					dynStats("lib", 2, "lus=", 0, "cor", 3);
-					player.knockUp(1,418);
+					player.knockUp(PregnancyTypeEnum.IMP,418);
 				}
 				//Scene number 2 - male possible.
 				else {
@@ -931,7 +932,7 @@ package classes.Scenes.Monsters
 					//(High corruption)
 					else outputText("Why bother with your silly quest, when you've only scratched the surface of the pleasures this land offers you?\n", false);
 					dynStats("lib", 2, "lus=", 0, "cor", 3);
-					player.knockUp(1,418);
+					player.knockUp(PregnancyTypeEnum.IMP,418);
 					//Stretch!
 					if(player.hasVagina()) {
 						if(player.cuntChange(monster.cockArea(2), true)) outputText("\n", false);
@@ -1064,7 +1065,7 @@ package classes.Scenes.Monsters
 					//(High corruption)
 					else outputText("Your last coherent thought is to find a way to make your own mutated master imp, one you can keep as a fuck-toy...", false);
 					dynStats("lib", 2, "lus=", 0, "cor", 3);
-					player.knockUp(1,418);
+					player.knockUp(PregnancyTypeEnum.IMP,418);
 				}
 				else {
 					//Imp Scene 2 (Bipedal, vaginal)
@@ -1239,13 +1240,12 @@ package classes.Scenes.Monsters
 					//(High corruption)
 					else outputText("Why bother with your silly quest, when you've only scratched the surface of the pleasures this land offers you?\n\n", false);
 					dynStats("lib", 2, "lus=", 0, "cor", 3);
-					player.knockUp(1,418);
+					player.knockUp(PregnancyTypeEnum.IMP,418);
 					//Stretch!
-					if(player.hasVagina()) {
-						if(player.cuntChange(monster.cockArea(2), true)) outputText("\n", false);
-					}
-					else {
-						if(player.buttChange(monster.cockArea(2), true)) outputText("\n", false);
+					if(player.hasVagina() && player.cuntChange(monster.cockArea(2), true)) {
+						outputText("\n", false);
+					} else if (player.buttChange(monster.cockArea(2), true)) {
+						outputText("\n", false);
 					}
 				}
 			}
@@ -1264,7 +1264,7 @@ package classes.Scenes.Monsters
 				outputText("The rough fucking becomes more and more pleasurable as time goes on. You moan air-headedly with each thrust, hips squeezing around the demon-cock- loving the feeling of his fullness. Before long you can't help but cum all over him, vagina locking around his cock like a vice, muscles rippling, milking him for his cum. The imp's prick explodes inside you, pumping huge loads of hot demon-seed inside you with each eruption. You swoon, feeling it fill your womb and distend your belly as the imp's orgasm fills you with insane amounts of cum.\n\n", false);
 		
 				outputText("With a sigh, he pulls his dick free, and you flop down, cum leaking out onto the ground from your well-fucked hole. If you could, like, focus at all, you'd totally be worrying about being, like, pregnant or whatever. But you lose consciousness.", false);
-				player.knockUp(1,418);
+				player.knockUp(PregnancyTypeEnum.IMP,418);
 		
 				dynStats("lib", 1, "sen", 1, "lus=", 0, "cor", 1);
 				cleanupAfterCombat();
@@ -1314,7 +1314,7 @@ package classes.Scenes.Monsters
 							else outputText("You hope you don't become pregnant, but promptly lose consciousness before you can contemplate the prospect any further.", false);
 						}
 					}
-					player.knockUp(1,418);
+					player.knockUp(PregnancyTypeEnum.IMP,418);
 					dynStats("lib", 1, "sen", 1, "lus", 1, "cor", 1);
 					dynStats("lus=", 0);
 				}

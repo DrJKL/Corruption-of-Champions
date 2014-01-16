@@ -1,25 +1,23 @@
 ﻿package classes.Scenes.Areas.Mountain {
-	import classes.GlobalFlags.kFLAGS;
+	import classes.Appearance;
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
+	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
-	import classes.Appearance;
 
 	public class MinotaurScene extends BaseContent {
+		public function MinotaurScene() {}
 
-		public function MinotaurScene()
-		{
+		private function minotaurAddicted():Boolean {
+			return player.minotaurAddicted();
+		}
+		private function minotaurNeed():Boolean {
+			return player.minotaurNeed();
 		}
 
-	private function minotaurAddicted():Boolean {
-	return player.minotaurAddicted();
-}
-private function minotaurNeed():Boolean {
-	return player.minotaurNeed();
-}
-
-internal function minoVictoryRapeChoices():void {
-	spriteSelect(44);
+		internal function minoVictoryRapeChoices():void {
+			spriteSelect(44);
 	//Determine if PC can rape with a dick!
 	var x:Number = player.cockThatFits(monster.analCapacity());
 	var dickRape:Function = null;
@@ -447,7 +445,7 @@ private function girlRapeAMinotaur():void {
 	if(player.vaginalCapacity() < monster.cockArea(0)) outputText("\n\nMixed with the sheer sexual pleasure, you feel a diffuse pain and numbness coming from your much-abused " + vaginaDescript(0) + ", but decide with a smile that it was well worth it as his cum numbs away the last of the pain.", false);
 	dynStats("spe", -.5, "int", -.5, "sen", 1.5, "lus=", 0, "cor", 1);
 	//Preggers chance!
-	player.knockUp(2,432);
+	player.knockUp(PregnancyTypeEnum.MINOTAUR,432);
 	cleanupAfterCombat();
 }
 private function minotaurGetsRapedByHerms():void {
@@ -465,7 +463,7 @@ private function minotaurGetsRapedByHerms():void {
 	outputText("Your orgasms drag on, until at last your belly is distended with the stuff and his ass is full of your cum.  With a lurch and a pop, you stagger free of him, barely able to walk with so much of his heavenly spunk inside you.  Even now your body tingles with unnatural pleasure and warmth.  Giggling, you realize the beast is passed out at your feet, his balls half as big as before. ", false);
 	dynStats("spe", -.5, "int", -.5, "sen", 1.5, "lus=", 0, "cor", 1);
 	//Preggers chance!
-	player.knockUp(2,432);
+	player.knockUp(PregnancyTypeEnum.MINOTAUR,432);
 	cleanupAfterCombat();
 }
 
@@ -599,7 +597,7 @@ public function getRapedByMinotaur(autoRape:Boolean = false):void {
 			dynStats("tou", -.5, "sen", 1, "lus", -5, "cor", 1);
 		}
 		//Preggers chance!
-		player.knockUp(2,432);
+		player.knockUp(PregnancyTypeEnum.MINOTAUR,432);
 	}
 	if(player.cockTotal() > 0 && (player.sens + rand(40) > 50)) {
 		outputText("You orgasm, ", false);

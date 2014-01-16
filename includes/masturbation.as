@@ -1,6 +1,8 @@
 ﻿//const DICK_EGG_INCUBATION:int = 592;
 //const TIMES_EGGED_IN_COCK:int = 593;
 
+import classes.PregnancyTypeEnum;
+
 //Masturbate Menu
 public function masturbateMenu():void {
 	menu();
@@ -566,7 +568,7 @@ public function masturbateJojo():void {
 			if(player.vaginalCapacity() >= 36) outputText("You shift forward, and then tilt your hips and drive back, taking his length into your wide stretched body. You laugh at him, barely able to feel his dick within you, and whisper into his ear, \"<i>Just like a mouse to be tiny...</i>\" You watch his blush as you start to grind and roll atop his cock and belly, taking all the pleasure that you can from your slut.  ", false);
 			outputText("You cry out in pleasure as your orgasm floods through your body, causing your juices to splash out around your mouse slut's cock. You stay seated on his hips until your orgasm fades, then with a sigh of pleasure you stand up off of him and dismiss him with a wave of your hand.  ", false);
 			//Preggers chance!
-			player.knockUp(4,432);
+			player.knockUp(PregnancyTypeEnum.MOUSE,432);
 			cuntChange(36.4, true);
 		}
 		//Cuntboy 2: Anal Gentle		
@@ -637,7 +639,7 @@ public function masturbateJojo():void {
 			if(player.vaginalCapacity() >= 36) outputText("You shift forward, and then tilt your hips and drive back, taking his length into your wide stretched body. You laugh at him, barely able to feel his dick within you, and whisper into his ear, \"<i>Just like a mouse to be tiny...</i>\" You watch his blush as you start to grind and roll atop his cock and belly, taking all the pleasure that you can from your slut.  ", false);
 			outputText("You cry out in pleasure as your orgasm floods through your body, causing your juices to splash out around your mouse slut's cock. You stay seated on his hips until your orgasm fades, then with a sigh of pleasure you stand off of him and dismiss him with a wave of your hand.  ", false);
 			//Preggers chance!
-			player.knockUp(4,432);
+			player.knockUp(PregnancyTypeEnum.MOUSE,432);
 			cuntChange(36.4, true);
 		}
 		//Female 4: Smother Vaginal
@@ -700,7 +702,7 @@ public function masturbateJojo():void {
 			outputText("You cry out in pleasure as your orgasm floods through your body, causing your juices to splash out around your mouse slut's cock, and your own " + multiCockDescriptLight() + " to explode with thick splashes of your hot cum across his chest and belly.  ", false);
 			outputText("You stay seated on his hips until your orgasm fades, then with a sigh of pleasure you stand off of him and dismiss him with a wave of your hand.", false);
 			//Preggers chance!
-			player.knockUp(4,432);
+			player.knockUp(PregnancyTypeEnum.MOUSE,432);
 			cuntChange(36.4, true);
 		}
 	}	

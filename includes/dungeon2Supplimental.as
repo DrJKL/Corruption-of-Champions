@@ -10,6 +10,8 @@
 // TIMES_VALA_CONSENSUAL_BIG:int = 767;
 // TIMES_VAPULA_AND_GIANT_VALA:int = 768;
 
+import classes.PregnancyTypeEnum;
+
 public function impGangAI():void {
 	if(monster.hasStatusAffect("ImpUber") >= 0) impGangUber();
 	else if(monster.lust > 50 && rand(2) == 0) impGangBukkake();
@@ -348,7 +350,7 @@ public function impGangGetsRapedByFemale():void {
 	outputText("Sated for now, you rise up, your body dripping gooey whiteness.  Though in retrospect it isn't nearly as much as was pumped into your womb.", false);
 	if(player.pregnancyIncubation == 0) outputText("  You'll probably get pregnant.", false);
 	dynStats("lus=", 0);
-	player.knockUp(1,418,50);
+	player.knockUp(PregnancyTypeEnum.IMP,418,50);
 
 	cleanupAfterCombat();
 }

@@ -1,14 +1,13 @@
 ﻿package classes.Scenes.Places{
-import classes.BaseContent;
+	import classes.BaseContent;
+	import classes.PregnancyTypeEnum;
+	import classes.GlobalFlags.kGAMECLASS;
+	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.Scenes.Places.Owca.*;
-import classes.GlobalFlags.kFLAGS;
-import classes.GlobalFlags.kGAMECLASS;
-public class Owca extends BaseContent{
-
-	public function Owca()
-	{
-	}
+	public class Owca extends BaseContent {
+		public function Owca() {
+		}
 
 	/* Written by Nonesuch and PKD, edited by Abraxas, Anzuaz, 05095coc and some helpful anons; ideas suggested by Abraxas, G3 and some helpful anons. */
 
@@ -508,7 +507,7 @@ private function rapeZeVapula():void {
 		//+med-high corruption, + strength/cons, -10 libido, slimefeed, imp preg check
 		dynStats("str", 1,"tou", 1, "lib", -4, "lus=", 0, "cor", 4);
 		player.slimeFeed();
-		player.knockUp(1,432);
+		player.knockUp(PregnancyTypeEnum.IMP,432);
 	}
 	//PC is redirected to camp, next morning. No nightly camp scenes. 
 	model.time.hours = 7;

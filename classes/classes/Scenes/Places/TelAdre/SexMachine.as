@@ -1,38 +1,38 @@
-﻿package classes.Scenes.Places.TelAdre{
-import classes.GlobalFlags.kFLAGS;
-import classes.GlobalFlags.kGAMECLASS;
-public class SexMachine extends TelAdreAbstractContent{
+﻿package classes.Scenes.Places.TelAdre {
+	import classes.PregnancyTypeEnum;
+	import classes.GlobalFlags.kFLAGS;
+	import classes.GlobalFlags.kGAMECLASS;
+	public class SexMachine extends TelAdreAbstractContent {
+		public function SexMachine() {
+		}
 
-	public function SexMachine()
-	{
-	}
-
-public function exploreShowers():void {
-	outputText("", true);
+	public function exploreShowers():void {
+		outputText("", true);
 	/*if(flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00167] == 0) {
 		outputText("You toss ten gems to centaur and head towards the back.\n\n", false);
 		player.gems -= 10;
 		statScreenRefresh();
 	}*/
-	hideUpDown();
-	if(flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00182] <= 1) {
-		outputText("Having worked your body to a pleasant soreness as well as coating your " + player.skinDesc + " in a thin sheen of sweat and pheromones, you decide to hit up the showers to wash off and relax in the hot water.  ", false);
-		outputText("You walk into the back halls of the gym, quickly realizing you aren't quite sure where you're headed.  You turn a couple corners, walking down the halls looking for someone, and are about to turn back when you see a goblin round the corner up ahead.\n\n", false);
+		hideUpDown();
+		if (flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00182] <= 1) {
+			outputText("Having worked your body to a pleasant soreness as well as coating your " + player.skinDesc + " in a thin sheen of sweat and pheromones, you decide to hit up the showers to wash off and relax in the hot water.  ", false);
+			outputText("You walk into the back halls of the gym, quickly realizing you aren't quite sure where you're headed.  You turn a couple corners, walking down the halls looking for someone, and are about to turn back when you see a goblin round the corner up ahead.\n\n", false);
 	
-		outputText("You shout after the short humanoid, jogging lightly in chase, but only come to a closed iron door.  The door has a small window on it, blocked with a wire mesh to prevent breaking.  Inside you see a relatively plain room with a couple doors to the back sides.  A single light illuminates the strange room, right above the most technological piece of weight equipment you've ever seen.  You open the door, hoping to find the goblin, only to find the back two doors are hopelessly locked.  You turn to look once more at the piece of equipment in the center of the room.\n\n", false);
+			outputText("You shout after the short humanoid, jogging lightly in chase, but only come to a closed iron door.  The door has a small window on it, blocked with a wire mesh to prevent breaking.  Inside you see a relatively plain room with a couple doors to the back sides.  A single light illuminates the strange room, right above the most technological piece of weight equipment you've ever seen.  You open the door, hoping to find the goblin, only to find the back two doors are hopelessly locked.  You turn to look once more at the piece of equipment in the center of the room.\n\n", false);
 	
-		outputText("Made of polished steel, the machine has many foreign parts you couldn't even begin to guess the use of, and some familiar ones from the other work out machines from the main gym floor.  This one, however, even seems to have a small monitoring screen!  You could easily sit down and check out this sophisticated device while waiting for the goblin to come out from the back rooms.\n\n", false);
+			outputText("Made of polished steel, the machine has many foreign parts you couldn't even begin to guess the use of, and some familiar ones from the other work out machines from the main gym floor.  This one, however, even seems to have a small monitoring screen!  You could easily sit down and check out this sophisticated device while waiting for the goblin to come out from the back rooms.\n\n", false);
 		
-		outputText("Do you use it or not?", false);
-		doYesNo(useTheSexMachine,leaveShowers);
-		flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00182] = 1;
+			outputText("Do you use it or not?", false);
+			doYesNo(useTheSexMachine,leaveShowers);
+			flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00182] = 1;
+		} else { //Go directly to sex if you know what's in store!
+			if (flags[kFLAGS.BROOKE_MET] == 0) {
+				telAdre.brooke.meetBrookeFirstTime();
+			} else {
+				useTheSexMachine();
+			}
+		}
 	}
-	//Go directly to sex if you know what's in store!
-	else {
-		if(flags[kFLAGS.BROOKE_MET] == 0) telAdre.brooke.meetBrookeFirstTime();
-		else useTheSexMachine();
-	}
-}
 
 //[If you decide to leave.]
 private function leaveShowers():void {
@@ -241,16 +241,16 @@ private function useTheSexMachine():void {
 		temp = rand(6);
 		switch(temp) {
 			case 0:
-				player.knockUp(2,350);
+				player.knockUp(PregnancyTypeEnum.MINOTAUR,350);
 				break;
 			case 1:
-				player.knockUp(4,350);
+				player.knockUp(PregnancyTypeEnum.MOUSE,350);
 				break;
 			case 2:
-				player.knockUp(4,350);
+				player.knockUp(PregnancyTypeEnum.MOUSE,350);
 				break;
 			default:
-				player.knockUp(7,360);
+				player.knockUp(PregnancyTypeEnum.CENTAUR,360);
 				break;
 		}
 	}

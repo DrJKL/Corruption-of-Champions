@@ -210,28 +210,6 @@ public static const BUTT_RATING_INCONCEIVABLY_BIG:int                           
 /*
 
     <PregnancyTypes>
-      <PregnancyType ID="0"   Name="None"/>
-      <PregnancyType ID="10"  Name="Anemone"/>
-      <PregnancyType ID="14"  Name="Basilisk"/>
-      <PregnancyType ID="18"  Name="Basilisk (Benoit)"/>
-      <PregnancyType ID="9"   Name="Bunny"/>
-      <PregnancyType ID="7"   Name="Centaur (Kelt)"/>
-      <PregnancyType ID="8"   Name="Cowgirls (Marble)"/>
-      <PregnancyType ID="17"  Name="Dragon (Ember)"/>
-      <PregnancyType ID="15"  Name="Drider"/>
-      <PregnancyType ID="20"  Name="Equine-morph (Cotton)"/>
-      <PregnancyType ID="21"  Name="Fox-morph (Urta)"/>
-      <PregnancyType ID="23"  Name="Frog-girl"/>
-      <PregnancyType ID="16"  Name="Goo-girl"/>
-      <PregnancyType ID="6"   Name="Hellhound"/>
-      <PregnancyType ID="1"   Name="Imp"/>
-      <PregnancyType ID="2"   Name="Minotaur"/>
-      <PregnancyType ID="11"  Name="Mouse-morph (Amily)"/>
-      <PregnancyType ID="4"   Name="Mouse-morph (Jojo/Corrupt Amily)"/>
-      <PregnancyType ID="22"  Name="Sand witch"/>
-      <PregnancyType ID="19"  Name="Satyr"/>
-      <PregnancyType ID="13"  Name="Spider-morph"/>
-      <PregnancyType ID="12"  Name="Shark/Tigershark-morph (Izma)"/>
       <PregnancyType ID="10000" Name="Small brown egg"/>
       <PregnancyType ID="10001" Name="Large brown egg"/>
       <PregnancyType ID="10100" Name="Small purple egg"/>

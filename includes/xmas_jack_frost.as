@@ -40,6 +40,8 @@ PC loses a day in this process.
 Meeting Jack
 */
 
+import classes.PregnancyTypeEnum;
+
 //Takes place when exploring the mountain.
 public function meetJackFrostInTheMountains():void {
 	clearOutput();
@@ -685,7 +687,7 @@ public function rideCorruptJojoCock():void {
 	addButton(0,"Next",processJackFrostEvent);
 	flags[kFLAGS.JACK_FROST_PROGRESS] = 5;
 	//Preggers chance!
-	player.knockUp(4,432);
+	player.knockUp(PregnancyTypeEnum.MOUSE,432);
 }
 
 //[=Spank and Finger Ass=]

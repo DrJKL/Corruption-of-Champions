@@ -1,9 +1,9 @@
-﻿package classes.Scenes.NPCs{
+﻿package classes.Scenes.NPCs {
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kFLAGS;
 	public class UrtaPregs extends NPCAwareContent {
 
-		public function UrtaPregs()
-		{
+		public function UrtaPregs(){
 		}
 //const URTA_INCUBATION:int = 789;
 //const URTA_TIMES_BIRTHED:int = 790;
@@ -1748,7 +1748,7 @@ private function pickKidSceneHere():void {
 	clearOutput();
 	//ANNOUNCE BEHBIES
 	//Once per pregnancy?
-	if((flags[kFLAGS.URTA_INCUBATION] > 0 || (player.pregnancyIncubation > 0 && player.pregnancyIncubation < 300 && player.pregnancyType == 21)) && flags[kFLAGS.NEW_BABY_ANNOUNCED] == 0) {
+	if((flags[kFLAGS.URTA_INCUBATION] > 0 || (player.pregnancyIncubation > 0 && player.pregnancyIncubation < 300 && player.pregnancyType == PregnancyTypeEnum.URTA)) && flags[kFLAGS.NEW_BABY_ANNOUNCED] == 0) {
 		newBabyComing();
 	}
 	//Only possible between 12-14 hours.
@@ -1792,11 +1792,11 @@ private function newBabyComing():void {
 		outputText(" a loving smile.");
 		
 		//Both Preg:
-		if(flags[kFLAGS.URTA_INCUBATION] > 0 && player.pregnancyIncubation > 0 && player.pregnancyType == 21) {
+		if(flags[kFLAGS.URTA_INCUBATION] > 0 && player.pregnancyIncubation > 0 && player.pregnancyType == PregnancyTypeEnum.URTA) {
 			outputText("\n\n\"<i>Your mommies are both going to give you a little brother or a little sister soon,</i>\" Urta says, giving you a comforting hug whilst still managing to pat your belly, even as she gently drums her fingers on her own.");
 		}
 		//One person preg:
-		else if(flags[kFLAGS.URTA_INCUBATION] > 0 || (player.pregnancyIncubation > 0 && player.pregnancyType == 21))
+		else if(flags[kFLAGS.URTA_INCUBATION] > 0 || (player.pregnancyIncubation > 0 && player.pregnancyType == PregnancyTypeEnum.URTA))
 		{
 			outputText("\n\n\"<i>You're going to have a little brother or sister soon!</i>\" she says, beaming with delight as she pats ");
 			if(flags[kFLAGS.URTA_INCUBATION] > 0) outputText("her");

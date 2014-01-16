@@ -6,15 +6,12 @@ package classes.Scenes.NPCs
 	import classes.Appearance;
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 
-	public class AnemoneScene extends BaseContent
-	{
-		public function AnemoneScene()
-		{
-		}
-
+	public class AnemoneScene extends BaseContent {
+		public function AnemoneScene(){}
 		//Encountered via Boat (unless a new Under-Lake area is
 		//unlocked)
 
@@ -56,13 +53,11 @@ package classes.Scenes.NPCs
 		//  KID_SITTER:int = 757; //0 = no sitter, 1 = possible, 2 = doing dat shit
 		//  HAD_KID_A_DREAM:int = 758;
 
-		private function anemonePreg():void
-		{
-			player.knockUp(10, 256, 101);
+		private function anemonePreg():void {
+			player.knockUp(PregnancyTypeEnum.ANEMONE, 256, 101);
 		}
 
-		public function kidAXP(diff:Number = 0):Number
-		{
+		public function kidAXP(diff:Number = 0):Number {
 			if (diff == 0) return flags[kFLAGS.KID_A_XP];
 			flags[kFLAGS.KID_A_XP] += diff;
 			if (flags[kFLAGS.KID_A_XP] < 0) flags[kFLAGS.KID_A_XP] = 0;
@@ -71,8 +66,7 @@ package classes.Scenes.NPCs
 		}
 
 
-		public function mortalAnemoneeeeee():void
-		{
+		public function mortalAnemoneeeeee():void {
 			spriteSelect(4);
 			outputText("", true);
 			if (flags[kFLAGS.TIMES_MET_ANEMONE] == 0 || hasItem("MinoCum", 1)) {

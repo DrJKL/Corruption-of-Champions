@@ -1,6 +1,7 @@
 ﻿package classes 
 {
 	import classes.Scenes.Places.TelAdre.UmasShop;
+	import classes.PregnancyTypeEnum;
 
 	/**
 	 * Character class for player and NPCs. Has subclasses Player and NonPlayer.
@@ -69,7 +70,7 @@
 		//6 = hellhound
 		//7 = centaur
 		//8 = MARBLZ
-		public var pregnancyType:Number = 0;
+		public var pregnancyType:PregnancyTypeEnum = PregnancyTypeEnum.NONE;
 		public var pregnancyIncubation:Number = 0;
 		
 		//2 = bee
@@ -452,7 +453,7 @@
 			return true;
 		}
 		//fertility must be >= random(0-beat)
-		public function knockUp(type:int = 0, incubation:int = 0, beat:int = 100, arg:int = 0):void
+		public function knockUp(type:PregnancyTypeEnum, incubation:int = 0, beat:int = 100, arg:int = 0):void
 		{
 			//Contraceptives cancel!
 			if (hasStatusAffect("Contraceptives") >= 0 && arg < 1)
@@ -473,7 +474,7 @@
 				trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
 			}
 			//Chance for eggs fertilization - ovi elixir and imps excluded!
-			if (type != 1 && type != 5 && type != 10)
+			if (type != PregnancyTypeEnum.IMP && type != PregnancyTypeEnum.EGGZ && type != PregnancyTypeEnum.ANEMONE)
 			{
 				if (hasPerk("Spider Ovipositor") >= 0 || hasPerk("Bee Ovipositor") >= 0)
 				{

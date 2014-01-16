@@ -4,17 +4,14 @@
 package classes.Scenes.Areas.Swamp
 {
 	import classes.BaseContent;
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kGAMECLASS;
 
-	public class MaleSpiderMorphScene extends BaseContent
-	{
-		public function MaleSpiderMorphScene()
-		{
-		}
+	public class MaleSpiderMorphScene extends BaseContent {
+		public function MaleSpiderMorphScene(){}
 
 		//Greeting
-		public function greetMaleSpiderMorph():void
-		{
+		public function greetMaleSpiderMorph():void {
 			outputText("", true);
 			spriteSelect(74);
 			outputText("A spider-morph drops out of a tree in front of you, hanging by a single thread of sparkling webbing.  His purple eyes gaze deeply into your own while he looks you up and down.  ", false);
@@ -236,7 +233,7 @@ package classes.Scenes.Areas.Swamp
 			else outputText("paying no heed to the thick flows of spunk that drip down your " + player.legs() + ".", false);
 			player.slimeFeed();
 			//Pregnancy Goes Here
-			player.knockUp(13, 400, 151);
+			player.knockUp(PregnancyTypeEnum.SPIDER, 400, 151);
 			dynStats("lus=", 0);
 			cleanupAfterCombat();
 		}
@@ -381,7 +378,7 @@ package classes.Scenes.Areas.Swamp
 			outputText("You sigh and close your eyes, slowly slumping down while your hips keep twitching.  You've been sated, and though your body keeps hungering for more, you slip into unconsciousness.", false);
 			player.slimeFeed();
 			dynStats("lus=", 0);
-			player.knockUp(13, 400);
+			player.knockUp(PregnancyTypeEnum.SPIDER, 400);
 			cleanupAfterCombat();
 		}
 

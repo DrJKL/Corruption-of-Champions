@@ -5,13 +5,11 @@ package classes.Scenes.Areas.Lake
 {
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kFLAGS;
 
-	public class FetishCultistScene extends AbstractLakeContent
-	{
-		public function FetishCultistScene()
-		{
-		}
+	public class FetishCultistScene extends AbstractLakeContent {
+		public function FetishCultistScene(){}
 
 		/*
 		 (first draft)
@@ -250,7 +248,7 @@ package classes.Scenes.Areas.Lake
 				//(4 - if player has only a vagina and no breasts)
 				if (player.vaginas.length > 0 && !changed) {
 					outputText("The smile disappears from her lips and she says 'Now if I understand it correctly, you are beset by random panic attacks due to an unusually sized clitoris, coupled with a lack of breasts.  To address this issue, I will be giving you a special injection at the site.'  She briefly steps out of the room before returning with a syringe.  'It'll be ok, the good news is that the pain for this injection will quickly subside, just take nice easy breaths and you'll be fine.  In fact, you might find this quite enjoyable after the first hurdle.'  She leans down and pushes the needle into your clitoris.  The pain is quite intense, but thankfully it does not last long.  'This injection will address your unnatural body shape by turning your clitoris into a penis, it even has the added benefit of removing the unneeded vagina.' she says to you in a pleasant voice while pulling the needle out.  You look down to see that you " + clitDescript() + " is indeed growing larger, and you can feel your womb disappearing within you.\n\n", false);
-					player.pregnancyType = 0;
+					player.pregnancyType = PregnancyTypeEnum.NONE;
 					player.pregnancyIncubation = 0;
 					player.createCock();
 					player.removeVagina(0, 1);

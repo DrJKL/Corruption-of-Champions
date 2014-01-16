@@ -5,11 +5,11 @@ package classes.Scenes.NPCs
 {
 	import classes.Appearance;
 	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 
-	public class AmilyScene extends NPCAwareContent
-	{
+	public class AmilyScene extends NPCAwareContent	{
 		/*Amily the Mousegirl Breeder
 		 * Plus human stuff
 		=============================================
@@ -2908,7 +2908,7 @@ package classes.Scenes.NPCs
 			outputText("\"<i>Flatterer.</i>\" Is all that she says, but she's smiling happily, even as you both clean up and go your seperate ways again.", false);
 			//PREGGO CHECK HERE
 			if(flags[kFLAGS.AMILY_ALLOWS_FERTILITY] == 1) {
-				player.knockUp(11,350);
+				player.knockUp(PregnancyTypeEnum.AMILY,350);
 			}
 			doNext(13);
 			dynStats("sen", -1, "lus=", 0);
@@ -3073,7 +3073,7 @@ package classes.Scenes.NPCs
 				outputText("Slowly, she raises her head and pecks you affectionately on the lips. \"<i>Thank you,</i>\" is all she says, continuing to lay there with you for a while. Then she picks herself up and walks away, and you do the same.", false);
 				//PREGGO CHECK HERE
 				if(flags[kFLAGS.AMILY_ALLOWS_FERTILITY] == 1) {
-					player.knockUp(11,350);
+					player.knockUp(PregnancyTypeEnum.AMILY,350);
 				}
 				dynStats("sen", -1, "lus=", 0);
 			}
@@ -4371,7 +4371,7 @@ package classes.Scenes.NPCs
 			else outputText("  If she did, you'll just have to tie her up and get someone to return the favor...", false);
 
 			//Preg chanceeee
-			player.knockUp(4,350);
+			player.knockUp(PregnancyTypeEnum.MOUSE,350);
 			dynStats("sen", -2, "lus=", 0, "cor", 2);
 
 			doNext(13);
@@ -4577,12 +4577,12 @@ package classes.Scenes.NPCs
 
 			outputText("You smile and reach up to stroke her cheek. She smiles back and reaches down to pat you on your belly.", false);
 			//(If player is preg
-			if(player.pregnancyType == 11 && player.pregnancyIncubation > 0) outputText("\"<i>Boy, this is weird. I'm a woman and I'm going to be a dad.", false);
+			if(player.pregnancyType == PregnancyTypeEnum.AMILY && player.pregnancyIncubation > 0) outputText("\"<i>Boy, this is weird. I'm a woman and I'm going to be a dad.", false);
 			//not preg yet!
 			else {
 				outputText("\"<i>Let's see if you'll be a mommy from this load... If not, well, I guess we'll have to try again.", false);
 				//PREGGO CHECK HERE
-				player.knockUp(11,350);
+				player.knockUp(PregnancyTypeEnum.AMILY,350);
 			}
 			outputText("</i>\"  Chuckling softly, you lay there and embrace your lover for a time and then, reluctantly, you get dressed and leave.", false);
 			dynStats("lus=", 0);
@@ -6223,7 +6223,9 @@ package classes.Scenes.NPCs
 			//Add corrupted amily flag here
 			flags[kFLAGS.AMILY_FOLLOWER] = 2;
 			//Switch to less lovey pregnancy!
-			if(player.pregnancyType == 11) player.pregnancyType = 4;
+			if (player.pregnancyType == PregnancyTypeEnum.AMILY) {
+				player.pregnancyType = PregnancyTypeEnum.MOUSE;
+			}
 			//Make babies disappear
 			flags[kFLAGS.AMILY_INCUBATION] = 0;
 			//Set other flags if Amily is moving in for the first time
@@ -6433,7 +6435,9 @@ package classes.Scenes.NPCs
 			//Enable village encounters
 			flags[kFLAGS.AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 0;
 			//Change to plain mouse birth!
-			if(player.pregnancyType == 11) player.pregnancyType = 4;
+			if (player.pregnancyType == PregnancyTypeEnum.AMILY) {
+				player.pregnancyType = PregnancyTypeEnum.MOUSE;
+			}
 		}
 
 		//Amily's Return:

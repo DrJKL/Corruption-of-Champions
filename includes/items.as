@@ -1,4 +1,5 @@
-﻿import classes.GlobalFlags.kGAMECLASS;
+﻿import classes.PregnancyTypeEnum;
+import classes.GlobalFlags.kGAMECLASS;
 
 // import classes.ItemSlotClass;
 
@@ -5665,7 +5666,7 @@ public function ovipositionElixer():void {
 	if(player.vaginas.length > 0) { 
 		outputText("You pop the cork and gulp down the thick greenish fluid.  The taste is unusual and unlike anything you've tasted before.", true);
 		//If player already has eggs, chance of size increase!
-		if(player.pregnancyType == 5) {
+		if(player.pregnancyType == PregnancyTypeEnum.EGGZ) {
 			if(player.hasStatusAffect("eggs") >= 0) {
 				//If eggs are small, chance of increase!
 				if(player.statusAffects[player.hasStatusAffect("eggs")].value2 == 0) {
@@ -5687,7 +5688,7 @@ public function ovipositionElixer():void {
 		//If the player is not pregnant, get preggers with eggs!
 		if(player.pregnancyIncubation == 0) {
 			outputText("\n\nThe elixir has an immediate effect on your belly, causing it to swell out slightly as if pregnant.  You guess you'll be laying eggs sometime soon!", false);
-			player.knockUp(5,50,1,1);
+			player.knockUp(PregnancyTypeEnum.EGGZ,50,1,1);
 			//v1 = egg type.
 			//v2 = size - 0 for normal, 1 for large
 			//v3 = quantity
@@ -5695,7 +5696,7 @@ public function ovipositionElixer():void {
 			changes++;
 		}
 		//If no changes, speed up pregnancy. 
-		if(changes == 0 && player.pregnancyIncubation > 20 && player.pregnancyType != 9) {
+		if(changes == 0 && player.pregnancyIncubation > 20 && player.pregnancyType != PregnancyTypeEnum.BUNNY) {
 			outputText("\n\nYou gasp as your pregnancy suddenly leaps forwards, your belly bulging outward a few inches as it gets closer to time for birthing.", false);
 			player.pregnancyIncubation -= int(player.pregnancyIncubation * .3 + 10);
 			if(player.pregnancyIncubation < 1) player.pregnancyIncubation = 2;
@@ -8875,12 +8876,12 @@ public function neonPinkEgg(pregnantChange:Boolean = false):void {
 	//If pregnancy, warning!
 	if(pregnantChange) {
 		outputText("\n<b>Your egg-stuffed ", false);
-		if(player.pregnancyType == 9) {
+		if(player.pregnancyType == PregnancyTypeEnum.BUNNY) {
 			outputText("womb ", false);
 			if(player.buttPregnancyType == 9) outputText("and ", false);
 		}
 		if(player.buttPregnancyType == 9) outputText("backdoor ", false);
-		if(player.buttPregnancyType == 9 && player.pregnancyType == 9) outputText("rumble", false);
+		if(player.buttPregnancyType == 9 && player.pregnancyType == PregnancyTypeEnum.BUNNY) outputText("rumble", false);
 		else outputText("rumbles", false);
 		outputText(" oddly, and you have a hunch that something's about to change</b>.", false);
 	}
@@ -12336,7 +12337,7 @@ public function mouseCocoa():void {
 				outputText("Desperately horny, you pull out your bottle of minotaur jism and break the seal in two shakes, then lie down with your hips elevated and upend it over your greedy vagina.  The gooey seed pours into you, and you orgasm fitfully, shaking and failing to hold the bottle in place as it coats your labia.  <b>As a hazy doze infiltrates your mind, you pray the pregnancy takes and dream of the sons you'll bear with your increasingly fertile body... you're going to go insane if you don't get a baby in you</b>.");
 				//(consumes item, increment addiction/output addict message, small chance of mino preg, reduce lust)]", false);
 				player.minoCumAddiction(5);
-				player.knockUp(2,432,175);
+				player.knockUp(PregnancyTypeEnum.MINOTAUR,432,175);
 				consumeItem("MinoCum",1);
 			}
 			temp = player.hasStatusAffect("heat");

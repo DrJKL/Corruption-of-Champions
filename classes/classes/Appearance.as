@@ -509,7 +509,7 @@
 			{
 				// Yeah, this is kind of messy
 				// there is no other easy way to preserve the weighting fenoxo did
-				options = ["cock",
+				options = [ "cock",
 							"cock",
 							"cock",
 							"cock",

@@ -1,16 +1,14 @@
 ﻿package classes.Scenes.NPCs{
-import classes.GlobalFlags.kFLAGS;
-import classes.Appearance;
-import classes.CockTypesEnum;
-import classes.GlobalFlags.kGAMECLASS;
-public class JojoScene extends NPCAwareContent {
-
-	public function JojoScene()
-	{
-	}
-	protected function set monk(value:Number):void{
-		kGAMECLASS.monk = value;
-	}
+	import classes.Appearance;
+	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
+	import classes.GlobalFlags.kFLAGS;
+	import classes.GlobalFlags.kGAMECLASS;
+	public class JojoScene extends NPCAwareContent {
+		public function JojoScene() {}
+		protected function set monk(value:Number):void{
+			kGAMECLASS.monk = value;
+		}
 
 //const TIMES_AMILY_AND_JOJO_PLAYED_TIMES:int = 434;
 //const AMILY_X_JOJO_COOLDOWN:int = 435;
@@ -972,7 +970,7 @@ public function jojoRape():void {
 			}
 			cuntChange(3, true);
 			//Preggers chance!
-			player.knockUp(4,432);
+			player.knockUp(PregnancyTypeEnum.MOUSE,432);
 			//The end
 			if(player.lib > 50 && player.cor > 80) {
 				outputText("\n\n<b>You feel a familiar power growing within you and decide to unleash it.</b>  You grab the prayer beads from his outfit and spit on them, making them slick and wet.  Holding them below his flagging cock, you focus on the demonic visions in your mind, slowly but constantly milking larger and larger dollops of cum onto the once holy beads.  Jojo moans as he comes to understand your intent, and turns around, shaking his lithe mouse-bum at you.  You lean over him, whispering into his ear, \"<i>Each defiled bead I push into you is going to make you more of a willing slut.  More a willing receptacle for demon cum.  More a fountain of desire waiting to be tapped by Succubi.  More my toy.</i>\"\n\n", false);  
@@ -1047,7 +1045,7 @@ public function jojoRape():void {
 			else dynStats("lib", 2, "lus=", 0, "cor", 1);
 			outputText("", false);
 			//Preggers chance!
-			player.knockUp(4,432);
+			player.knockUp(PregnancyTypeEnum.MOUSE,432);
 		}
 		if(player.gender == 3) {
 			outputText("You spread your legs and crook your finger, beckoning him towards your " + vaginaDescript(0) + ".  He looks disheartened, but obediently kneels before you, his whiskers tickling, his wet nose bumping your clit, his tongue taking long licks between your lips.  ", false);
@@ -1079,7 +1077,7 @@ public function jojoRape():void {
 			else dynStats("lib", 2, "lus=", 0, "cor", 1);
 			outputText("", false);
 			//Preggers chance!
-			player.knockUp(4,432);
+			player.knockUp(PregnancyTypeEnum.MOUSE,432);
 		}
 		outputText("", false);
 	}
@@ -1108,7 +1106,7 @@ public function jojoRape():void {
 			if(player.cockTotal() == 3) outputText("A multitude of thick cum-streams splatter over Jojo from head to waist as your " + multiCockDescriptLight() + " hose him down.  ", false);
 			outputText("\n\nSatisfied at last, you pull yourself away from the dazed mouse.  His shaft is still swollen with need, his hands irresistibly stroking it, eyes vacant.  You're going to corrupt him so much more next time.\n\n", false);
 			//Preggers chance!
-			player.knockUp(4,432);
+			player.knockUp(PregnancyTypeEnum.MOUSE,432);
 		}
 	}
 	//First rape;
@@ -1176,7 +1174,7 @@ public function jojoRape():void {
 			monk+=1;
 			
 			//Preggers chance!
-			player.knockUp(4,432);
+			player.knockUp(PregnancyTypeEnum.MOUSE,432);
 		}
 		else if (player.gender == 3) 
 		{

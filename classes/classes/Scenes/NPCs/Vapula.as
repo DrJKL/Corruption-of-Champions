@@ -1,16 +1,13 @@
 package classes.Scenes.NPCs
 {
 	import classes.CockTypesEnum;
+	import classes.PregnancyTypeEnum;
 	import classes.GlobalFlags.kFLAGS;
 
-	public class Vapula extends NPCAwareContent
-	{
-		public function Vapula()
-		{
-		}
+	public class Vapula extends NPCAwareContent {
+		public function Vapula() {}
 		override public function vapulaSlave():Boolean {
 			return flags[kFLAGS.VAPULA_FOLLOWER] == 1;
-
 		}
 
 //Two nights after "vagina enslave", if PC still meets initial requirements (else defer until she does)(Z)
@@ -126,7 +123,9 @@ package classes.Scenes.NPCs
 				//Enable village encounters
 				flags[kFLAGS.AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 0;
 				//Change to plain mouse birth!
-				if (player.pregnancyType == 11) player.pregnancyType = 4;
+				if (player.pregnancyType == PregnancyTypeEnum.AMILY) {
+					player.pregnancyType = PregnancyTypeEnum.MOUSE;
+				}
 				//FLAG THAT THIS SHIT WENT DOWN
 				flags[kFLAGS.AMILY_CORRUPT_FLIPOUT] = 1;
 				//Make sure the camp warning thing is off so she never moves back in.  Bitch be mad.

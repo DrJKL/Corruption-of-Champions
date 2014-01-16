@@ -23,8 +23,6 @@
 // BEEN_BLESSED_BY_CUM_WITCH:int = 855;
 // DISCOVERED_WITCH_DUNGEON:int = 856;
 
-import classes.PregnancyTypeEnum;
-
 public function enterBoobsDungeon():void {
 	inDungeon = true;
 	dungeonLoc = 23;

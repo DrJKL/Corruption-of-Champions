@@ -1,5 +1,4 @@
-﻿import classes.PregnancyTypeEnum;
-import classes.GlobalFlags.kGAMECLASS;
+﻿import classes.GlobalFlags.kGAMECLASS;
 
 // import classes.ItemSlotClass;
 

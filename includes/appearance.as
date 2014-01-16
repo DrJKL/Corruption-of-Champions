@@ -1,5 +1,3 @@
-import classes.PregnancyTypeEnum;
-
 public function appearance(e:MouseEvent = null):void {
 	funcs = new Array();
 	args = new Array();

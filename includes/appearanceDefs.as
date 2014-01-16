@@ -18,11 +18,11 @@ public static const SKIN_TYPE_GOO:int                                           
 public static const SKIN_TYPE_UNDEFINED:int                                         =    4;
 
 // hairType
-public static const HAIR_NORMAL:int                                                =     0;
-public static const HAIR_FEATHER:int                                               =     1;
-public static const HAIR_GHOST:int                                                 =     2;
-public static const HAIR_GOO:int                                                   =     3;
-public static const HAIR_ANEMONE:int                                               =     4;
+public static const HAIR_NORMAL:int                                              	=     0;
+public static const HAIR_FEATHER:int                                             	=     1;
+public static const HAIR_GHOST:int                                               	=     2;
+public static const HAIR_GOO:int                                                 	=     3;
+public static const HAIR_ANEMONE:int                                             	=     4;
 
 // faceType
 public static const FACE_HUMAN:int                                                  =    0;
@@ -228,11 +228,11 @@ public static const BUTT_RATING_INCONCEIVABLY_BIG:int                           
       <AnalPregnancyType ID="0"  Name="None"/>
       <AnalPregnancyType ID="2"  Name="Bee-girl"/>
       <AnalPregnancyType ID="3"  Name="Drider"/>
-      <AnalPregnancyType ID="5"  Name="Fake pregnancy (Sand Trap)"/>
-      <AnalPregnancyType ID="23" Name="Frog-girl"/>
       <AnalPregnancyType ID="4"  Name="Insectoid (Sand Trap)"/>
+      <AnalPregnancyType ID="5"  Name="Fake pregnancy (Sand Trap)"/>
       <AnalPregnancyType ID="9"  Name="Neon pink egg (Bunny-girl)"/>
       <AnalPregnancyType ID="19" Name="Satyr"/>
+      <AnalPregnancyType ID="23" Name="Frog-girl"/>
     </AnalPregnancyTypes>
 
 

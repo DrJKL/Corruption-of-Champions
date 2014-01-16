@@ -40,8 +40,6 @@ PC loses a day in this process.
 Meeting Jack
 */
 
-import classes.PregnancyTypeEnum;
-
 //Takes place when exploring the mountain.
 public function meetJackFrostInTheMountains():void {
 	clearOutput();
@@ -72,8 +70,8 @@ public function meetJackFrostInTheMountains():void {
 	outputText("\n\nWhat do you say?  Do you take the ice giant's deal and get a day off playing in the snow on your camp?");
 	//[Yes] [No]
 	menu();
-	addButton(0,"Yes",jizzSnowOnMyCampPlease);
-	addButton(1,"No",noJizzingInMyCampPlease);
+	addButton(0, "Yes", jizzSnowOnMyCampPlease);
+	addButton(1, "No", noJizzingInMyCampPlease);
 }
 
 //[=No=]

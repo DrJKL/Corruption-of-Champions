@@ -1,5 +1,4 @@
-﻿import classes.PregnancyTypeEnum;
-import classes.GlobalFlags.kFLAGS;
+﻿import classes.GlobalFlags.kFLAGS;
 
 //Used to jump the fuck out of pregnancy scenarios for menus.
 //const EVENT_PARSER_ESCAPE:int = 800;

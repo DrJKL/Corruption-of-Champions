@@ -9,15 +9,16 @@
 	import classes.AssClass;
 	import classes.BreastRowClass;
 
-	import classes.Player;
 	import classes.Cock;
 	import classes.Creature;
-	import classes.ItemSlotClass;
-	import classes.PerkClass;
-	import classes.StatusAffectClass;
-	import classes.VaginaClass;
 	import classes.ImageManager; // This line not necessary, but added because I'm pedantic like that.
 	import classes.InputManager;
+	import classes.ItemSlotClass;
+	import classes.PerkClass;
+	import classes.Player;
+	import classes.PregnancyTypeEnum;
+	import classes.StatusAffectClass;
+	import classes.VaginaClass;
 
 	import classes.Parser.Main.Parser; 	// import getting long enough yet?
 
@@ -531,6 +532,7 @@
 			registerClassAlias("KeyItemClass", KeyItemClass);
 			registerClassAlias("Monster", Monster);
 			registerClassAlias("Player", Player);
+			registerClassAlias("PregnancyTypeEnum", PregnancyTypeEnum);
 			registerClassAlias("StatusAffectClass", StatusAffectClass);
 			registerClassAlias("VaginaClass", VaginaClass);
 			//registerClassAlias("Enum", Enum);

@@ -1,12 +1,10 @@
-﻿	import classes.PregnancyTypeEnum;
-
-		public function updatePregnancy():Boolean {
-			var displayedUpdate:Boolean = false;
-			var pregText:String = "";
-			if((player.pregnancyIncubation <= 0 && player.buttPregnancyIncubation <= 0) ||
-				(player.pregnancyType == PregnancyTypeEnum.NONE && player.buttPregnancyType == 0)) {
-				return false;
-			}
+﻿public function updatePregnancy():Boolean {
+	var displayedUpdate:Boolean = false;
+	var pregText:String = "";
+	if((player.pregnancyIncubation <= 0 && player.buttPregnancyIncubation <= 0) ||
+		(player.pregnancyType == PregnancyTypeEnum.NONE && player.buttPregnancyType == 0)) {
+		return false;
+	}
 			//Cancel Heat
 			if(player.hasStatusAffect("heat") >= 0) {
 				outputText("\nYou calm down a bit and realize you no longer fantasize about getting fucked constantly.  It seems your heat has ended.\n", false);

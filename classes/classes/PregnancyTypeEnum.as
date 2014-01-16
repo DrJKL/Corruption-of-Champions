@@ -1,8 +1,10 @@
 package classes {
 	
-	public class PregnancyTypeEnum {
-		public var name:String;
-		public var val:int;
+	import classes.Enum;
+	
+	public class PregnancyTypeEnum extends Enum {
+		
+		{initEnum(PregnancyTypeEnum);}
 		
 		private static var assoc:Object = {};
 		
@@ -31,18 +33,30 @@ package classes {
 		public static const SAND_WITCH:PregnancyTypeEnum 		= new PregnancyTypeEnum(22, "Sand Witch");
 		public static const FROG_BUTT_EGG:PregnancyTypeEnum 	= new PregnancyTypeEnum(23, "Frog Girl");		
 		
-		public function PregnancyTypeEnum(val:int, name:String = "") {
-			this.name = name;
+		public function PregnancyTypeEnum(val:int = -1, name:String = "") {
 			this.val = val;
+			this.name = name;
 			assoc[val] = this;
 		}
+		public var name:String;
+		public var val:int;
 		
 		public static function getType(val:int):PregnancyTypeEnum {
 			return assoc[val];
 		}
 		
-		public function toString():String {
+		public override function toString():String {
 			return this.name;
+		}
+		
+		public static function ParseConstant(i_constantName:String, i_caseSensitive:Boolean = false):PregnancyTypeEnum
+		{
+			return PregnancyTypeEnum(Enum.ParseConstant(PregnancyTypeEnum, i_constantName, i_caseSensitive));
+		}
+		
+		public static function ParseConstantByIndex(i_constantIndex:int = 0):PregnancyTypeEnum
+		{
+			return PregnancyTypeEnum(Enum.ParseConstantByIndex(PregnancyTypeEnum, i_constantIndex));
 		}
 	}
 

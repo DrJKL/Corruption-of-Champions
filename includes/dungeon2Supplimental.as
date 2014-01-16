@@ -10,8 +10,6 @@
 // TIMES_VALA_CONSENSUAL_BIG:int = 767;
 // TIMES_VAPULA_AND_GIANT_VALA:int = 768;
 
-import classes.PregnancyTypeEnum;
-
 public function impGangAI():void {
 	if(monster.hasStatusAffect("ImpUber") >= 0) impGangUber();
 	else if(monster.lust > 50 && rand(2) == 0) impGangBukkake();

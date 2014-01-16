@@ -23,9 +23,6 @@
 // TOOK_QUEEN_STAFF:int = 497;
 // VALARIA_AT_CAMP:int = 498;
 
-import classes.PregnancyTypeEnum;
-
-
 //Introduction Scene -- Helia's Discovery
 //Requirements: 
 //-PC has achieved \"<i>Fuckbuddy</i>\" status with Helia.

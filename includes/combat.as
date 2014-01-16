@@ -1,6 +1,5 @@
 ﻿import classes.GlobalFlags.kGAMECLASS;
 import classes.Monster;
-import classes.PregnancyTypeEnum;
 
 import coc.view.MainView;
 

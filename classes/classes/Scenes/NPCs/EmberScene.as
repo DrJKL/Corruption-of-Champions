@@ -946,7 +946,7 @@ package classes.Scenes.NPCs{
 				doNext(13);
 				return;
 			}
-			if (player.pregnancyIncubation > 0 && player.pregnancyType == PregnancyTypeEnum.EMBER && player.pregnancyType.val < 300 && flags[kFLAGS.EMBER_TALKS_TO_PC_ABOUT_PC_MOTHERING_DRAGONS] == 0) {
+			if (player.pregnancyIncubation > 0 && player.pregnancyType == PregnancyTypeEnum.EMBER && player.pregnancyType < 300 && flags[kFLAGS.EMBER_TALKS_TO_PC_ABOUT_PC_MOTHERING_DRAGONS] == 0) {
 				emberTalksToPCAboutPCDragoNPregnancy();
 				doNext(13);
 				return;

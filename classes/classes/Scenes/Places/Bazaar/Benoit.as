@@ -44,15 +44,15 @@ public function benoitAffection(changes:Number = 0):Number {
 
 private function benoitKnocksUpPCCheck():void {
 	//Convert old basi's to real basi's!
-	if(player.pregnancyType == PregnancyTypeEnum.BASILISK && player.hasPerk("Basilisk Womb") >= 0) player.pregnancyType = PregnancyTypeEnum.PROPER_BASILISK;
+	if(player.pregnancyType == PregnancyTypeEnum.BASILISK && player.hasPerk("Basilisk Womb") >= 0) player.pregnancyType = PregnancyTypeEnum.BENOIT;
 	//Knock up chances:
 	if((player.pregnancyType == PregnancyTypeEnum.EGGZ || player.hasPerk("Harpy Womb") >= 0 || player.hasPerk("Oviposition") >= 0 || player.hasPerk("Basilisk Womb") >= 0) && (player.pregnancyIncubation == 0 || player.pregnancyType == PregnancyTypeEnum.EGGZ)) {
 		if(player.hasPerk("Basilisk Womb") >= 0 && flags[kFLAGS.BENOIT_TESTED_BASILISK_WOMB] == 1) {
 			if(player.pregnancyType != PregnancyTypeEnum.EGGZ || player.pregnancyIncubation == 0) {
 				//player.pregnancyIncubation = 250;
-				player.knockUp(PregnancyTypeEnum.PROPER_BASILISK,250);
+				player.knockUp(PregnancyTypeEnum.BENOIT,250);
 			}
-			if(player.pregnancyIncubation > 0) player.pregnancyType = PregnancyTypeEnum.PROPER_BASILISK;
+			if(player.pregnancyIncubation > 0) player.pregnancyType = PregnancyTypeEnum.BENOIT;
 		}
 		else {
 			player.knockUp(PregnancyTypeEnum.BASILISK,250);
@@ -854,7 +854,7 @@ private function suggestSexAfterBasiWombed(later:Boolean = true):void {
 		player.createPerk("Oviposition",0,0,0,0);
 		outputText("\n(<b>Perk Unlocked: Oviposition - You will now regularly lay unfertilized eggs.</b>)");
 	}
-	if(player.pregnancyType == PregnancyTypeEnum.BASILISK) player.pregnancyType = PregnancyTypeEnum.PROPER_BASILISK;
+	if(player.pregnancyType == PregnancyTypeEnum.BASILISK) player.pregnancyType = PregnancyTypeEnum.BENOIT;
 	doNext(13);
 	dynStats("sen", -2, "lus=", 0);
 }

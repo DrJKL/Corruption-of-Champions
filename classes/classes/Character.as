@@ -70,7 +70,7 @@
 		//6 = hellhound
 		//7 = centaur
 		//8 = MARBLZ
-		public var pregnancyType:PregnancyTypeEnum = PregnancyTypeEnum.NONE;
+		public var pregnancyType:int = PregnancyTypeEnum.NONE;
 		public var pregnancyIncubation:Number = 0;
 		
 		//2 = bee
@@ -80,8 +80,7 @@
 		//Key items
 		public var keyItems:Array;
 		
-		public function Character()
-		{
+		public function Character() {
 			keyItems = [];
 		}
 		
@@ -453,7 +452,7 @@
 			return true;
 		}
 		//fertility must be >= random(0-beat)
-		public function knockUp(type:PregnancyTypeEnum, incubation:int = 0, beat:int = 100, arg:int = 0):void
+		public function knockUp(type:int, incubation:int = 0, beat:int = 100, arg:int = 0):void
 		{
 			//Contraceptives cancel!
 			if (hasStatusAffect("Contraceptives") >= 0 && arg < 1)

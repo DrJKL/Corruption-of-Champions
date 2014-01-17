@@ -29,19 +29,19 @@ package classes
 		 * seaworld - Anything in the water
 		 * other	- doesn't fit anywhere else
 		 */
-		public static const HUMAN:CockTypesEnum 	= new CockTypesEnum("human");
-		public static const HORSE:CockTypesEnum 	= new CockTypesEnum("mammal");
-		public static const DOG:CockTypesEnum 		= new CockTypesEnum("mammal");
-		public static const DEMON:CockTypesEnum 	= new CockTypesEnum("super");
-		public static const TENTACLE:CockTypesEnum 	= new CockTypesEnum("tentacle");
-		public static const CAT:CockTypesEnum 		= new CockTypesEnum("mammal");
-		public static const LIZARD:CockTypesEnum 	= new CockTypesEnum("reptile");
-		public static const ANEMONE:CockTypesEnum 	= new CockTypesEnum("seaworld");
-		public static const KANGAROO:CockTypesEnum 	= new CockTypesEnum("mammal");
-		public static const DRAGON:CockTypesEnum 	= new CockTypesEnum("reptile");
-		public static const DISPLACER:CockTypesEnum	= new CockTypesEnum("other");
-		public static const FOX:CockTypesEnum		= new CockTypesEnum("mammal");
-		public static const UNDEFINED:CockTypesEnum	= new CockTypesEnum("");
+		public static const HUMAN:CockTypesEnum = new CockTypesEnum("human");
+		public static const HORSE:CockTypesEnum = new CockTypesEnum("mammal");
+		public static const DOG:CockTypesEnum = new CockTypesEnum("mammal");
+		public static const DEMON:CockTypesEnum = new CockTypesEnum("super");
+		public static const TENTACLE:CockTypesEnum = new CockTypesEnum("tentacle");
+		public static const CAT:CockTypesEnum = new CockTypesEnum("mammal");
+		public static const LIZARD:CockTypesEnum = new CockTypesEnum("reptile");
+		public static const ANEMONE:CockTypesEnum = new CockTypesEnum("seaworld");
+		public static const KANGAROO:CockTypesEnum = new CockTypesEnum("mammal");
+		public static const DRAGON:CockTypesEnum = new CockTypesEnum("reptile");
+		public static const DISPLACER:CockTypesEnum = new CockTypesEnum("other");
+		public static const FOX:CockTypesEnum = new CockTypesEnum("mammal");
+		public static const UNDEFINED:CockTypesEnum = new CockTypesEnum("");
 		
 		function CockTypesEnum(i_group:String = "") {
 			this._group = i_group;

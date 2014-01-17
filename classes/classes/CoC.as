@@ -532,7 +532,6 @@
 			registerClassAlias("KeyItemClass", KeyItemClass);
 			registerClassAlias("Monster", Monster);
 			registerClassAlias("Player", Player);
-			registerClassAlias("PregnancyTypeEnum", PregnancyTypeEnum);
 			registerClassAlias("StatusAffectClass", StatusAffectClass);
 			registerClassAlias("VaginaClass", VaginaClass);
 			//registerClassAlias("Enum", Enum);

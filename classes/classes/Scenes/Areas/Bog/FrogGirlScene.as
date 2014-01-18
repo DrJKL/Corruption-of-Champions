@@ -1,6 +1,6 @@
 ﻿package classes.Scenes.Areas.Bog {
 	import classes.BaseContent;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 	public class FrogGirlScene extends BaseContent {
@@ -223,7 +223,7 @@ private function superBonusFrogEggsInYerCooch():void {
 	outputText("\n\nAs awareness slowly starts to trickle in to your head, you blink, groaning slightly as you sit up, clutching your massive, pregnant belly, feeling the jelly-eggs inside shifting when you step up out of the water.  You pause as a tiny trickle of slime oozes out from your vagina, sending a brief rainbow flash across your vision and the echo of an orgasm through your system, before you put your [armor] back on and stagger back toward camp.");
 	//[Vaginal wetness +1, Sensitivity +1]
 	dynStats("sen", 1, "lus=", 0);
-	player.knockUp(PregnancyTypeEnum.FROG,30,1,1);
+	player.knockUp(PregnancyType.FROG,30,1,1);
 	doNext(13);
 }
 

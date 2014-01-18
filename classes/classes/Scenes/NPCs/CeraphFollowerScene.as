@@ -3,7 +3,7 @@
  */
 package classes.Scenes.NPCs {
 	import classes.CockTypesEnum;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 
@@ -609,7 +609,7 @@ package classes.Scenes.NPCs {
 			outputText("You come to in a puddle of cum, both yours and Ceraph's.  The demoness is sitting down across from you, her appearance returned to normal.  She brightens when she wakes and kneels, saying, \"<i>Thank you for allowing me to serve you so... completely, " + player.mf("Master", "Mistress") + ".  It was... thrilling.</i>\"\n\n", false);
 
 			dynStats("sen", -2, "lus=", 0, "cor", .25);
-			player.knockUp(PregnancyTypeEnum.IMP, 400, 61);
+			player.knockUp(PregnancyType.IMP, 400, 61);
 			if (flags[kFLAGS.CERAPH_HIDING_DICK] == 0 && flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00290] == 0) {
 				outputText("You smirk and wonder if you should punish her for stuffing her cock down your throat.  Do you?", false);
 				simpleChoices("Punish", punishCeraphForSurpriseThroatFuck, "", 0, "", 0, "", 0, "Leave", 13);
@@ -765,7 +765,7 @@ package classes.Scenes.NPCs {
 			dynStats("lib", -1, "sen", -2, "lus=", 0, "cor", 2);
 			//Preggers chance!
 			if (player.hasVagina() && player.totalFertility() >= rand(45) && player.pregnancyIncubation == 0) {
-				player.knockUp(PregnancyTypeEnum.IMP, 432);
+				player.knockUp(PregnancyType.IMP, 432);
 				trace("PC KNOCKED UP WITH CERAPH IMPS");
 			}
 			doNext(13);

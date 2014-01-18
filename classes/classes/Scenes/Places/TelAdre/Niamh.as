@@ -1,5 +1,5 @@
 ﻿package classes.Scenes.Places.TelAdre {
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 
 	public class Niamh extends TelAdreAbstractContent {
@@ -854,20 +854,20 @@ private function barBeerOrgyTits():void {
 		if(player.hasVagina()) {
 			outputText("  You walk slightly bow legged out of the bar.  Cum is still dripping from your snatch and will likely continue to do so for a while.");
 			//IF [player is not pregnant]  
-			if(player.pregnancyType == PregnancyTypeEnum.NONE) outputText("  You can't help but wonder how virile those dog morphs might have been as their cum and the cum of other customers sloshes around inside your uterus.");
+			if(player.pregnancyType == PregnancyType.NONE) outputText("  You can't help but wonder how virile those dog morphs might have been as their cum and the cum of other customers sloshes around inside your uterus.");
 			temp = rand(6);
 			switch(temp) {
 				case 0:
-					player.knockUp(PregnancyTypeEnum.MINOTAUR,350);
+					player.knockUp(PregnancyType.MINOTAUR,350);
 					break;
 				case 1:
-					player.knockUp(PregnancyTypeEnum.MOUSE,350);
+					player.knockUp(PregnancyType.MOUSE,350);
 					break;
 				case 2:
-					player.knockUp(PregnancyTypeEnum.MOUSE,350);
+					player.knockUp(PregnancyType.MOUSE,350);
 					break;
 				default:
-					player.knockUp(PregnancyTypeEnum.CENTAUR,360);
+					player.knockUp(PregnancyType.CENTAUR,360);
 					break;
 			}
 		}

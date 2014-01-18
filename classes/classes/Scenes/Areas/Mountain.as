@@ -4,7 +4,7 @@
 package classes.Scenes.Areas
 {
 	import classes.BaseContent;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.Scenes.Areas.Mountain.*;
@@ -55,7 +55,7 @@ package classes.Scenes.Areas
 				if (flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00141] < 3) {
 					trace("CHANCE AT HELLHOUND GAO");
 					//Requires canine face, [either two dog dicks, or a vag and pregnant with a hellhound], at least two other hellhound features (black fur, dog legs, dog tail), and corruption >=60.
-					if (player.faceType == FACE_DOG && (player.dogCocks() >= 2 || (player.hasVagina() && player.pregnancyType == PregnancyTypeEnum.HELLHOUND && player.pregnancyIncubation > 0)) && player.cor >= 60 && player.tailType == TAIL_TYPE_DOG && (player.lowerBody == LOWER_BODY_TYPE_DOG || player.hairColor == "midnight black")) {
+					if (player.faceType == FACE_DOG && (player.dogCocks() >= 2 || (player.hasVagina() && player.pregnancyType == PregnancyType.HELLHOUND && player.pregnancyIncubation > 0)) && player.cor >= 60 && player.tailType == TAIL_TYPE_DOG && (player.lowerBody == LOWER_BODY_TYPE_DOG || player.hairColor == "midnight black")) {
 						trace("PASS BODYCHECK");
 						if (flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00141] == 0) {
 							hellHoundScene.HellHoundMasterEncounter();
@@ -391,7 +391,7 @@ package classes.Scenes.Areas
 			}
 			//Chance to impregnate PC, get mino-fix, and maybe relief from feeder perk.
 			player.minoCumAddiction(10);
-			player.knockUp(PregnancyTypeEnum.MINOTAUR, 432);
+			player.knockUp(PregnancyType.MINOTAUR, 432);
 			if (player.hasStatusAffect("Feeder") >= 0) {
 				//You've now been milked, reset the timer for that
 				player.addStatusValue("Feeder", 1, 1);

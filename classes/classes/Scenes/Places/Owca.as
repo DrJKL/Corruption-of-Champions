@@ -1,6 +1,6 @@
 ﻿package classes.Scenes.Places{
 	import classes.BaseContent;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
@@ -507,7 +507,7 @@ private function rapeZeVapula():void {
 		//+med-high corruption, + strength/cons, -10 libido, slimefeed, imp preg check
 		dynStats("str", 1,"tou", 1, "lib", -4, "lus=", 0, "cor", 4);
 		player.slimeFeed();
-		player.knockUp(PregnancyTypeEnum.IMP,432);
+		player.knockUp(PregnancyType.IMP,432);
 	}
 	//PC is redirected to camp, next morning. No nightly camp scenes. 
 	model.time.hours = 7;

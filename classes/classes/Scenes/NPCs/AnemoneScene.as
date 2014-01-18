@@ -6,7 +6,7 @@ package classes.Scenes.NPCs
 	import classes.Appearance;
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 
@@ -54,7 +54,7 @@ package classes.Scenes.NPCs
 		//  HAD_KID_A_DREAM:int = 758;
 
 		private function anemonePreg():void {
-			player.knockUp(PregnancyTypeEnum.ANEMONE, 256, 101);
+			player.knockUp(PregnancyType.ANEMONE, 256, 101);
 		}
 
 		public function kidAXP(diff:Number = 0):Number {

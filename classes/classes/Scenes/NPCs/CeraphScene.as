@@ -4,7 +4,7 @@
 package classes.Scenes.NPCs
 {
 	import classes.CockTypesEnum;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 
 	public class CeraphScene extends NPCAwareContent {
@@ -244,7 +244,7 @@ package classes.Scenes.NPCs
 			outputText("As you leave, you don't bother to spare a glance at the confused omnibus, she isn't worth your time.\n\n", false);
 			player.cuntChange(monster.cockArea(0), true);
 			dynStats("lib", 3, "sen", 3, "lus=", 0, "cor", 1);
-			player.knockUp(PregnancyTypeEnum.IMP, 400, 61);
+			player.knockUp(PregnancyType.IMP, 400, 61);
 			if (gameState < 1 || gameState > 2) doNext(13);
 			else cleanupAfterCombat();
 		}

@@ -1,7 +1,7 @@
 package classes.Scenes.NPCs
 {
 	import classes.CockTypesEnum;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 
 	public class Vapula extends NPCAwareContent {
@@ -123,8 +123,8 @@ package classes.Scenes.NPCs
 				//Enable village encounters
 				flags[kFLAGS.AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 0;
 				//Change to plain mouse birth!
-				if (player.pregnancyType == PregnancyTypeEnum.AMILY) {
-					player.pregnancyType = PregnancyTypeEnum.MOUSE;
+				if (player.pregnancyType == PregnancyType.AMILY) {
+					player.pregnancyType = PregnancyType.MOUSE;
 				}
 				//FLAG THAT THIS SHIT WENT DOWN
 				flags[kFLAGS.AMILY_CORRUPT_FLIPOUT] = 1;

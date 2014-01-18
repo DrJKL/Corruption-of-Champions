@@ -1,7 +1,7 @@
 ﻿package classes 
 {
 	import classes.Scenes.Places.TelAdre.UmasShop;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 
 	/**
 	 * Character class for player and NPCs. Has subclasses Player and NonPlayer.
@@ -70,7 +70,7 @@
 		//6 = hellhound
 		//7 = centaur
 		//8 = MARBLZ
-		public var pregnancyType:int = PregnancyTypeEnum.NONE;
+		public var pregnancyType:int = PregnancyType.NONE;
 		public var pregnancyIncubation:Number = 0;
 		
 		//2 = bee
@@ -473,7 +473,7 @@
 				trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation.");
 			}
 			//Chance for eggs fertilization - ovi elixir and imps excluded!
-			if (type != PregnancyTypeEnum.IMP && type != PregnancyTypeEnum.EGGZ && type != PregnancyTypeEnum.ANEMONE)
+			if (type != PregnancyType.IMP && type != PregnancyType.EGGZ && type != PregnancyType.ANEMONE)
 			{
 				if (hasPerk("Spider Ovipositor") >= 0 || hasPerk("Bee Ovipositor") >= 0)
 				{

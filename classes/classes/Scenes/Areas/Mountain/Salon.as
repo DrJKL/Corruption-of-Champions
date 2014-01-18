@@ -2,7 +2,7 @@
 	import classes.Appearance;
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 	public class Salon extends BaseContent {
@@ -465,7 +465,7 @@ private function minotaurCumBukkakeInSalon():void {
 	outputText(".\n\n", false);
 	//ADD PREG CHECK
 	//Preggers chance!
-	player.knockUp(PregnancyTypeEnum.MINOTAUR,432,70);
+	player.knockUp(PregnancyType.MINOTAUR,432,70);
 
 	outputText("Giggling, you stagger over to the next cock in line and turn around, possessed with the idea of taking its spooge in the most direct way possible – anally.   You pull your butt-cheeks apart and lean back, surprising one of the horny beasts with the warmth of your " + assholeDescript() + " as you slowly relax, spreading over his flare.  He actually squirts ropes of something inside of you, but you've been around minotaurs enough to know that it can't be cum, at least not yet.  The slippery gouts of preseed make it nice and easy to rock back and spear yourself on the first few inches, ", false);
 	if(player.analCapacity() < 80) {

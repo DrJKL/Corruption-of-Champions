@@ -714,8 +714,8 @@ public function goNext(time:Number, defNext:Boolean):Boolean  {
 			}
 		}
 		//Fixing Egg Preg Preglocked Glitch
-		if(player.pregnancyIncubation <= 0 && player.pregnancyType == PregnancyTypeEnum.EGGZ) {
-			player.pregnancyType = PregnancyTypeEnum.NONE;
+		if(player.pregnancyIncubation <= 0 && player.pregnancyType == PregnancyType.EGGZ) {
+			player.pregnancyType = PregnancyType.NONE;
 			player.pregnancyIncubation = 0;
 		}
 		if(player.hasStatusAffect("Uniball") >= 0 && player.ballSize > 1 && player.balls > 0) {
@@ -1197,7 +1197,7 @@ public function goNext(time:Number, defNext:Boolean):Boolean  {
 					if(player.totalFertility() > 50 && model.time.days % 15 == 0) {
 						outputText("\n<b>Somehow you know that eggs have begun to form inside you.  You wonder how long it will be before they start to show?</b>\n", false);
 						needNext = true;
-						player.knockUp(PregnancyTypeEnum.EGGZ,50,1,1);
+						player.knockUp(PregnancyType.EGGZ,50,1,1);
 						//v1 = egg type.
 						//v2 = size - 0 for normal, 1 for large
 						//v3 = quantity
@@ -1207,7 +1207,7 @@ public function goNext(time:Number, defNext:Boolean):Boolean  {
 					else if(model.time.days % 30 == 0) {
 						outputText("\n<b>Somehow you know that eggs have begun to form inside you.  You wonder how long it will be before they start to show?</b>\n", false);
 						needNext = true;
-						player.knockUp(PregnancyTypeEnum.EGGZ,50,1,1);
+						player.knockUp(PregnancyType.EGGZ,50,1,1);
 						//v1 = egg type.
 						//v2 = size - 0 for normal, 1 for large
 						//v3 = quantity

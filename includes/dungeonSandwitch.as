@@ -807,7 +807,7 @@ public function turnIntoASammitch():void {
 	outputText("\n\n\"<i>i'z fine...</i>\" a quiet voice draws, barely loud enough to be heard.");
 	
 	outputText("\n\nYour captor flashes you a smile and giggles, \"<i>See?  I told you they wouldn't mind.  Now, ");
-	if(player.pregnancyType == PregnancyTypeEnum.NONE) outputText("let's go ahead and get your first daughter inside you, shall we?");
+	if(player.pregnancyType == PregnancyType.NONE) outputText("let's go ahead and get your first daughter inside you, shall we?");
 	else outputText("let's go ahead and have some fun, shall we?  We'll have to wait until you pop out whatever's in your womb before I give you your first witch child.");
 	outputText("  There will be plenty of time to make you one of us while we're waiting.</i>\"");
 	
@@ -1329,7 +1329,7 @@ public function menFuckUpSomeCumWitch():void {
 		outputText("\n\nRising slowly, you withdraw yourself from the goo-glazed pussy beneath you and try to ignore the matching river of white that pours out from betwixt your thighs.  You make sure to lean over your onyx lover, salting her with her own dripping seed until the flow slows to a trickle.  She meekly protests at first, then gives up with a lusty sigh, smearing her skin with pristine white as her mind slides back into the gutter.  You make sure to admire your work while you get dressed.");
 		//(cum, then +5 lust){preg check for sammitches}
 		//sand witch preg
-		player.knockUp(PregnancyTypeEnum.SAND_WITCH,360,90);
+		player.knockUp(PregnancyType.SAND_WITCH,360,90);
 		dynStats("lus=", 0);
 		dynStats("lus", 5);
 	}
@@ -1462,7 +1462,7 @@ public function ladyVictorySex():void {
 	
 	outputText("\n\nYou recover after a few minutes and rise up, legs shaking at the overpowering sensation of the witch's withdrawing phallus, but you make it up with spunk pouring from your [vagina].  What a victory!");
 	
-	player.knockUp(PregnancyTypeEnum.SAND_WITCH,360,90);
+	player.knockUp(PregnancyType.SAND_WITCH,360,90);
 	dynStats("lus=", 0);
 	if(inDungeon) {
 		if(inCombat()) cleanupAfterCombat();
@@ -1576,7 +1576,7 @@ public function resistSavinStuff():void {
 	dynStats("sen", 2, "lus=", 0);
 	cleanupAfterCombat();
 	//knock up hurrrr
-	player.knockUp(PregnancyTypeEnum.SAND_WITCH,360,90);
+	player.knockUp(PregnancyType.SAND_WITCH,360,90);
 }
 //Do Nothing
 public function doNotResistSavin():void {
@@ -1593,7 +1593,7 @@ public function doNotResistSavin():void {
 	dynStats("sen", 2, "lus=", 0);
 	cleanupAfterCombat();
 	//knock up hurrrr
-	player.knockUp(PregnancyTypeEnum.SAND_WITCH,360,90);
+	player.knockUp(PregnancyType.SAND_WITCH,360,90);
 }
 
 	

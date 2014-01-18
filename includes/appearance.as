@@ -635,9 +635,9 @@ public function appearance(e:MouseEvent = null):void {
 		outputText("\n<b>Your gravid-looking belly is absolutely stuffed full of goo. There's no way you can get pregnant like this, but at the same time, you look like some fat-bellied breeder.</b>\n");
 	}
 	//Pregnancy Shiiiiiitz
-	if((player.buttPregnancyType == 23 && player.buttPregnancyIncubation > 0) || (player.buttPregnancyType == 19 && player.buttPregnancyIncubation > 0) || (player.pregnancyType != PregnancyTypeEnum.NONE && player.pregnancyIncubation > 0)) 
+	if((player.buttPregnancyType == 23 && player.buttPregnancyIncubation > 0) || (player.buttPregnancyType == 19 && player.buttPregnancyIncubation > 0) || (player.pregnancyType != PregnancyType.NONE && player.pregnancyIncubation > 0)) 
 	{
-		if(player.pregnancyType == PregnancyTypeEnum.EGGZ) 
+		if(player.pregnancyType == PregnancyType.EGGZ) 
 		{
 			outputText("<b>", false);
 			//Compute size
@@ -682,15 +682,15 @@ public function appearance(e:MouseEvent = null):void {
 			}
 			else 
 			{
-				if(player.pregnancyType == PregnancyTypeEnum.IZMA || player.pregnancyType == PregnancyTypeEnum.MOUSE || player.pregnancyType == PregnancyTypeEnum.AMILY || player.pregnancyType == PregnancyTypeEnum.EMBER || player.pregnancyType == PregnancyTypeEnum.URTA) 
+				if(player.pregnancyType == PregnancyType.IZMA || player.pregnancyType == PregnancyType.MOUSE || player.pregnancyType == PregnancyType.AMILY || player.pregnancyType == PregnancyType.EMBER || player.pregnancyType == PregnancyType.URTA) 
 					outputText("\n<b>Your belly protrudes unnaturally far forward, bulging with the spawn of one of this land's natives.</b>", false);
-				else if(player.pregnancyType != PregnancyTypeEnum.MARBLE) 
+				else if(player.pregnancyType != PregnancyType.MARBLE) 
 					outputText("\n<b>Your belly protrudes unnaturally far forward, bulging with the unclean spawn of some monster or beast.</b>", false);
 				else outputText("\n<b>Your belly protrudes unnaturally far forward, bulging outwards with Marble's precious child.</b>", false);
 			}
 		}
 		//URTA PREG
-		else if(player.pregnancyType == PregnancyTypeEnum.URTA) 
+		else if(player.pregnancyType == PregnancyType.URTA) 
 		{
 			if(player.pregnancyIncubation <= 432 && player.pregnancyIncubation > 360)
 			{
@@ -755,9 +755,9 @@ public function appearance(e:MouseEvent = null):void {
 			}
 			if(player.pregnancyIncubation <= 48) 
 			{
-				if(player.pregnancyType == PregnancyTypeEnum.IZMA || player.pregnancyType == PregnancyTypeEnum.MOUSE || player.pregnancyType == PregnancyTypeEnum.AMILY || player.pregnancyType == PregnancyTypeEnum.EMBER || player.pregnancyType == PregnancyTypeEnum.URTA) 
+				if(player.pregnancyType == PregnancyType.IZMA || player.pregnancyType == PregnancyType.MOUSE || player.pregnancyType == PregnancyType.AMILY || player.pregnancyType == PregnancyType.EMBER || player.pregnancyType == PregnancyType.URTA) 
 					outputText("\n<b>Your belly protrudes unnaturally far forward, bulging with the spawn of one of this land's natives.</b>", false);
-				else if(player.pregnancyType != PregnancyTypeEnum.MARBLE) 
+				else if(player.pregnancyType != PregnancyType.MARBLE) 
 					outputText("\n<b>Your belly protrudes unnaturally far forward, bulging with the unclean spawn of some monster or beast.</b>", false);
 				else outputText("\n<b>Your belly protrudes unnaturally far forward, bulging outwards with Marble's precious child.</b>", false);
 			}

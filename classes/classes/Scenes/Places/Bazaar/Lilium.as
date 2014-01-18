@@ -1,5 +1,5 @@
 ﻿package classes.Scenes.Places.Bazaar {
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	public class Lilium extends BazaarAbstractContent {
 		public function Lilium() {
@@ -198,7 +198,7 @@ private function liliumDickRidah():void {
 
 	dynStats("lus=", 0, "cor", 1);
 	//(imp preg check)
-	player.knockUp(PregnancyTypeEnum.IMP,418);
+	player.knockUp(PregnancyType.IMP,418);
 	doNext(13);
 }
 

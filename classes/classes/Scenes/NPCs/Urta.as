@@ -2,7 +2,7 @@
 	import classes.Appearance;
 	import classes.CockTypesEnum;
 	import classes.CoC_Settings;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.GlobalFlags.kGAMECLASS;
@@ -1171,7 +1171,7 @@ private function rideUrtaTenderFemale():void {
 	else outputText("</i>\"<i>You're so good to me " + player.short + ".  I wish my little pony here was fertile enough for me to put a bun in your oven, if you wanted of course.</i>\"", false);
 	outputText("\n\nShe blushes as if realizing what she's said and turns to start cleaning up.  You give the nervous fox a hug and squeeze her breasts mischievously before breaking it.  She smiles over her shoulder at you and says, \"<i>Thanks again.  You better get going though, I know you've got things that need doing.  Come by the Wet Bitch again soon and see me, OK?</i>\"\n\n", false);
 	outputText("You nod before you leave, feeling satisfied and a warm glow from something other than lust.", false);
-	//if(flags[kFLAGS.URTA_FERTILE] == 1) player.knockUp(PregnancyTypeEnum.URTA,515,80);
+	//if(flags[kFLAGS.URTA_FERTILE] == 1) player.knockUp(PregnancyType.URTA,515,80);
 	dynStats("sen", -2, "lus=", 0);
 	doNext(13);
 }
@@ -1708,7 +1708,7 @@ private function rideUrtasCoochLoveyDovey():void {
 	
 	outputText("Smiling, the two of you embrace, though you're careful not to get any of the cum on you.  Urta waves you out so she can get to cleaning, and by the time you leave you've got a spring in your step and a satisfied grin on your face.", false);
 	doNext(13);
-	//if(flags[kFLAGS.URTA_FERTILE] == 1) player.knockUp(PregnancyTypeEnum.URTA,515,80);
+	//if(flags[kFLAGS.URTA_FERTILE] == 1) player.knockUp(PregnancyType.URTA,515,80);
 	dynStats("lus=", 0);
 	if(player.sens > 30) dynStats("sen", -1);
 }
@@ -3711,7 +3711,7 @@ private function fillMeUpPleaseUrta():void {
 	urtaLove(2);
 	flags[kFLAGS.TIMES_FUCKED_URTA]++;
 	player.slimeFeed();
-	if(flags[kFLAGS.URTA_FERTILE] == 1) player.knockUp(PregnancyTypeEnum.URTA,515,25);
+	if(flags[kFLAGS.URTA_FERTILE] == 1) player.knockUp(PregnancyType.URTA,515,25);
 	dynStats("lib", .2, "sen", -3, "lus=", 0);
 }
 

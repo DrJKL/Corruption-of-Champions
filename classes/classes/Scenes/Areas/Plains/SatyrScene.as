@@ -2,7 +2,7 @@
 	import classes.Appearance;
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.GlobalFlags.kFLAGS;
 	public class SatyrScene extends BaseContent {
@@ -395,8 +395,8 @@ private function willinglyBoneSatyr():void {
 //Pregnancy Stuff (Z)
 private function satyrPreggo():void {
 	if(player.hasVagina()) {
-		if(player.pregnancyIncubation == 0 && player.pregnancyType == PregnancyTypeEnum.NONE) {
-			player.knockUp(PregnancyTypeEnum.SATYR,160);
+		if(player.pregnancyIncubation == 0 && player.pregnancyType == PregnancyType.NONE) {
+			player.knockUp(PregnancyType.SATYR,160);
 		}
 	}
 	else {

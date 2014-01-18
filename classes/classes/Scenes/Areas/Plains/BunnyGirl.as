@@ -1,6 +1,6 @@
 ﻿package classes.Scenes.Areas.Plains{
 	import classes.BaseContent;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 
 	public class BunnyGirl extends BaseContent{
@@ -237,10 +237,10 @@ private function bunbunFucksYourVag():void {
 	outputText("She walks away, her puffy tail twitching with the breeze while your eyes drift closed.", false);
 	//(Easter vag-preg + 8 hours pass)
 	if(player.bunnyScore() < 4) {
-		player.knockUp(PregnancyTypeEnum.BUNNY,808);
+		player.knockUp(PregnancyType.BUNNY,808);
 	}
 	else {
-		player.knockUp(PregnancyTypeEnum.BUNNY,200,60);
+		player.knockUp(PregnancyType.BUNNY,200,60);
 	}
 	dynStats("lib", 1, "sen", -3, "lus=", 0);
 	doNext(16);
@@ -954,10 +954,10 @@ private function getEggflated():void {
 	outputText("Eventually, enough of the eggs melt to let you stand under your own power.  You grab your [armor] but hold off on putting it on until you have a chance to shrink down to a more normal size.  Before you leave, you make sure to remove the rope from her wrists, for when she gathers her orgasm-blasted wits.");
 	//[If full bunny morph, End Encounter. Weight up, sensitivity down, fertility up.]
 	if(player.bunnyScore() < 4) {
-		player.knockUp(PregnancyTypeEnum.BUNNY,808);
+		player.knockUp(PregnancyType.BUNNY,808);
 	}
 	else {
-		player.knockUp(PregnancyTypeEnum.BUNNY,200,60);
+		player.knockUp(PregnancyType.BUNNY,200,60);
 		player.fertility++;
 	}
 	outputText(player.modThickness(100,3));

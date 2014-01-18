@@ -1,5 +1,5 @@
 ﻿package classes.Scenes.NPCs {
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.GlobalFlags.kGAMECLASS;
@@ -411,9 +411,9 @@ private function soberUrtaSatingPCHeat():void {
 	else {
 		outputText("\n\n\"<i>Ahhh, [name], you might get pregnant!</i>\"  She kneels in front of you, kissing you on the forehead. \"<i>I don't think all the contraceptives in the world could stop that...</i>\"");
 		if(flags[kFLAGS.URTA_FERTILE] == 1) {
-			player.knockUp(PregnancyTypeEnum.URTA,515,25);
-			player.knockUp(PregnancyTypeEnum.URTA,515,25);
-			player.knockUp(PregnancyTypeEnum.URTA,515,25);
+			player.knockUp(PregnancyType.URTA,515,25);
+			player.knockUp(PregnancyType.URTA,515,25);
+			player.knockUp(PregnancyType.URTA,515,25);
 		}
 	}
 
@@ -610,9 +610,9 @@ private function drunkenUrtaFucksPCInHeat():void {
 	outputText("\n\nThe walk back to camp is quite painful, but you'll live.  That which doesn't kill you makes you stronger, and all that...");
 
 	if(flags[kFLAGS.URTA_FERTILE] == 1) {
-		player.knockUp(PregnancyTypeEnum.URTA,515,25);
-		player.knockUp(PregnancyTypeEnum.URTA,515,25);
-		player.knockUp(PregnancyTypeEnum.URTA,515,25);
+		player.knockUp(PregnancyType.URTA,515,25);
+		player.knockUp(PregnancyType.URTA,515,25);
+		player.knockUp(PregnancyType.URTA,515,25);
 	}
 	//player returns to camp and loses 4 hours//
 	dynStats("lib",2,"sen",-4,"lust=",0);

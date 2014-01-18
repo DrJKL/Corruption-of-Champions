@@ -1,7 +1,7 @@
 ﻿package classes.Scenes.NPCs{
 	import classes.Appearance;
 	import classes.CockTypesEnum;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 
@@ -807,7 +807,7 @@ private function dontEatIzamsLeafAfterRape():void {
 	outputText("Izma cringes.  \"<i>Sorry!  I just don't want to go fathering children with someone who's not my mate!  Please, please take it!</i>\"\n\n", false);
 	
 	outputText("You slap the leaf out of her hand.  \"<i>Try getting stronger before you impose your decisions on others!</i>\" you bark.  \"<i>Whether I decide to have your kids or not is none of your business; you should be grateful at the chance to father them with someone tougher than you!</i>\"  She shivers and nods meekly, and you turn about and pick your way back to camp.\n\n", false);
-	player.knockUp(PregnancyTypeEnum.IZMA,300);
+	player.knockUp(PregnancyType.IZMA,300);
 	cleanupAfterCombat();
 	//(Izmafight +1)
 	flags[kFLAGS.IZMA_TIMES_FOUGHT_AND_WON]++;
@@ -2634,7 +2634,7 @@ private function inCampRideIzmasDickDongTheWitchIsDead():void {
  
 	outputText("Izma waves at you and smirks as you go to leave, and you have to wonder if Izma was only acting helpless in order to get off...", false);
 	if(flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00249] > 0) {
-		player.knockUp(PregnancyTypeEnum.IZMA,300);
+		player.knockUp(PregnancyType.IZMA,300);
 	}
 	player.slimeFeed();
 	doNext(13);

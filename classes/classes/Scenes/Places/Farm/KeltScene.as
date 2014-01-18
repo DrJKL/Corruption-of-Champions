@@ -1,6 +1,6 @@
 ﻿package classes.Scenes.Places.Farm {
 	import classes.CockTypesEnum;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 
 	public class KeltScene extends AbstractFarmContent {
 		public function KeltScene() {}
@@ -532,7 +532,7 @@ private function keltMainEncounter3():void {
 			player.addStatusValue("Kelt",2,5);
 			//(Pregnancy Chance)
 			if((player.fertility + player.bonusFertility()) >= rand(50) && player.pregnancyIncubation == 0) {
-				player.pregnancyType = PregnancyTypeEnum.CENTAUR;
+				player.pregnancyType = PregnancyType.CENTAUR;
 				player.pregnancyIncubation = 420;
 				trace("PLAYER GOT KNOCKED UP BY KELT");
 			}

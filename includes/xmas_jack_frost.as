@@ -685,7 +685,7 @@ public function rideCorruptJojoCock():void {
 	addButton(0,"Next",processJackFrostEvent);
 	flags[kFLAGS.JACK_FROST_PROGRESS] = 5;
 	//Preggers chance!
-	player.knockUp(PregnancyTypeEnum.MOUSE,432);
+	player.knockUp(PregnancyType.MOUSE,432);
 }
 
 //[=Spank and Finger Ass=]

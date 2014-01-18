@@ -16,7 +16,7 @@
 	import classes.ItemSlotClass;
 	import classes.PerkClass;
 	import classes.Player;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.StatusAffectClass;
 	import classes.VaginaClass;
 

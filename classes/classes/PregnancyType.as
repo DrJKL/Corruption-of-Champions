@@ -1,5 +1,5 @@
 package classes {
-	public class PregnancyTypeEnum {
+	public class PregnancyType {
 		public static const NONE:int = 0;  // "None"
 		public static const IMP:int = 1;  // "Imp"
 		public static const MINOTAUR:int = 2;  // "Minotaur"

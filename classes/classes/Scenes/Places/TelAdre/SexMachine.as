@@ -1,5 +1,5 @@
 ﻿package classes.Scenes.Places.TelAdre {
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
 	public class SexMachine extends TelAdreAbstractContent {
@@ -241,16 +241,16 @@ private function useTheSexMachine():void {
 		temp = rand(6);
 		switch(temp) {
 			case 0:
-				player.knockUp(PregnancyTypeEnum.MINOTAUR,350);
+				player.knockUp(PregnancyType.MINOTAUR,350);
 				break;
 			case 1:
-				player.knockUp(PregnancyTypeEnum.MOUSE,350);
+				player.knockUp(PregnancyType.MOUSE,350);
 				break;
 			case 2:
-				player.knockUp(PregnancyTypeEnum.MOUSE,350);
+				player.knockUp(PregnancyType.MOUSE,350);
 				break;
 			default:
-				player.knockUp(PregnancyTypeEnum.CENTAUR,360);
+				player.knockUp(PregnancyType.CENTAUR,360);
 				break;
 		}
 	}

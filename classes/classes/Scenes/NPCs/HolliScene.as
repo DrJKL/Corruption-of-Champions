@@ -1,6 +1,6 @@
 ﻿package classes.Scenes.NPCs{
 	import classes.CockTypesEnum;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	public class HolliScene extends NPCAwareContent {
 		public function HolliScene(){
@@ -540,8 +540,8 @@ private function stayQuietWhileAmilyBitchesAboutFuckingArborday():void {
 	//Enable village encounters
 	flags[kFLAGS.AMILY_VILLAGE_ENCOUNTERS_DISABLED] = 0;
 	//Change to plain mouse birth!
-	if (player.pregnancyType == PregnancyTypeEnum.AMILY) {
-		player.pregnancyType = PregnancyTypeEnum.MOUSE;
+	if (player.pregnancyType == PregnancyType.AMILY) {
+		player.pregnancyType = PregnancyType.MOUSE;
 	}
 	doNext(1);
 }

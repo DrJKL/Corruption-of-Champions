@@ -4,7 +4,7 @@
 package classes.Scenes.Areas.Swamp
 {
 	import classes.BaseContent;
-	import classes.PregnancyTypeEnum;
+	import classes.PregnancyType;
 	import classes.GlobalFlags.kGAMECLASS;
 
 	public class MaleSpiderMorphScene extends BaseContent {
@@ -233,7 +233,7 @@ package classes.Scenes.Areas.Swamp
 			else outputText("paying no heed to the thick flows of spunk that drip down your " + player.legs() + ".", false);
 			player.slimeFeed();
 			//Pregnancy Goes Here
-			player.knockUp(PregnancyTypeEnum.SPIDER, 400, 151);
+			player.knockUp(PregnancyType.SPIDER, 400, 151);
 			dynStats("lus=", 0);
 			cleanupAfterCombat();
 		}
@@ -378,7 +378,7 @@ package classes.Scenes.Areas.Swamp
 			outputText("You sigh and close your eyes, slowly slumping down while your hips keep twitching.  You've been sated, and though your body keeps hungering for more, you slip into unconsciousness.", false);
 			player.slimeFeed();
 			dynStats("lus=", 0);
-			player.knockUp(PregnancyTypeEnum.SPIDER, 400);
+			player.knockUp(PregnancyType.SPIDER, 400);
 			cleanupAfterCombat();
 		}
 

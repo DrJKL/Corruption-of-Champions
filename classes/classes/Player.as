@@ -86,8 +86,7 @@ package classes
 			return damage;
 		}
 
-		public function takeDamage(damage:Number,noMod:Boolean=false):Number{
-			if (!noMod) damage = reduceDamage(damage);
+		public function takeDamage(damage:Number):Number{
 			//Round
 			damage = Math.round(damage);
 			// we return "1 damage received" if it is in (0..1) but deduce no HP
@@ -942,7 +941,7 @@ package classes
 			//(HUGE – 2.4 - Size 12 + 5 Multi + 4 tits)
 			var total:Number = 0;
 			if (hasStatusAffect("Lactation Endurance") < 0)
-				createStatusAffect("Lactation EnNumbere", 1, 0, 0, 0);
+				createStatusAffect("Lactation Endurance", 1, 0, 0, 0);
 			total = biggestTitSize() * 10 * averageLactation() * statusAffectv1("Lactation Endurance") * totalBreasts();
 			if (statusAffectv1("Lactation Reduction") >= 48)
 				total = total * 1.5;

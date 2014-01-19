@@ -1,118 +1,82 @@
-﻿package classes
-{
+﻿package classes {
 	import classes.GlobalFlags.kGAMECLASS;
 	import classes.Player;
 	import classes.Monster;
 	import classes.CoC_Settings;
 
-
-	public class Appearance
-	{
+	public class Appearance {
 		include "../../includes/appearanceDefs.as"
 		// Eventually, this should contain the entire char appearance.
 		// At the moment, it's pretty piecemeal.
 
-		public static function inverseMap(x:Object):Object{
+		public static function inverseMap(x:Object):Object {
 			var result:Object = {};
-			for (var i:String in x){
+			for (var i:String in x) {
 				result[String(x[i])] = i;
 			}
 			return result;
 		}
-
-		public static function randomChoice(... args):*
-		{
-			if ((args.length == 1) && (args[0] is Array))
-			{
-				return args[0][ Math.floor( Math.random() * args[0].length ) ];
-			}
-			else
-			{
-				return args[ Math.floor( Math.random() * args.length ) ];
-			}
+		
+		public static function rand(max:Number):Number {
+			return Math.floor(Math.random() * max);
+		}
+		
+		public static function randomChoice(... args):* {
+			var array:Array = ((args.length == 1) && (args[0] is Array))
+				? args[0]
+				: args;
+			return array[ rand(array.length) ];
 		}
 
-		public static function rand(max:Number):Number
-		{
-			return int(Math.random() * max);
+		public static function hairOrFur(i_creature:Creature):String {
+			return (i_creature.skinType == 1) 
+				? "fur"
+				: "hair";
 		}
 
-
-		public static function hairOrFur(i_creature:Creature):String
-		{
-			if (i_creature.skinType == 1)
-				return "fur";
-			else
-				return "hair";
-		}
-
-		public static function hairDescription(i_creature:Creature):String
-		{
+		public static function hairDescription(i_creature:Creature):String {
+			var hairTypes:Array = ["feather-", "transparent ", "goo-", "tentacle"];
 			var description:String = "";
 			var options:Array;
-			//
-			// LENGTH ADJECTIVE!
-			//
-			if(i_creature.hairLength == 0)
-			{
-				options = ["shaved",
-							"bald",
-							"smooth",
-							"hairless",
-							"glabrous"];
-				description = randomChoice(options) + " head";
-				return description;
+			/*
+			 * LENGTH ADJECTIVE!
+			 */
+			if(i_creature.hairLength == 0) {
+				return randomChoice("shaved", "bald", "smooth", "hairless", "glabrous") + " head";
+			} else if (i_creature.hairLength < 1) {
+				description += randomChoice("close-cropped, ", "trim, ", "very short, ");
+			} else if (i_creature.hairLength < 3) {
+				description += "short, ";
+			} else if (i_creature.hairLength < 6) {
+				description += "shaggy, ";
+			} else if (i_creature.hairLength < 10) {
+				description += "moderately long, ";
+			} else if (i_creature.hairLength < 16) {
+				description += randomChoice("long, ", "shoulder-length, ");
+			} else if(i_creature.hairLength < 26) {
+				description += randomChoice("very long, ", "flowing locks of ")
+			} else if (i_creature.hairLength < 40) {
+				description += "ass-length, ";
+			} else if (i_creature.hairLength < i_creature.tallness) {
+				description += "obscenely long, ";
+			} else if (i_creature.hairLength >= i_creature.tallness) {
+				description += randomChoice("floor-length, ", "floor-dragging, ");
 			}
-			if (i_creature.hairLength < 1) {
-				options = ["close-cropped, ",
-							"trim, ",
-							"very short, "];
-				description += randomChoice(options);
-			}
-			if(i_creature.hairLength >= 1 && i_creature.hairLength < 3) description += "short, ";
-			if(i_creature.hairLength >= 3  && i_creature.hairLength < 6) description += "shaggy, ";
-			if(i_creature.hairLength >= 6 && i_creature.hairLength < 10) description += "moderately long, ";
-			if(i_creature.hairLength >= 10 && i_creature.hairLength < 16) {
-				if(rand(2) == 0) description += "long, ";
-				else description += "shoulder-length, ";
-			}
-			if(i_creature.hairLength >= 16 && i_creature.hairLength < 26) {
-				if(rand(2) == 0) description += "very long, ";
-				else description += "flowing locks of ";
-			}
-			if(i_creature.hairLength >= 26 && i_creature.hairLength < 40) description += "ass-length, ";
-			if(i_creature.hairLength >= 40 && i_creature.hairLength < i_creature.tallness) description += "obscenely long, ";
-			else if(i_creature.hairLength >= i_creature.tallness) {
-				if(rand(2) == 0) description += "floor-length, ";
-				else description += "floor-dragging, ";
-			}
-			//
-			// COLORS
-			//
+			/*
+			 * COLORS
+			 */
 			description += i_creature.hairColor + " ";
-			//
-			// HAIR WORDS
-			//
+			/*
+			 * HAIR WORDS
+			 */
 			//If furry and longish hair sometimes call it a mane (50%)
-			if(i_creature.skinType == 1 && i_creature.hairLength > 3 && rand(2) == 0) {
-				if(i_creature.hairType == 1) description += "feather-";
-				else if(i_creature.hairType == 2) description += "transparent ";
-				else if(i_creature.hairType == 3) description += "goo-";
-				else if(i_creature.hairType == 4) description += "tentacle-";
+			if (i_creature.skinType == 1 && i_creature.hairLength > 3 && rand(2) == 0) {
+				description += hairTypes[i_creature.hairType - 1];
 				description += "mane";
 				return description;
 			}
-			//if medium length refer to as locks sometimes
-			//CUT - locks is plural and screws up tense.
-			/*if(player.hairLength >= 3 && player.hairLength < 16 && rand(2) == 0) {
-				descript += "locks of hair";
-				return descript;
-			}*/
-			//If nothing else used, use hair!
-			if(i_creature.hairType == 1) description += "feather-";
-			else if(i_creature.hairType == 2) description += "transparent ";
-			else if(i_creature.hairType == 3) description += "goo-";
-			else if(i_creature.hairType == 4) description += "tentacle-";
+			
+			description += hairTypes[i_creature.hairType - 1];
 			description += "hair";
 
 			return description;
@@ -123,27 +87,19 @@
 		 * @param	i_character Either Player or NonPlayer
 		 * @return	A beautiful description of a tongue.
 		 */
-		public static function tongueDescription(i_character:Character):String
-		{
-			if(i_character.tongueType == 1) return "serpentine tongue";
-			else if(i_character.tongueType == 2) return "demonic tongue";
-			else if(i_character.tongueType == 3) return "draconic tongue";
-			else return "tongue";
+		public static function tongueDescription(i_character:Character):String {
+			var tongueTypes:Array = ["serpentine", "demonic", "draconic"];
+			return (tongueTypes[i_character.tongueType - 1] || "") + " tongue";
 		}
 
-		public static function nippleDescription(i_creature:Creature, i_rowNum:Number):String
-		{
+		public static function nippleDescription(i_creature:Creature, i_rowNum:Number):String {
 			//DEBUG SHIT!
-			if(i_rowNum > (i_creature.breastRows.length - 1)) 
-			{
-				if (CoC_Settings.haltOnErrors) throw new Error("<B>Error: Invalid breastRows (" + i_rowNum + ") passed to nippleDescription()</b>");
-				
-				return "<B>Error: Invalid breastRows (" + i_rowNum + ") passed to nippleDescription()</b>";
-			}
-			if(i_rowNum < 0) 
-			{
-				if (CoC_Settings.haltOnErrors) throw new Error("<B>Error: Invalid breastRows (" + i_rowNum + ") passed to nippleDescription()</b>");
-				return "<B>Error: Invalid breastRows (" + i_rowNum + ") passed to nippleDescription()</b>";
+			if (i_rowNum > (i_creature.breastRows.length - 1) || i_rowNum < 0) {
+				var errorDesc:String = "<B>Error: Invalid breastRows (" + i_rowNum + ") passed to nippleDescription()</b>";
+				if (CoC_Settings.haltOnErrors) {
+					throw new Error(errorDesc);
+				}
+				return errorDesc;
 			}
 			var haveDescription:Boolean = false;
 			var description:String = "";
@@ -151,48 +107,17 @@
 			var rando:Number = 0;
 			//Size descriptors 33% chance
 			if(rand(4) == 0) {
-				//TINAHHHH
-				if(i_creature.nippleLength < .25) {
-					options = ["tiny ",
-								"itty-bitty ",
-								"teeny-tiny ",
-								"dainty "];
-					description += randomChoice(options);
+				if(i_creature.nippleLength < .25) { //TINAHHHH
+					description += randomChoice("tiny ", "itty-bitty ", "teeny-tiny ", "dainty ");
 				}
-				//Prominant
-				if(i_creature.nippleLength >= .4 && i_creature.nippleLength < 1) {
-					options = ["prominent ",
-								"pencil eraser-sized ",
-								"eye-catching ",
-								"pronounced ",
-								"striking "];
-					description += randomChoice(options);
-				}
-				//Big 'uns
-				if(i_creature.nippleLength >= 1 && i_creature.nippleLength < 2) {
-					options = ["forwards-jutting ",
-								"over-sized ",
-								"fleshy ",
-								"large protruding "];
-					description += randomChoice(options);
-				}
-				//'Uge
-				if(i_creature.nippleLength >= 2 && i_creature.nippleLength < 3.2) {
-					options = ["elongated ",
-								"massive ",
-								"awkward ",
-								"lavish ",
-								"hefty "];
-					description += randomChoice(options);
-				}
-				//Massive
-				if(i_creature.nippleLength >= 3.2) {
-					options = ["bulky ",
-								"ponderous ",
-								"thumb-sized ",
-								"cock-sized ",
-								"cow-like "];
-					description += randomChoice(options);
+				if(i_creature.nippleLength >= .4 && i_creature.nippleLength < 1) { //Prominant
+					description += randomChoice("prominent ", "pencil eraser-sized ", "eye-catching ", "pronounced ", "striking ");
+				} else if(i_creature.nippleLength < 2) { //Big 'uns
+					description += randomChoice("forwards-jutting ", "over-sized ", "fleshy ", "large protruding ");
+				} else if(i_creature.nippleLength < 3.2) { //'Uge
+					description += randomChoice("elongated ", "massive ", "awkward ", "lavish ", "hefty ");
+				} else { //Massive
+					description += randomChoice("bulky ", "ponderous ", "thumb-sized ", "cock-sized ", "cow-like ");
 				}
 				haveDescription = true;
 			}
@@ -202,72 +127,28 @@
 				if(i_creature.hasFuckableNipples()) {
 					//Fuckable and lactating?
 					if(i_creature.biggestLactation() > 1) {
-						options = ["milk-lubricated ",
-									"lactating ",
-									"lactating ",
-									"milk-slicked ",
-									"milky "];
-						description += randomChoice(options);
+						description += randomChoice("milk-lubricated ", "lactating ", "lactating ", "milk-slicked ", "milky ");
+					} else { //Just fuckable
+						description += randomChoice("wet ", "mutated ", "slimy ", "damp ", "moist ", "slippery ", "oozing ", "sloppy ", "dewy ");
 					}
-					//Just fuckable
-					else {
-						options =["wet ",
-									"mutated ",
-									"slimy ",
-									"damp ",
-									"moist ",
-									"slippery ",
-									"oozing ",
-									"sloppy ",
-									"dewy "];
-						description += randomChoice(options);
+					haveDescription = true;
+				} else if(i_creature.biggestLactation() > 0) { // Just lactating!
+					if(i_creature.biggestLactation() <= 1) { // Light lactation
+						description += randomChoice("milk moistened ", "slightly lactating ", "milk-dampened ");
+					} else if(i_creature.biggestLactation() <= 2) { // Moderate lactation
+						description += randomChoice("lactating ", "milky ", "milk-seeping ");
+					} else { // Heavy lactation
+						description += randomChoice("dripping ", "dribbling ", "milk-leaking ", "drooling ");
 					}
 					haveDescription = true;
 				}
-				//Just lactating!
-				else if(i_creature.biggestLactation() > 0) {
-					//Light lactation
-					if(i_creature.biggestLactation() <= 1) {
-						options = ["milk moistened ",
-									"slightly lactating ",
-									"milk-dampened "];
-						description += randomChoice(options);
+			} else if(rand(3) == 0 && !haveDescription) { //Possible arousal descriptors
+				if (i_creature.lust > 50) {
+					if (i_creature.lust < 75) {
+						description += randomChoice("erect ", "perky ", "erect ", "firm ", "tender ");
+					}else {
+						description += randomChoice("throbbing ", "trembling ", "needy ", "throbbing ");
 					}
-					//Moderate lactation
-					if(i_creature.biggestLactation() > 1 && i_creature.biggestLactation() <= 2) {
-						options = ["lactating ",
-									"milky ",
-									"milk-seeping "];
-						description += randomChoice(options);
-					}
-					//Heavy lactation
-					if(i_creature.biggestLactation() > 2) {
-						options = ["dripping ",
-									"dribbling ",
-									"milk-leaking ",
-									"drooling "];
-						description += randomChoice(options);
-					}
-					haveDescription = true;
-				}
-			}
-			//Possible arousal descriptors
-			else if(rand(3) == 0 && !haveDescription) {
-				if(i_creature.lust > 50 && i_creature.lust < 75) {
-					options = ["erect ",
-								"perky ",
-								"erect ",
-								"firm ",
-								"tender "];
-					description += randomChoice(options);
-					haveDescription = true;
-				}
-				if(i_creature.lust >= 75) {
-					options = ["throbbing ",
-								"trembling ",
-								"needy ",
-								"throbbing "];
-					description += randomChoice(options);
 					haveDescription = true;
 				}
 			}
@@ -290,54 +171,35 @@
 			}
 
 			//Nounsssssssss*BOOM*
-			var choice:int = 0;
-			choice = rand(5);
-			if(choice == 0) description += "nipple";
+			var choice:int = rand(5);
+			if (choice == 0) {
+				description += "nipple";
+			}
 			if(choice == 1) {
-				if(i_creature.nippleLength < .5) description += "perky nipple";
-				else description += "cherry-like nub";
+				description += (i_creature.nippleLength < .5)
+				    ? "perky nipple"
+					: "cherry-like nub";
 			}
 			if(choice == 2) {
-				if(i_creature.hasFuckableNipples()) description += "fuckable nip";
-				else {
-					if(i_creature.biggestLactation() >= 1 && i_creature.nippleLength >= 1) description += "teat";
-					else description += "nipple";
-				}
+				description += (i_creature.hasFuckableNipples())
+				    ? "fuckable nip"
+					: (i_creature.biggestLactation() >= 1 && i_creature.nippleLength >= 1)
+					    ? "teat"
+					    : "nipple";
 			}
 			if(choice == 3) {
-				if(i_creature.hasFuckableNipples()) description += "nipple-hole";
-				else {
-					if(i_creature.biggestLactation() >= 1 && i_creature.nippleLength >= 1) description += "teat";
-					else description += "nipple";
-				}
+				description += (i_creature.hasFuckableNipples()) 
+				    ? "nipple-hole"
+					: (i_creature.biggestLactation() >= 1 && i_creature.nippleLength >= 1)
+					    ? "teat"
+						: "nipple";
 			}
-			if(choice == 4) {
-				if(i_creature.hasFuckableNipples()) description += "nipple-cunt";
-				else description += "nipple";
+			if (choice == 4) {
+				description += (i_creature.hasFuckableNipples())
+				    ? "nipple-cunt"
+					: "nipple";
 			}
 			return description;
-			/*OLD
-			if(player.breastRows[rowNum].lactationMultiplier >= 1.5 && player.breastRows[rowNum].lactationMultiplier < 1.75) {
-				if(player.breastRows[rowNum].milkFullness > 75) return "over-full leaking teat";
-				if(rand(2) == 0) return "milky teat";
-				else return "milk spout";
-			}
-			if(player.breastRows[rowNum].lactationMultiplier >= 1.75) {
-				if(player.breastRows[rowNum].milkFullness > 75) return "over-full leaking teat";
-				if(rand(2) == 0) return "milk-drooling teat";
-				else return "drippy cow-teat";
-			}
-			if(player.lust > 75) {
-				if(rand(2) == 0) return "painfully hard nipple";
-				else return "over-stimulated nipple";
-			}
-			if(player.lust > 50) {
-				if(rand(2) == 0) return "erect nipple";
-				else return "hard nipple";
-			}
-			if(player.breastRows[rowNum].milkFullness > 75) return "milky over-full nipple";
-			return "nipple";
-			*/
 		}
 
 		public static function hipDescription(i_character:Character):String
@@ -346,92 +208,94 @@
 			var options:Array;
 			if(i_character.hipRating <= 1)
 			{
-				options = ["tiny ",
-				"narrow ",
-				"boyish "];
+				options = [
+					"tiny ",
+					"narrow ",
+					"boyish "];
 				description = randomChoice(options);
 			}
 			else if (i_character.hipRating > 1 && i_character.hipRating < 4)
 			{
-				options = ["slender ",
-				"narrow ",
-				"thin "];
+				options = [
+					"slender ",
+					"narrow ",
+					"thin "];
 				description = randomChoice(options);
 				if(i_character.thickness < 30) {
-					if(rand(2) == 0) description = "slightly-flared ";
-					else description = "curved ";
+					description = (rand(2) == 0)
+					    ? "slightly-flared "
+						: "curved ";
 				}
-			}
-			else if (i_character.hipRating >= 4 && i_character.hipRating < 6)
-			{
-				options = ["well-formed ",
-				"pleasant "];
+			} else if (i_character.hipRating >= 4 && i_character.hipRating < 6) {
+				options = [
+					"well-formed ",
+					"pleasant "];
 				description = randomChoice(options);
 				if(i_character.thickness < 30) {
 					if(rand(2) == 0) description = "flared ";
 					else description = "curvy ";
 				}
-			}
-			else if (i_character.hipRating >= 6 && i_character.hipRating < 10)
-			{
-				options = ["ample ",
-				"noticeable ",
-				"girly "];
+			} else if (i_character.hipRating >= 6 && i_character.hipRating < 10) {
+				options = [
+					"ample ",
+					"noticeable ",
+					"girly "];
 				description = randomChoice(options);
 				if(i_character.thickness < 30) {
-					if(rand(2) == 0) description = "flared ";
-					else description = "waspish ";
+					description = (rand(2) == 0) 
+						? "flared "
+						: "waspish ";
 				}
-			}
-			else if (i_character.hipRating >= 10 && i_character.hipRating < 15)
-			{
-				options = ["flared ",
-				"curvy ",
-				"wide "];
+			} else if (i_character.hipRating >= 10 && i_character.hipRating < 15) {
+				options = [
+					"flared ",
+					"curvy ",
+					"wide "];
 				description = randomChoice(options);
 				if(i_character.thickness < 30) {
-					if(rand(2) == 0) description = "flared ";
-					else description = "waspish ";
+					description = (rand(2) == 0) 
+						? "flared "
+						: "waspish ";
 				}
-			}
-			else if (i_character.hipRating >= 15 && i_character.hipRating < 20)
-			{
+			} else if (i_character.hipRating >= 15 && i_character.hipRating < 20) {
 				if(i_character.thickness < 40) {
-					if(rand(2) == 0) description = "flared, ";
-					else description = "waspish, ";
+					description = (rand(2) == 0) 
+						? "flared, "
+						: "waspish, ";
 				}
-				options = ["fertile ",
-				"child-bearing ",
-				"voluptuous "];
+				options = [
+					"fertile ",
+					"child-bearing ",
+					"voluptuous "];
 				description += randomChoice(options);
-			}
-			else if (i_character.hipRating >= 20)
-			{
+			} else if (i_character.hipRating >= 20) {
 				if(i_character.thickness < 40) {
-					if(rand(2) == 0) description = "flaring, ";
-					else description = "incredibly waspish, ";
+					description = (rand(2) == 0)
+						? "flaring, "
+						: "incredibly waspish, ";
 				}
-				options = ["broodmother-sized ",
-				"cow-like ",
-				"inhumanly-wide "];
+				options = [
+					"broodmother-sized ",
+					"cow-like ",
+					"inhumanly-wide "];
 				description += randomChoice(options);
 			}
 			//Taurs
-			if (i_character.isTaur() && rand(3) == 0) description += "flanks";
-			//Nagas have sides, right?
-			else if (i_character.isNaga() && rand(3) == 0) description += "sides";
-			//Non taurs or taurs who didn't roll flanks
-			else {
-				options = ["hips",
-				"thighs"];
+			if (i_character.isTaur() && rand(3) == 0) {
+				description += "flanks";
+			} else if (i_character.isNaga() && rand(3) == 0) {//Nagas have sides, right?
+				description += "sides";
+			} else { //Non taurs or taurs who didn't roll flanks
+				options = [
+					"hips",
+					"thighs"];
 				description += randomChoice(options);
 			}
 
 			return description;
 		}
 
-		public static function cockDescription(i_creature:Creature, i_cockIndex:Number):String
-		{
+		public static function cockDescription(i_creature:Creature, i_cockIndex:Number):String {
 			if(i_creature.totalCocks() == 0) 
 			{
 				if (CoC_Settings.haltOnErrors) throw new Error("<b>ERROR: CockDescript Called But No Cock Present</b>");

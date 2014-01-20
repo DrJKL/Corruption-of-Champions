@@ -794,28 +794,17 @@
 		 * @param	i_singular true = "one of", false = "each"
 		 * @return 	Short description of cock(s)
 		 */
-		public static function cockMultiDesc(i_creature:Creature, i_capitalised:Boolean, i_singular:Boolean):String
-		{
+		public static function cockMultiDesc(i_creature:Creature, i_capitalised:Boolean, i_singular:Boolean):String {
 			var description:String = "";
-			var notCapitalised:Boolean = false;
-			if (i_creature.totalCocks() > 1)
-			{
-				if (i_singular)
-				{
-					(i_capitalised) ? description+= "O" : description+="o";
-					description += "ne of ";
-				}
-				else
-				{
-					(i_capitalised) ? description += "E" : description += "e";
-					description += "ach of ";
-				}
-				notCapitalised = true;
+			if (i_creature.totalCocks() > 1) {
+				description += (i_singular)
+					? "one of "
+					: "each of ";
 			}
-
-			(i_capitalised && !(notCapitalised)) ? description += "Y" : description += "y";
-			description += "our ";
-
+			description += "your ";
+			if (i_capitalised) {
+				description = description.charAt(0).toUpperCase() + description.substr(1);
+			}
 			description += cockMultiLDescriptionShort(i_creature);
 			return description;
 		}

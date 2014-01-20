@@ -809,8 +809,7 @@
 			return description;
 		}
 
-		public static function cockMultiLDescriptionShort(i_creature:Creature):String
-		{
+		public static function cockMultiLDescriptionShort(i_creature:Creature):String {
 			var description:String = "";
 			if(i_creature.cocks.length < 1) {
 				return failMaybe("<b>ERROR: NO WANGS DETECTED for cockMultiLightDesc()</b>");
@@ -1021,18 +1020,15 @@
 		{
 			if (i_vaginaIndex > (i_creature.vaginas.length - 1))
 			{
-				if (CoC_Settings.haltOnErrors) throw new Error("<B>Error: Invalid vagina number (" + i_vaginaIndex + ") passed to vaginaDescript()</b>");
-				return "<B>Error: Invalid vagina number (" + i_vaginaIndex + ") passed to vaginaDescript()</b>";
+				return failMaybe("<B>Error: Invalid vagina number (" + i_vaginaIndex + ") passed to vaginaDescript()</b>");
 			}
 			if (i_vaginaIndex < 0)
 			{
-				if (CoC_Settings.haltOnErrors) throw new Error("<B>Error: Invalid vaginaNum (" + i_vaginaIndex + ") passed to vaginaDescript()</b>");
-				return "<B>Error: Invalid vaginaNum (" + i_vaginaIndex + ") passed to vaginaDescript()</b>";
+				return failMaybe("<B>Error: Invalid vaginaNum (" + i_vaginaIndex + ") passed to vaginaDescript()</b>");
 			}
 			if (i_creature.vaginas.length <= 0)
 			{
-				if (CoC_Settings.haltOnErrors) throw new Error("ERROR: Called vaginaDescription with no vaginas");
-				return "ERROR: Called vaginaDescription with no vaginas";
+				return failMaybe("ERROR: Called vaginaDescription with no vaginas");
 			}
 
 			var description:String = "";
@@ -1203,8 +1199,7 @@
 			}
 			else
 			{
-				if (CoC_Settings.haltOnErrors) throw new Error("ERROR: CLITDESCRIPT WITH NO CLIT");
-				return("ERROR: CLITDESCRIPT WITH NO CLIT");
+				return failMaybe("ERROR: CLITDESCRIPT WITH NO CLIT");
 			}
 
 			//Clit nouns
@@ -2081,13 +2076,11 @@
 			//ERROR PREVENTION
 			if(creature.breastRows.length - 1 < temp142)
 			{
-				if (CoC_Settings.haltOnErrors) throw new Error("");
-				return "<b>ERROR, biggestBreastSizeDescript() working with invalid breastRow</b>";
+				return failMaybe("<b>ERROR, biggestBreastSizeDescript() working with invalid breastRow</b>");
 			}
 			else if(temp142 < 0)
 			{
-				if (CoC_Settings.haltOnErrors) throw new Error("");
-				return "ERROR SHIT SON!  BIGGESTBREASTSIZEDESCRIPT PASSED NEGATIVE!";
+				return failMaybe("ERROR SHIT SON!  BIGGESTBREASTSIZEDESCRIPT PASSED NEGATIVE!");
 			}
 			if(creature.breastRows[temp142].breastRating < 1) return "flat breasts";
 			//50% of the time size-descript them
@@ -2184,8 +2177,7 @@
 			if(creature.cocks.length < 1)
 			{
 
-			if (CoC_Settings.haltOnErrors) throw new Error("");
-				return "<B>Error: multiCockDescriptLight() called with no penises present.</B>";
+				return failMaybe("<B>Error: multiCockDescriptLight() called with no penises present.</B>");
 
 			}
 			//Get cock counts

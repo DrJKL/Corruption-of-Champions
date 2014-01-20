@@ -2239,14 +2239,12 @@ package classes
 		
 		//TODO Seriously wtf. 1500+ calls to cockTotal, 340+ call to totalCocks. I'm scared to touch either.
 		//How many cocks?
-		public function cockTotal():Number
-		{
+		public function cockTotal():Number {
 			return (cocks.length);
 		}
 		
 		//Alternate
-		public function totalCocks():Number
-		{
+		public function totalCocks():Number {
 			return (cocks.length);
 		}
 		

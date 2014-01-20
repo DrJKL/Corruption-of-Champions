@@ -642,7 +642,7 @@
 		//Short cock description. Describes length or girth. Supports multiple cocks.
 		public static function cockDescriptionShort(i_cockIndex:int, i_creature:Creature):String {
 			// catch calls where we're outside of combat, and eCockDescript could be called.
-			if (i_creature.cocks.length == 0) {
+			if (i_creature.totalCocks() == 0) {
 				return failMaybe("<B>ERROR. INVALID CREATURE SPECIFIED to cockDescriptShort</B>");
 			}
 			
@@ -811,7 +811,7 @@
 
 		public static function cockMultiLDescriptionShort(i_creature:Creature):String {
 			var description:String = "";
-			if(i_creature.cocks.length < 1) {
+			if(i_creature.totalCocks() < 1) {
 				return failMaybe("<b>ERROR: NO WANGS DETECTED for cockMultiLightDesc()</b>");
 			}
 			if (i_creature.horseCocks() == i_creature.totalCocks()) {
@@ -840,7 +840,7 @@
 				description += cockNoun(CockTypesEnum.HUMAN);
 			}
 			//Add s if plural
-			if (i_creature.cockTotal() > 1) {
+			if (i_creature.totalCocks() > 1) {
 				description += "s";
 			} else { //Reset to normal description if singular
 				description = cockDescription(i_creature, 0);
@@ -2153,117 +2153,90 @@
 		}
 
 		public static function multiCockDescriptLight(creature:Creature):String {
-			if(creature.cocks.length < 1) {
+			if(creature.totalCocks() < 1) {
 				return failMaybe("<B>Error: multiCockDescriptLight() called with no penises present.</B>");
 			}
 			//Get cock counts
-			var descript:String="";
-			var currCock:Number = 0;
-			var totCock:Number = creature.cocks.length;
+			var descript:String = "";
+			
+			var normalCocks:Number = 0;
 			var dogCocks:Number = 0;
 			var horseCocks:Number = 0;
-			var normalCocks:Number = 0;
-			var normalCockKey:Number = 0;
-			var dogCockKey:Number = 0;
-			var horseCockKey:Number = 0;
-			var averageLength:Number = 0;
-			var averageThickness:Number = 0;
+			
 			var same:Boolean = true;
-			//For temp14 random values
-			var rando:Number = 0;
+			
 			var descripted:Boolean = false;
 			//If one, return normal cock descript
-			if(totCock == 1) return creature.cockDescript(0);
-			//Count cocks & Prep average totals
-			while(currCock <= totCock-1) {
-				if(creature.cocks[currCock].cockType == CockTypesEnum.HUMAN) {
-					normalCocks++;
-					normalCockKey = currCock;
-				}
-				if(creature.cocks[currCock].cockType == CockTypesEnum.HORSE) {
-					horseCocks++;
-					horseCockKey = currCock;
-				}
-				if(creature.cocks[currCock].cockType == CockTypesEnum.DOG) {
-					dogCocks++;
-					dogCockKey = currCock;
-				}
-				averageLength += creature.cocks[currCock].cockLength;
-				averageThickness += creature.cocks[currCock].cockThickness;
-				//If cocks are matched make sure they still are
-				if(same && currCock > 0 && creature.cocks[currCock].cockType != creature.cocks[currCock-1].cockType) same = false;
-				currCock++;
-			}
-			//Crunch averages
-			averageLength /= currCock;
-			averageThickness /= currCock;
-			//Quantity descriptors
-			if(creature.cockTotal() == 1) {
-				if(dogCocks == 1) return dogDescript(0);
-				if(horseCocks == 1) return horseDescript(0);
-				if(normalCocks == 1) return creature.cockDescript(0);
-				//Failsafe
+			if (creature.totalCocks() == 1) {
 				return creature.cockDescript(0);
 			}
-			if(currCock == 2) {
+			//Count cocks & Prep average totals
+			for (var currCock:int = 0, len:int = creature.totalCocks(); currCock < len; currCock++) {
+				if(creature.cocks[currCock].cockType == CockTypesEnum.HUMAN) {
+					normalCocks++;
+				} else if(creature.cocks[currCock].cockType == CockTypesEnum.HORSE) {
+					horseCocks++;
+				} else if(creature.cocks[currCock].cockType == CockTypesEnum.DOG) {
+					dogCocks++;
+				}
+				//If cocks are matched make sure they still are
+				if (currCock > 0) {
+					same &&= creature.cocks[currCock].cockType != creature.cocks[currCock - 1].cockType;
+				}
+			}
+			
+			//Quantity descriptors
+			if (creature.totalCocks() == 1) {
+				if (dogCocks == 1) {
+					return dogDescript(0);
+				} else if (horseCocks == 1) {
+					return horseDescript(0);
+				} else if (normalCocks == 1) {
+					return creature.cockDescript(0);
+				}
+				//Failsafe
+				return creature.cockDescript(0);
+			} else if(creature.totalCocks() == 2) {
 				//For cocks that are the same
 				if(same) {
 					descript += randomChoice("pair of ", "two ", "brace of ", "matching ", "twin ");
 					descript += cockAdjective(creature);
-					if(normalCocks == 2) descript += " " + Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
-					if(horseCocks == 2) descript += ", " + Appearance.cockNoun(CockTypesEnum.HORSE) + "s";
-					if(dogCocks == 2) descript += ", " + Appearance.cockNoun(CockTypesEnum.DOG) + "s";
-					//Failsafe
-					if(creature.cocks[0].cockType.Index > 2) descript += ", " + Appearance.cockNoun(creature.cocks[0].cockType) + "s";
-				}
-				//Nonidentical
-				else {
+					if (normalCocks == 2) {
+						descript += " " + Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
+					} else {
+						descript += ", " + Appearance.cockNoun(creature.cocks[0].cockType) + "s";
+					}
+				} else { //Nonidentical
 					descript += randomChoice("pair of ", "two ", "brace of ");
 					descript += cockAdjective(creature) + ", ";
 					descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
 				}
-			}
-			if(currCock == 3) {
+			} else if (creature.totalCocks() == 3) {
 				//For samecocks
 				if(same) {
 					descript += randomChoice("three ", "group of ", "menage a trois of ", "triad of ", "triumvirate of ");
 					descript += cockAdjective(creature);
-					if(normalCocks == 3) descript += " " + Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
-					if(horseCocks == 3) descript += ", " + Appearance.cockNoun(CockTypesEnum.HORSE) + "s";
-					if(dogCocks == 3) descript += ", " + Appearance.cockNoun(CockTypesEnum.DOG) + "s";
-					//Tentacles
-					if (creature.cocks[0].cockType.Index > 2) descript += ", " + Appearance.cockNoun(creature.cocks[0].cockType) + "s";
-				}
-				else {
+					if (normalCocks == 3) {
+						descript += " " + Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
+					} else {
+						descript += ", " + Appearance.cockNoun(creature.cocks[0].cockType) + "s";
+					}
+				} else {
 					descript += randomChoice("three ", "group of ");
 					descript += cockAdjective(creature) + ", ";
 					descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
 				}
-			}
-			//Large numbers of cocks!
-			if(currCock > 3)
-			{
+			} else if(creature.totalCocks() > 3) { //Large numbers of cocks!
 				descript += randomChoice("bundle of ", "obscene group of ", "cluster of ", "wriggling bunch of ");
 				//Cock adjectives and nouns
 				descripted = false;
 				//Same
 				if(same) {
-					if(currCock == normalCocks) {
+					if(creature.totalCocks() == normalCocks) {
 						descript += cockAdjective(creature) + " ";
 						descript += Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
 						descripted = true;
-					}
-					if(currCock == dogCocks) {
-						descript += cockAdjective(creature) + ", ";
-						descript += Appearance.cockNoun(CockTypesEnum.DOG) + "s";
-						descripted = true;
-					}
-					if(currCock == horseCocks) {
-						descript += cockAdjective(creature) + ", ";
-						descript += Appearance.cockNoun(CockTypesEnum.HORSE) + "s";
-						descripted = true;
-					}
-					if(creature.cocks[0].cockType.Index > 2) {
+					} else {
 						descript += cockAdjective(creature) + ", ";
 						descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
 						descripted = true;

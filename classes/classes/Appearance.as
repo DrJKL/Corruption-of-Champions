@@ -2120,62 +2120,41 @@
 		public static function breastSize(val:Number):String {
 			var descript:String = "";
 			//Catch all for dudes.
-			if(val < 1) return "manly ";
-			//Small - A->B
-			if(val <= 2)
-			{
+			if (val < 1) {
+				return "manly ";
+			} else if(val <= 2) {//Small - A->B
 				descript += randomChoice("palmable ", "tight ", "perky ", "baseball-sized ");
-			}
-			//C-D
-			else if(val <= 4)
-			{
+			} else if(val <= 4) { //C-D
 				descript += randomChoice("nice ", "hand-filling ", "well-rounded ", "supple ", "softball-sized ");
-			}
-			//DD->big EE
-			else if(val < 11)
-			{
+			} else if(val < 11) { //DD->big EE
 				descript += randomChoice("big ", "large ", "pillowy ", "jiggly ", "volleyball-sized ");
-			}
-			//F->big FF
-			else if(val < 15)
-			{
+			} else if(val < 15) { //F->big FF
 				descript += randomChoice("soccerball-sized ", "hand-overflowing ", "generous ", "jiggling ");
-			}
-			//G -> HHH
-			else if(val < 24) {
+			} else if(val < 24) { //G -> HHH
 				descript += randomChoice("basketball-sized ", "whorish ", "cushiony ", "wobbling ");
-			}
-			//I -> KK
-			else if(val < 35) {
+			} else if(val < 35) { //I -> KK
 				descript += randomChoice("massive motherly ", "luscious ", "smothering ", "prodigious ");
-			}
-			//K- > MMM+
-			else {
+			} else { //K- > MMM+
 				descript += randomChoice("mountainous ", "monumental ", "back-breaking ", "exercise-ball-sized ", "immense ");
 			}
 			return descript;
 		}
 
-		public static function chestDesc(creature:Creature):String
-		{
-			if(creature.biggestTitSize() < 1) return "chest";
-			else return biggestBreastSizeDescript(creature);
+		public static function chestDesc(creature:Creature):String {
+			return (creature.biggestTitSize() < 1) 
+				? "chest"
+				: biggestBreastSizeDescript(creature);
 		}
 
-		public static function assholeOrPussy(creature:Creature):String
-		{
-			if(creature.hasVagina()) return vaginaDescript(creature,0);
-			return assholeDescript(creature);
+		public static function assholeOrPussy(creature:Creature):String {
+			return (creature.hasVagina())
+				? vaginaDescript(creature, 0)
+				: assholeDescript(creature);
 		}
 
-
-		public static function multiCockDescriptLight(creature:Creature):String
-		{
-			if(creature.cocks.length < 1)
-			{
-
+		public static function multiCockDescriptLight(creature:Creature):String {
+			if(creature.cocks.length < 1) {
 				return failMaybe("<B>Error: multiCockDescriptLight() called with no penises present.</B>");
-
 			}
 			//Get cock counts
 			var descript:String="";

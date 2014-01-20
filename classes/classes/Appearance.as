@@ -935,7 +935,6 @@
 					description += " ";
 				}
 				description += randomChoice("overflowing", "swollen", "cum-engorged");
-
 			}
 			//lusty
 			if(i_creature.lust > 90 && (description == "") && rand(2) == 0 && !i_forcedSize) {
@@ -971,7 +970,6 @@
 					"ball",
 					"ball",
 					"ball"];
-
 			description += randomChoice(options);
 			if (i_plural) {
 				description += "s";
@@ -1010,24 +1008,16 @@
 			return description;
 		}
 
-		public static function sheathDescription(i_character:Character):String
-		{
-			if(i_character.hasSheath()) return "sheath";
-			else return "base";
+		public static function sheathDescription(i_character:Character):String {
+			return (i_character.hasSheath())
+				? "sheath"
+				: "base";
 		}
 
-		public static function vaginaDescript(i_creature:Creature, i_vaginaIndex:Number = 0):String
-		{
-			if (i_vaginaIndex > (i_creature.vaginas.length - 1))
-			{
+		public static function vaginaDescript(i_creature:Creature, i_vaginaIndex:Number = 0):String {
+			if (i_vaginaIndex > (i_creature.vaginas.length - 1) || i_vaginaIndex < 0) {
 				return failMaybe("<B>Error: Invalid vagina number (" + i_vaginaIndex + ") passed to vaginaDescript()</b>");
-			}
-			if (i_vaginaIndex < 0)
-			{
-				return failMaybe("<B>Error: Invalid vaginaNum (" + i_vaginaIndex + ") passed to vaginaDescript()</b>");
-			}
-			if (i_creature.vaginas.length <= 0)
-			{
+			} else if (i_creature.vaginas.length <= 0) {
 				return failMaybe("ERROR: Called vaginaDescription with no vaginas");
 			}
 
@@ -1037,61 +1027,63 @@
 			var options:Array;
 
 			//Very confusing way to display values.
-			if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 0) weighting = 61;
-			if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 4 || i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 5) weighting = 10;
+			if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 0) {
+				weighting = 61;
+			}
+			if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 4 || 
+				i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 5) {
+				weighting = 10;
+			}
 
 			//tightness descript - 40% display rate
-			if (rand(100) + weighting > 60)
-			{
-				if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 0)
-				{
-					if (i_creature.vaginas[i_vaginaIndex].virgin) description += "virgin";
-					else description += "tight";
-				}
-				if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 2)
+			if (rand(100) + weighting > 60) {
+				if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 0) {
+					description += (i_creature.vaginas[i_vaginaIndex].virgin)
+						? "virgin"
+						: "tight";
+				} else if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 2) {
 					description += "loose";
-				if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 3)
+				} else if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 3) {
 					description += "very loose";
-				if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 4)
+				} else if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 4) {
 					description += "gaping";
-				if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 5)
+				} else if (i_creature.vaginas[i_vaginaIndex].vaginalLooseness == 5) {
 					description += "gaping-wide";
-
+				}
 			}
 			//wetness descript - 30% display rate
-			if (rand(100) + weighting > 70)
-			{
+			if (rand(100) + weighting > 70) {
 				if (description != "") description += ", ";
-				if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 0)
+				if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 0) {
 					description += "dry";
-				if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 1)
+				} else if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 1) {
 					description += "moist";
-				if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 2)
+				} else if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 2) {
 					description += "wet";
-				if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 3)
+				} else if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 3) {
 					description += "slick";
-				if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 4)
+				} else if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 4) {
 					description += "drooling";
-				if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 5)
+				} else if (i_creature.vaginas[i_vaginaIndex].vaginalWetness == 5) {
 					description += "slavering";
+				}
 			}
-			if (i_creature.vaginas[i_vaginaIndex].labiaPierced > 0 && rand(3) == 0)
-			{
-				if(description != "") description += ", ";
+			if (i_creature.vaginas[i_vaginaIndex].labiaPierced > 0 && rand(3) == 0) {
+				if (description != "") {
+					description += ", ";
+				}
 				description += "pierced";
 			}
-			if (description == "" && i_creature.skinType == 3)
-			{
-				if(description != "")
+			if (description == "" && i_creature.skinType == 3) {
+				if (description != "") {
 					description += ", ";
-				if(rand(2) == 0)
-					description += "gooey";
-				else
-					description += "slimy";
+				}
+				description += randomChoice("gooey", "slimy");
 			}
-			if (i_creature.vaginaType() == 5 && Math.floor(Math.random() * 2) == 0)
-			{
-				if (description != "") description += ", ";
+			if (i_creature.vaginaType() == 5 && rand(2) == 0) {
+				if (description != "") {
+					description += ", ";
+				}
 				options = ["black",
 						"onyx",
 						"ebony",
@@ -1103,8 +1095,9 @@
 				description += randomChoice(options);
 			}
 
-			if (description != "")
+			if (description != "") {
 				description += " ";
+			}
 			options = ["vagina",
 						"pussy",
 						"cooter",
@@ -2068,54 +2061,58 @@
 
 		}
 
-		public static function biggestBreastSizeDescript(creature:Creature):String
-		{
-			var temp14:int = Math.random()*3;
+		public static function biggestBreastSizeDescript(creature:Creature):String {
 			var descript:String = "";
-			var temp142:int = creature.biggestTitRow();
+			var biggestRow:int = creature.biggestTitRow();
 			//ERROR PREVENTION
-			if(creature.breastRows.length - 1 < temp142)
-			{
+			if(creature.breastRows.length - 1 < biggestRow) {
 				return failMaybe("<b>ERROR, biggestBreastSizeDescript() working with invalid breastRow</b>");
-			}
-			else if(temp142 < 0)
-			{
+			} else if(biggestRow < 0) {
 				return failMaybe("ERROR SHIT SON!  BIGGESTBREASTSIZEDESCRIPT PASSED NEGATIVE!");
 			}
-			if(creature.breastRows[temp142].breastRating < 1) return "flat breasts";
+			if (creature.breastRows[biggestRow].breastRating < 1) {
+				return "flat breasts";
+			}
 			//50% of the time size-descript them
-			if(rand(2) == 0) descript += breastSize(creature.breastRows[temp142].breastRating);
+			if (rand(2) == 0) {
+				descript += breastSize(creature.breastRows[biggestRow].breastRating);
+			}
 			//Nouns!
-			temp14 = rand(10);
-			if(temp14 == 0) descript += "breasts";
-			if(temp14 == 1) {
-				if(creature.breastRows[temp142].lactationMultiplier > 2) descript += "milk-udders";
-				else descript += "breasts";
-			}
-			if(temp14 == 2) {
-				if(creature.breastRows[temp142].lactationMultiplier > 1.5) descript += "milky ";
-				if(creature.breastRows[temp142].breastRating > 4) descript += "tits";
-				else descript += "breasts";
-			}
-			if(temp14 == 3) {
-				//if(player.breastRows[temp142].breastRating > 6) descript += "rack";
+			var oneInTen:int = rand(10);
+			if (oneInTen == 0) {
 				descript += "breasts";
-			}
-			if(temp14 == 4) descript += "tits";
-			if(temp14 == 5) descript += "tits";
-			if(temp14 == 6) descript += "tits";
-			if(temp14 == 7) {
-				if(creature.breastRows[temp142].lactationMultiplier >= 1 && creature.breastRows[temp142].lactationMultiplier < 2.5) descript += "milk jugs";
-				if(creature.breastRows[temp142].lactationMultiplier >= 2.5) descript += "udders";
-				if(creature.breastRows[temp142].lactationMultiplier < 1) descript += "jugs";
-			}
-			if(temp14 == 8) {
-				if(creature.breastRows[temp142].breastRating > 6) descript += "love-pillows";
-				else descript += "boobs";
-			}
-			if(temp14 == 9) {
-				if(creature.breastRows[temp142].breastRating > 6) descript += "tits";
-				else descript += "breasts";
+			} else if(oneInTen == 1) {
+				descript += (creature.breastRows[biggestRow].lactationMultiplier > 2)
+					? "milk-udders"
+					: "breasts";
+			} else if(oneInTen == 2) {
+				if (creature.breastRows[biggestRow].lactationMultiplier > 1.5) {
+					descript += "milky ";
+				}
+				descript += (creature.breastRows[biggestRow].breastRating > 4) 
+					? "tits"
+					: "breasts";
+			} else if(oneInTen == 3) {
+				descript += "breasts";
+			} else if (oneInTen == 4 || oneInTen == 5 || oneInTen == 6) {
+				descript += "tits";
+			} else if(oneInTen == 7) {
+				if (creature.breastRows[biggestRow].lactationMultiplier < 1) {
+					descript += "jugs";
+				} else if (creature.breastRows[biggestRow].lactationMultiplier < 2.5) {
+					descript += "milk jugs";
+				} else {
+					descript += "udders";
+				}
+				
+			} else if(oneInTen == 8) {
+				descript += (creature.breastRows[biggestRow].breastRating > 6) 
+					? "love-pillows"
+					: "boobs";
+			} else if(oneInTen == 9) {
+				descript += (creature.breastRows[biggestRow].breastRating > 6) 
+					? "tits"
+					: "breasts";
 			}
 			return descript;
 		}

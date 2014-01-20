@@ -301,12 +301,12 @@
 			return description;
 		}
 
-		public static function cockNoun(cockType:CockTypesEnum):String {
-			/*if (cockType is int) {
+		public static function cockNoun(cockType:*):String {
+			if (cockType is int) {
 				trace("Someone is still calling cockNoun with an integer cock type");
 				trace("Fix this shit already, dammit!")
 				cockType = CockTypesEnum.ParseConstantByIndex(cockType);
-			}*/
+			}
 			var options:Array;
 			var description:String = "";
 			if (cockType == CockTypesEnum.HUMAN) {
@@ -336,7 +336,6 @@
 							"canine member",
 							"canine cock",
 							"knotted dog-cock"];
-
 				description += randomChoice(options);
 			} else if (cockType == CockTypesEnum.FOX) {
 				options = ["fox-shaped dong",
@@ -2187,25 +2186,14 @@
 			
 			//Quantity descriptors
 			if (creature.totalCocks() == 1) {
-				if (dogCocks == 1) {
-					return dogDescript(0);
-				} else if (horseCocks == 1) {
-					return horseDescript(0);
-				} else if (normalCocks == 1) {
-					return creature.cockDescript(0);
-				}
-				//Failsafe
 				return creature.cockDescript(0);
 			} else if(creature.totalCocks() == 2) {
 				//For cocks that are the same
 				if(same) {
 					descript += randomChoice("pair of ", "two ", "brace of ", "matching ", "twin ");
 					descript += cockAdjective(creature);
-					if (normalCocks == 2) {
-						descript += " " + Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
-					} else {
-						descript += ", " + Appearance.cockNoun(creature.cocks[0].cockType) + "s";
-					}
+					descript += (creature.cocks[0].cockType == CockTypesEnum.HUMAN ? " " : ", ");
+					descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
 				} else { //Nonidentical
 					descript += randomChoice("pair of ", "two ", "brace of ");
 					descript += cockAdjective(creature) + ", ";
@@ -2216,11 +2204,8 @@
 				if(same) {
 					descript += randomChoice("three ", "group of ", "menage a trois of ", "triad of ", "triumvirate of ");
 					descript += cockAdjective(creature);
-					if (normalCocks == 3) {
-						descript += " " + Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
-					} else {
-						descript += ", " + Appearance.cockNoun(creature.cocks[0].cockType) + "s";
-					}
+					descript += (creature.cocks[0].cockType == CockTypesEnum.HUMAN ? " " : ", ");
+					descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
 				} else {
 					descript += randomChoice("three ", "group of ");
 					descript += cockAdjective(creature) + ", ";
@@ -2229,21 +2214,12 @@
 			} else if(creature.totalCocks() > 3) { //Large numbers of cocks!
 				descript += randomChoice("bundle of ", "obscene group of ", "cluster of ", "wriggling bunch of ");
 				//Cock adjectives and nouns
-				descripted = false;
-				//Same
 				if(same) {
-					if(creature.totalCocks() == normalCocks) {
-						descript += cockAdjective(creature) + " ";
-						descript += Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
-						descripted = true;
-					} else {
-						descript += cockAdjective(creature) + ", ";
-						descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
-						descripted = true;
-					}
-				}
-				//If mixed
-				if(!descripted) {
+					descript += cockAdjective(creature);
+					descript += (creature.cocks[0].cockType == CockTypesEnum.HUMAN ? " " : ", ");
+					descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
+					descripted = true;
+				} else {
 					descript += cockAdjective(creature) + ", ";
 					descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
 				}

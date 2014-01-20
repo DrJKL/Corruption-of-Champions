@@ -1342,23 +1342,21 @@ package classes
 			return int(Math.random() * max);
 		}
 		
-		public function cockDescript(cockIndex:Number = 0):String
-		{
-
-			//trace("WRONG COCKDESCRIPT FUNCTION CALLED");
-			if (totalCocks() == 0)
+		public function cockDescript(cockIndex:Number = 0):String {
+			if (totalCocks() == 0) {
 				return "<b>ERROR: CockDescript Called But No Cock Present</b>";
+			}
 			if (cockTotal() <= cockIndex && cockIndex != 99)
 				return "<b>ERROR: CockDescript called with index of " + cockIndex + " - out of BOUNDS</b>";
 			//Cocknum 99 to default to boring descriptions!
-			if (cockIndex != 99)
-			{
-				if (rand(2) == 0)
+			if (cockIndex != 99) {
+				if (rand(2) == 0) {
 					descript += cockAdjective(cockIndex) + ", ";
+				}
 				descript += Appearance.cockNoun(cocks[cockIndex].cockType);
-			}
-			else
+			} else {
 				cockIndex = 0;
+			}
 			var descript:String = "";
 			//50% of the time add a descriptor
 			if (rand(2) == 0)

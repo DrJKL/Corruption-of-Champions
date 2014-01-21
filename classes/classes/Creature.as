@@ -2251,7 +2251,7 @@ package classes
 		}
 		
 		public function homogenousCocks():Boolean {
-			for (var i:int = 1, len = totalCocks(); i < len; i++) {
+			for (var i:int = 1, len:int = totalCocks(); i < len; i++) {
 				if (cocks[i].cockType == cocks[0].cockType) {
 					return false;
 				}

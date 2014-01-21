@@ -1205,7 +1205,7 @@
 								"tight ",
 								"muscular, toned "];
 					description = randomChoice(options);
-				} else if (i_character.tone >= 30) //Nondescript
+				} else if (i_character.tone >= 30) { //Nondescript
 					description = randomChoice("tight ", "firm ", "compact ", "petite ");
 				} else  { //FLABBAH
 					options = ["small, heart-shaped ",

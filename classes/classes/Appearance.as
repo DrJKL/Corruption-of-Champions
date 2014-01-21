@@ -1113,11 +1113,15 @@
 			return description;
 		}
 
-		public static function clitDescription(i_creature:Creature):String
-		{
+		public static function clitDescription(i_creature:Creature):String {
 			var description:String = "";
 			var options:Array;
 			var haveDescription:Boolean = false;
+			
+			if (!i_creature.hasVagina()) {
+				return failMaybe("ERROR: CLITDESCRIPT WITH NO CLIT");
+			}
+			
 			//Length Adjective - 50% chance
 			if(rand(2) == 0) {
 				//small clits!
@@ -1128,22 +1132,14 @@
 								"diminutive ",
 								"miniature "];
 					description += randomChoice(options);
-				}
-				//"average".
-				if(i_creature.clitLength > .5 && i_creature.clitLength < 1.5) {
+				} else if(i_creature.clitLength < 1.5) { //"average".
 					//no size comment
-				}
-				//Biggies!
-				if (i_creature.clitLength >= 1.5 && i_creature.clitLength < 4) {
-					options = ["large ",
-								"large ",
-								"substantial ",
-								"substantial ",
+				} else if (i_creature.clitLength < 4) { //Biggies!
+					options = ["large ", "large ",
+								"substantial ", "substantial ",
 								"considerable "];
 					description += randomChoice(options);
-				}
-				//'Uge
-				if (i_creature.clitLength >= 4) {
+				} else { //'Uge
 					options = ["monster ",
 								"tremendous ",
 								"colossal ",
@@ -1160,51 +1156,27 @@
 					description += "bitch-";
 					haveDescription = true;
 				}
-				/*Horse descriptors - 50%
-				if(player.skinType == 1 > 2 && !descripted && rand(2) == 0) {
-					descripted = true;
-					descript += "mare-";
-				}*/
 				//Horny descriptors - 75% chance
 				if(i_creature.lust > 70 && rand(4) < 3 && !haveDescription) {
-					options = ["throbbing ",
-								"pulsating ",
-								"hard "];
-					description += randomChoice(options);
+					description += randomChoice("throbbing ", "pulsating ", "hard ");
 					haveDescription = true;
 				}
 				//High libido - always use if no other descript
 				if(i_creature.lib > 50 && rand(2) == 0 && !haveDescription) {
-					options = ["insatiable ",
-								"greedy ",
-								"demanding ",
-								"rapacious"];
-					description += randomChoice(options);
+					description += randomChoice("insatiable ", "greedy ", "demanding ", "rapacious");
 					haveDescription = true;
 				}
 			}
-			if(i_creature.hasVagina()) {
-				if(!haveDescription && i_creature.vaginas[0].clitPierced > 0) {
-					description += "pierced ";
-					haveDescription = true;
-				}
+			if(!haveDescription && i_creature.vaginas[0].clitPierced > 0) {
+				description += "pierced ";
+				haveDescription = true;
 			}
-			else
-			{
-				return failMaybe("ERROR: CLITDESCRIPT WITH NO CLIT");
-			}
-
+			
 			//Clit nouns
-			options = ["clit",
-						"clitty",
-						"button",
-						"pleasure-buzzer",
-						"clit",
-						"clitty",
-						"button",
-						"clit",
-						"clit",
-						"button"];
+			options = ["clit", "clit", "clit", "clit",
+						"button", "button", "button", 
+						"clitty", "clitty",
+						"pleasure-buzzer"];
 			description += randomChoice(options);
 			return description;
 		}

@@ -279,8 +279,7 @@ package classes {
 		public var statusAffects:Array;
 		
 		//Constructor
-		public function Creature()
-		{
+		public function Creature() {
 			//cocks = new Array();
 			//The world isn't ready for typed Arrays just yet.
 			cocks = [];
@@ -3436,215 +3435,14 @@ package classes {
 			return cocks[cockNum].growCock(increase);
 		}
 
-		public function breastCup(rowNum:Number):String
-		{
-			if (breastRows[rowNum].breastRating < 1)
-				return "flat, manly breast";
-			else if (breastRows[rowNum].breastRating < 2)
-				return "A-cup";
-			else if (breastRows[rowNum].breastRating < 3)
-				return "B-cup";
-			else if (breastRows[rowNum].breastRating < 4)
-				return "C-cup";
-			else if (breastRows[rowNum].breastRating < 5)
-				return "D-cup";
-			else if (breastRows[rowNum].breastRating < 6)
-				return "DD-cup";
-			else if (breastRows[rowNum].breastRating < 7)
-				return "big DD-cup";
-			else if (breastRows[rowNum].breastRating < 8)
-				return "E-cup";
-			else if (breastRows[rowNum].breastRating < 9)
-				return "big E-cup";
-			else if (breastRows[rowNum].breastRating < 10)
-				return "EE-cup";
-			else if (breastRows[rowNum].breastRating < 11)
-				return "big EE-cup";
-			else if (breastRows[rowNum].breastRating < 12)
-				return "F-cup";
-			else if (breastRows[rowNum].breastRating < 13)
-				return "big F-cup";
-			else if (breastRows[rowNum].breastRating < 14)
-				return "FF-cup";
-			else if (breastRows[rowNum].breastRating < 15)
-				return "big FF-cup";
-			else if (breastRows[rowNum].breastRating < 16)
-				return "G-cup";
-			else if (breastRows[rowNum].breastRating < 17)
-				return "big G-cup";
-			else if (breastRows[rowNum].breastRating < 18)
-				return "GG-cup";
-			else if (breastRows[rowNum].breastRating < 19)
-				return "big GG-cup";
-			else if (breastRows[rowNum].breastRating < 20)
-				return "H-cup";
-			else if (breastRows[rowNum].breastRating < 21)
-				return "big H-cup";
-			else if (breastRows[rowNum].breastRating < 22)
-				return "HH-cup";
-			else if (breastRows[rowNum].breastRating < 23)
-				return "big HH-cup";
-			else if (breastRows[rowNum].breastRating < 24)
-				return "HHH-cup";
-			else if (breastRows[rowNum].breastRating < 25)
-				return "I-cup";
-			else if (breastRows[rowNum].breastRating < 26)
-				return "big I-cup";
-			else if (breastRows[rowNum].breastRating < 27)
-				return "II-cup";
-			else if (breastRows[rowNum].breastRating < 28)
-				return "big II-cup";
-			else if (breastRows[rowNum].breastRating < 29)
-				return "J-cup";
-			else if (breastRows[rowNum].breastRating < 30)
-				return "big J-cup";
-			else if (breastRows[rowNum].breastRating < 31)
-				return "JJ-cup";
-			else if (breastRows[rowNum].breastRating < 32)
-				return "big JJ-cup";
-			else if (breastRows[rowNum].breastRating < 33)
-				return "K-cup";
-			else if (breastRows[rowNum].breastRating < 34)
-				return "big K-cup";
-			else if (breastRows[rowNum].breastRating < 35)
-				return "KK-cup";
-			else if (breastRows[rowNum].breastRating < 36)
-				return "big KK-cup";
-			else if (breastRows[rowNum].breastRating < 37)
-				return "L-cup";
-			else if (breastRows[rowNum].breastRating < 38)
-				return "big L-cup";
-			else if (breastRows[rowNum].breastRating < 39)
-				return "LL-cup";
-			else if (breastRows[rowNum].breastRating < 40)
-				return "big LL-cup";
-			else if (breastRows[rowNum].breastRating < 41)
-				return "M-cup";
-			else if (breastRows[rowNum].breastRating < 42)
-				return "big M-cup";
-			else if (breastRows[rowNum].breastRating < 43)
-				return "MM-cup";
-			else if (breastRows[rowNum].breastRating < 44)
-				return "big MM-cup";
-			else if (breastRows[rowNum].breastRating < 45)
-				return "MMM-cup";
-			else if (breastRows[rowNum].breastRating < 46)
-				return "large MMM-cup";
-			else if (breastRows[rowNum].breastRating < 47)
-				return "N-cup";
-			else if (breastRows[rowNum].breastRating < 48)
-				return "large N-cup";
-			else if (breastRows[rowNum].breastRating < 49)
-				return "NN-cup";
-			else if (breastRows[rowNum].breastRating < 50)
-				return "large NN-cup";
-			else if (breastRows[rowNum].breastRating < 51)
-				return "O-cup";
-			else if (breastRows[rowNum].breastRating < 52)
-				return "large O-cup";
-			else if (breastRows[rowNum].breastRating < 53)
-				return "OO-cup";
-			else if (breastRows[rowNum].breastRating < 54)
-				return "large OO-cup";
-			else if (breastRows[rowNum].breastRating < 55)
-				return "P-cup";
-			else if (breastRows[rowNum].breastRating < 56)
-				return "large P-cup";
-			else if (breastRows[rowNum].breastRating < 57)
-				return "PP-cup";
-			else if (breastRows[rowNum].breastRating < 58)
-				return "large PP-cup";
-			else if (breastRows[rowNum].breastRating < 59)
-				return "Q-cup";
-			else if (breastRows[rowNum].breastRating < 60)
-				return "large Q-cup";
-			else if (breastRows[rowNum].breastRating < 61)
-				return "QQ-cup";
-			else if (breastRows[rowNum].breastRating < 62)
-				return "large QQ-cup";
-			else if (breastRows[rowNum].breastRating < 63)
-				return "R-cup";
-			else if (breastRows[rowNum].breastRating < 64)
-				return "large R-cup";
-			else if (breastRows[rowNum].breastRating < 65)
-				return "RR-cup";
-			else if (breastRows[rowNum].breastRating < 66)
-				return "large RR-cup";
-			else if (breastRows[rowNum].breastRating < 67)
-				return "S-cup";
-			else if (breastRows[rowNum].breastRating < 68)
-				return "large S-cup";
-			else if (breastRows[rowNum].breastRating < 69)
-				return "SS-cup";
-			else if (breastRows[rowNum].breastRating < 70)
-				return "large SS-cup";
-			else if (breastRows[rowNum].breastRating < 71)
-				return "T-cup";
-			else if (breastRows[rowNum].breastRating < 72)
-				return "large T-cup";
-			else if (breastRows[rowNum].breastRating < 73)
-				return "TT-cup";
-			else if (breastRows[rowNum].breastRating < 74)
-				return "large TT-cup";
-			else if (breastRows[rowNum].breastRating < 75)
-				return "U-cup";
-			else if (breastRows[rowNum].breastRating < 76)
-				return "large U-cup";
-			else if (breastRows[rowNum].breastRating < 77)
-				return "UU-cup";
-			else if (breastRows[rowNum].breastRating < 78)
-				return "large UU-cup";
-			else if (breastRows[rowNum].breastRating < 79)
-				return "V-cup";
-			else if (breastRows[rowNum].breastRating < 80)
-				return "large V-cup";
-			else if (breastRows[rowNum].breastRating < 81)
-				return "VV-cup";
-			else if (breastRows[rowNum].breastRating < 82)
-				return "large VV-cup";
-			else if (breastRows[rowNum].breastRating < 83)
-				return "W-cup";
-			else if (breastRows[rowNum].breastRating < 84)
-				return "large W-cup";
-			else if (breastRows[rowNum].breastRating < 85)
-				return "WW-cup";
-			else if (breastRows[rowNum].breastRating < 86)
-				return "large WW-cup";
-			else if (breastRows[rowNum].breastRating < 87)
-				return "X-cup";
-			else if (breastRows[rowNum].breastRating < 88)
-				return "large X-cup";
-			else if (breastRows[rowNum].breastRating < 89)
-				return "XX-cup";
-			else if (breastRows[rowNum].breastRating < 90)
-				return "large XX-cup";
-			else if (breastRows[rowNum].breastRating < 91)
-				return "Y-cup";
-			else if (breastRows[rowNum].breastRating < 92)
-				return "large Y-cup";
-			else if (breastRows[rowNum].breastRating < 93)
-				return "YY-cup";
-			else if (breastRows[rowNum].breastRating < 94)
-				return "large YY-cup";
-			else if (breastRows[rowNum].breastRating < 95)
-				return "Z-cup";
-			else if (breastRows[rowNum].breastRating < 96)
-				return "large Z-cup";
-			else if (breastRows[rowNum].breastRating < 97)
-				return "ZZ-cup";
-			else if (breastRows[rowNum].breastRating < 98)
-				return "large ZZ-cup";
-			else if (breastRows[rowNum].breastRating < 99)
-				return "ZZZ-cup";
-			else if (breastRows[rowNum].breastRating < 100)
-				return "large ZZZ-cup";
+		public function breastCup(rowNum:Number):String {
+			return Appearance.BREAST_CUP_NAMES[Math.floor(breastRows[rowNum].breastRating)]
+				|| "game-breaking cup";
 			/*else if(breastRows[rowNum].breastRating < 20) return "watermelon-sized cup";
 			 else if(breastRows[rowNum].breastRating < 35) return "tent-sized cup";
 			 else if(breastRows[rowNum].breastRating < 60) return "truck-sized cup";
 			 else if(breastRows[rowNum].breastRating < 100) return "parachute-sized cup";*/
-			else
-				return "game-breaking cup";
-			return "Error-Cup (breastSize Error Number: " + breastRows[rowNum].breastRating;
+			//return failMaybe("Error-Cup (breastSize Error Number: " + breastRows[rowNum].breastRating);
 			//watermelon-sized
 			//tent sized
 			//truck sized
@@ -3659,168 +3457,133 @@ package classes {
 			//WTFISTHISWHYISNTITGAMEOVER?
 		}
 
-		public function bRows():Number
-		{
+		public function bRows():Number {
 			return breastRows.length;
 		}
 
-		public function totalBreasts():Number
-		{
-			var counter:Number = breastRows.length;
+		public function totalBreasts():Number {
 			var total:Number = 0;
-			while (counter > 0) {
-				counter--;
-				total += breastRows[counter].breasts;
+			for (var i:int = breastRows.length - 1; i >= 0; i--) {
+				total += breastRows[i].breasts;
 			}
 			return total;
 		}
 
-		public function totalNipples():Number
-		{
-			var counter:Number = breastRows.length;
+		public function totalNipples():Number {
 			var total:Number = 0;
-			while (counter > 0) {
-				counter--;
-				total += breastRows[counter].nipplesPerBreast * breastRows[counter].breasts;
+			for (var i:int = breastRows.length - 1; i >= 0; i--) {
+				total += breastRows[i].nipplesPerBreast * breastRows[i].breasts;
 			}
 			return total;
 		}
 
-		public function smallestTitSize():Number
-		{
-			if (breastRows.length == 0)
-				return -1;
-			var counter:Number = breastRows.length;
+		public function smallestTitSize():Number {
 			var index:Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[index].breastRating > breastRows[counter].breastRating)
+			for (var i:int = breastRows.length - 1; i >= 0; i-- ) {
+				if (breastRows[index].breastRating > breastRows[counter].breastRating) {
 					index = counter;
+				}
 			}
-			return breastRows[index].breastRating;
+			return (breastRows.length == 0)
+				? -1
+				: breastRows[index].breastRating;
 		}
 
-		public function smallestTitRow():Number
-		{
-			if (breastRows.length == 0)
-				return -1;
-			var counter:Number = breastRows.length;
+		public function smallestTitRow():Number {
 			var index:Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[index].breastRating > breastRows[counter].breastRating)
+			for (var counter:Number = breastRows.length - 1; counter >= 0 ; counter-- ) {
+				if (breastRows[index].breastRating > breastRows[counter].breastRating) {
 					index = counter;
+				}
+			}
+			return (breastRows.length == 0)
+				? -1
+				: index;
+		}
+
+		public function biggestTitRow():Number {
+			var index:Number = 0;
+			for (var i:int = breastRows.length - 1; i >= 0; i--) {
+				if (breastRows[index].breastRating < breastRows[i].breastRating) {
+					index = counter;
+				}
 			}
 			return index;
 		}
 
-		public function biggestTitRow():Number
-		{
-			var counter:Number = breastRows.length;
+		public function averageBreastSize():Number {
+			var average:Number = 0;
+			for (var i:int = breastRows.length - 1; i >= 0; i--) {
+				average += breastRows[i].breastRating;
+			}
+			return (breastRows.length == 0)
+				? 0
+				: (average / breastRows.length);
+		}
+
+		public function averageCockThickness():Number {
+			var average:Number = 0;
+			for (var i:int = cocks.length - 1; i >= 0; i--) {
+				average += cocks[i].cockThickness;
+			}
+			return (cocks.length == 0)
+				? 0
+				: (average / cocks.length);
+		}
+
+		public function averageNippleLength():Number {
+			var average:Number = 0;
+			for (var i:int = breastRows.length - 1; i >= 0; i--) {
+				average += (breastRows[i].breastRating / 10 + .2);
+			}
+			return (breastRows.length == 0)
+				? 0
+				: (average / breastRows.length);
+		}
+
+		public function averageVaginalLooseness():Number {
+			var average:Number = 0;
+			for (var i:int = vaginas.length - 1; i >= 0; i--) {
+				average += vaginas[i].vaginalLooseness;
+			}
+			return (vaginas.length == 0)
+				? 2 
+				: (average / vaginas.length);
+		}
+
+		public function averageVaginalWetness():Number {
+			var average:Number = 0;
+			for (var i:int = vaginas.length - 1 ; i >= 0; i--) {
+				average += vaginas[i].vaginalWetness;
+			}
+			return (vaginas.length == 0)
+				? 2
+				: (average / vaginas.length);
+		}
+
+		public function averageCockLength():Number {
+			var average:Number = 0;
+			for (var i:int = cocks.length - 1; i >= 0; i-- ) {
+				average += cocks[i].cockLength;
+			}
+			return (cocks.length == 0)
+				? 0
+				: (average / cocks.length);
+		}
+
+		public function canTitFuck():Boolean {
 			var index:Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[index].breastRating < breastRows[counter].breastRating)
-					index = counter;
+			for (var i:int = breastRows.length - 1; i >= 0; i-- ) {
+				if (breastRows[index].breasts < breastRows[i].breasts &&
+					breastRows[i].breastRating > 3)
+					index = i;
 			}
-			return index;
-		}
-
-		public function averageBreastSize():Number
-		{
-			var counter:Number = breastRows.length;
-			var average:Number = 0;
-			while (counter > 0) {
-				counter--;
-				average += breastRows[counter].breastRating;
-			}
-			if (breastRows.length == 0)
-				return 0;
-			return (average / breastRows.length);
-		}
-
-		public function averageCockThickness():Number
-		{
-			var counter:Number = cocks.length;
-			var average:Number = 0;
-			while (counter > 0) {
-				counter--;
-				average += cocks[counter].cockThickness;
-			}
-			if (cocks.length == 0)
-				return 0;
-			return (average / cocks.length);
-		}
-
-		public function averageNippleLength():Number
-		{
-			var counter:Number = breastRows.length;
-			var average:Number = 0;
-			while (counter > 0) {
-				counter--;
-				average += (breastRows[counter].breastRating / 10 + .2);
-			}
-			return (average / breastRows.length);
-		}
-
-		public function averageVaginalLooseness():Number
-		{
-			var counter:Number = vaginas.length;
-			var average:Number = 0;
-			//If the player has no vaginas
-			if (vaginas.length == 0)
-				return 2;
-			while (counter > 0) {
-				counter--;
-				average += vaginas[counter].vaginalLooseness;
-			}
-			return (average / vaginas.length);
-		}
-
-		public function averageVaginalWetness():Number
-		{
-			//If the player has no vaginas
-			if (vaginas.length == 0)
-				return 2;
-			var counter:Number = vaginas.length;
-			var average:Number = 0;
-			while (counter > 0) {
-				counter--;
-				average += vaginas[counter].vaginalWetness;
-			}
-			return (average / vaginas.length);
-		}
-
-		public function averageCockLength():Number
-		{
-			var counter:Number = cocks.length;
-			var average:Number = 0;
-			while (counter > 0) {
-				counter--;
-				average += cocks[counter].cockLength;
-			}
-			if (cocks.length == 0)
-				return 0;
-			return (average / cocks.length);
-		}
-
-		public function canTitFuck():Boolean
-		{
-			var counter:Number = breastRows.length;
-			var index:Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[index].breasts < breastRows[counter].breasts && breastRows[counter].breastRating > 3)
-					index = counter;
-			}
-			if (breastRows[index].breasts >= 2 && breastRows[index].breastRating > 3)
-				return true;
-			return false;
+			return (breastRows[index].breasts >= 2 && breastRows[index].breastRating > 3);
 		}
 
 		public function mostBreastsPerRow():Number {
 			var index:Number = 0;
-			for (var i:int = breastRows.length; i >= 0; i--) {
+			for (var i:int = breastRows.length - 1; i >= 0; i--) {
 				if (breastRows[index].breasts < breastRows[counter].breasts) {
 					index = i;
 				}
@@ -3831,7 +3594,7 @@ package classes {
 		public function averageNipplesPerBreast():Number {
 			var breasts:Number = 0;
 			var nipples:Number = 0;
-			for (var i:int = breastRows.length; i >= 0; i--) {
+			for (var i:int = breastRows.length - 1; i >= 0; i--) {
 				breasts += breastRows[i].breasts;
 				nipples += breastRows[i].nipplesPerBreast * breastRows[i].breasts;
 			}

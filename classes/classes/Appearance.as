@@ -105,7 +105,6 @@
 			}
 			var haveDescription:Boolean = false;
 			var description:String = "";
-			var rando:Number = 0;
 			//Size descriptors 33% chance
 			if(rand(4) == 0) {
 				if(i_creature.nippleLength < .4) { //TINAHHHH
@@ -281,7 +280,6 @@
 			if (rand(2) == 0) {
 				description += cockAdjective(i_creature, i_cockIndex) + " ";
 			}
-			var rando:Number = 0;
 			options = ["cock",
 						"prick",
 						"pecker",
@@ -574,7 +572,6 @@
 		//Cock adjectives for single cock
 		public static function cockAdjectives(i_cockLength:Number, i_cockThickness:Number, i_cockType:CockTypesEnum, i_creature:Creature):String {
 			var description:String = "";
-			var rando:Number = 0;
 			//length or thickness, usually length.
 			if(rand(4) == 0) {
 				if(i_cockLength < 3) {
@@ -861,7 +858,6 @@
 			}
 
 			var haveDescription:Boolean = false;
-			var rando:Number = 0;
 			var description:String = "";
 			var options:Array;
 
@@ -871,8 +867,8 @@
 					description += randomChoice("single", "solitary", "lone", "individual");
 				} else if (i_creature.balls == 2) {
 					options = (i_withArticle)
-						? ["a pair of", "two", "a duo of"]
-						: ["pair of", "two", "duo of"];
+						? ["two", "a pair of", "a duo of"]
+						: ["two", "pair of", "duo of"];
 					description += randomChoice(options);
 				} else if (i_creature.balls == 3) {
 					options = ["three", "triple"];

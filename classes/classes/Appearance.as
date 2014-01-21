@@ -1206,7 +1206,6 @@
 						"clit",
 						"button"];
 			description += randomChoice(options);
-
 			return description;
 		}
 
@@ -1216,25 +1215,21 @@
 		 * @param	i_character
 		 * @return 	A full description of a Character's butt.
 		 */
-		public static function buttDescription(i_character:Character):String
-		{
+		public static function buttDescription(i_character:Character):String {
 			var description:String = "";
 			var options:Array;
-			if(i_character.buttRating <= 1)
-			{
+			if (i_character.buttRating <= 1) {
 				if (i_character.tone >= 60)
 					description += "incredibly tight, perky ";
 				else {
-					options = ["tiny",
-								"very small",
-								"dainty"];
-					description = randomChoice(options);
+					description = randomChoice("tiny", "very small", "dainty");
 					//Soft PC's buns!
-					if(i_character.tone <= 30 && rand(3) == 0) description += " yet soft";
+					if (i_character.tone <= 30 && rand(3) == 0) {
+						description += " yet soft";
+					}
 					description += " ";
 				}
-			}
-			if(i_character.buttRating > 1 && i_character.buttRating < 4) {
+			} else if (i_character.buttRating < 4) {
 				if (i_character.tone >= 65) {
 					options = ["perky, muscular ",
 								"tight, toned ",
@@ -1242,17 +1237,9 @@
 								"tight ",
 								"muscular, toned "];
 					description = randomChoice(options);
-				}
-				//Nondescript
-				else if (i_character.tone >= 30) {
-					options = ["tight ",
-								"firm ",
-								"compact ",
-								"petite "];
-					description = randomChoice(options);
-				}
-				//FLABBAH
-				else  {
+				} else if (i_character.tone >= 30) //Nondescript
+					description = randomChoice("tight ", "firm ", "compact ", "petite ");
+				} else  { //FLABBAH
 					options = ["small, heart-shaped ",
 								"soft, compact ",
 								"soft, heart-shaped ",
@@ -1262,8 +1249,7 @@
 								"snug ",];
 					description = randomChoice(options);
 				}
-			}
-			if(i_character.buttRating >= 4 && i_character.buttRating < 6) {
+			} else if(i_character.buttRating < 6) {
 				//TOIGHT LIKE A TIGER
 				if(i_character.tone >= 65) {
 					options = ["nicely muscled ",
@@ -1273,15 +1259,11 @@
 								"toned ",
 								"fair "];
 					description = randomChoice(options);
-				}
-				//Nondescript
-				else if(i_character.tone >= 30) {
+				} else if(i_character.tone >= 30) { //Nondescript
 					options = ["nice ",
 					"fair "];
 					description = randomChoice(options);
-				}
-				//FLABBAH
-				else  {
+				} else  { //FLABBAH
 					options = ["nice, cushiony ",
 								"soft ",
 								"nicely-rounded, heart-shaped ",
@@ -1301,18 +1283,12 @@
 								"full ",
 								"chiseled "];
 					description = randomChoice(options);
-				}
-				//Nondescript
-				else if(i_character.tone >= 30) {
-					options = ["handful of ",
-								"full ",
-								"shapely ",
-								"hand-filling "];
-					description = randomChoice(options);
-				}
-				//FLABBAH
-				else  {
-					if(rand(8) == 0) return "supple, handful of ass";
+				} else if(i_character.tone >= 30) { //Nondescript
+					description = randomChoice("handful of ", "full ", "shapely ", "hand-filling ");
+				} else  { //FLABBAH
+					if (rand(8) == 0) {
+						return "supple, handful of ass";
+					}
 					options = ["somewhat jiggly ",
 								"soft, hand-filling ",
 								"cushiony, full ",
@@ -1335,16 +1311,9 @@
 								"powerful, squeezable ",
 								"large "];
 					description = randomChoice(options);
-				}
-				//Nondescript
-				else if(i_character.tone >= 30) {
-					options = ["squeezable ",
-								"large ",
-								"substantial "];
-					description = randomChoice(options);
-				}
-				//FLABBAH
-				else  {
+				} else if(i_character.tone >= 30) { //Nondescript
+					description = randomChoice("squeezable ", "large ", "substantial ");
+				} else  { //FLABBAH
 					options = ["large, bouncy ",
 								"soft, eye-catching ",
 								"big, slappable ",
@@ -1368,17 +1337,13 @@
 								"thick ",
 								"thick, strong "];
 					description = randomChoice(options);
-				}
-				//Nondescript
-				else if(i_character.tone >= 30) {
+				} else if(i_character.tone >= 30) { //Nondescript
 					options = ["jiggling ",
 								"spacious ",
 								"heavy ",
 								"cloth-straining "];
 					description = randomChoice(options);
-				}
-				//FLABBAH
-				else  {
+				} else  { //FLABBAH
 					options = ["super-soft, jiggling ",
 								"spacious, cushy ",
 								"plush, cloth-straining ",
@@ -1404,17 +1369,9 @@
 								"muscular ",
 								"powerful, expansive "];
 					description = randomChoice(options);
-				}
-				//Nondescript
-				else if(i_character.tone >= 30) {
-					options = ["expansive ",
-								"generous ",
-								"voluminous ",
-								"wide "];
-					description = randomChoice(options);
-				}
-				//FLABBAH
-				else {
+				} else if(i_character.tone >= 30) { //Nondescript
+					description = randomChoice("expansive ", "generous ", "voluminous ", "wide ");
+				} else { //FLABBAH
 					options = ["pillow-like ",
 								"generous, cushiony ",
 								"wide, plush ",
@@ -1438,18 +1395,15 @@
 								"strong, immense ",
 								"muscle-bound "];
 					description = randomChoice(options);
-				}
-				//Nondescript
-				else if (i_character.tone >= 30) {
-					if(rand(5) == 0) return "jiggling expanse of ass";
-					if(rand(5) == 0) return "copious ass-flesh";
-					options = ["huge ",
-								"vast ",
-								"giant "];
-					description = randomChoice(options);
-				}
-				//FLABBAH
-				else {
+				} else if (i_character.tone >= 30) { //Nondescript
+					if (rand(5) == 0) {
+						return "jiggling expanse of ass";
+					}
+					if (rand(5) == 0) {
+						return "copious ass-flesh";
+					}
+					description = randomChoice("huge ", "vast ", "giant ");
+				} else { //FLABBAH
 					options = ["vast, cushiony ",
 								"huge, plump ",
 								"expansive, jiggling ",
@@ -1466,7 +1420,9 @@
 			}
 			if(i_character.buttRating >= 20) {
 				if(i_character.tone >= 65) {
-					if(rand(7) == 0) return "colossal, muscly ass";
+					if (rand(7) == 0){
+						return "colossal, muscly ass";
+					}
 					options = ["ginormous, muscle-bound ",
 								"colossal yet toned ",
 								"strong, tremdously large ",
@@ -1474,17 +1430,9 @@
 								"ginormous, toned ",
 								"colossal, well-defined "];
 					description = randomChoice(options);
-				}
-				//Nondescript
-				else if(i_character.tone >= 30) {
-					options = ["ginormous ",
-								"colossal ",
-								"tremendous ",
-								"gigantic "];
-					description = randomChoice(options);
-				}
-				//FLABBAH
-				else {
+				} else if(i_character.tone >= 30) { //Nondescript
+					description = randomChoice("ginormous ", "colossal ", "tremendous ", "gigantic ");
+				} else { //FLABBAH
 					options = ["ginormous, jiggly ",
 								"plush, ginormous ",
 								"seam-destroying ",
@@ -1501,22 +1449,14 @@
 					description = randomChoice(options);
 				}
 			}
-			options = ["butt",
-						"butt",
-						"butt",
-						"butt",
-						"ass",
-						"ass",
-						"ass",
-						"ass",
-						"backside",
-						"backside",
+			options = ["butt", "butt", "butt", "butt",
+						"ass", "ass", "ass", "ass",
+						"backside", "backside",
 						"derriere",
 						"rump",
 						"bottom"];
 			
 			description += randomChoice(options);
-			//if(rando == 2) desc += "cheeks";
 			return description;
 		}
 
@@ -1527,72 +1467,44 @@
 		 * @param	creature
 		 * @return Short description of a butt.
 		 */
-		public static function buttDescriptionShort(i_creature:Creature):String
-		{
+		public static function buttDescriptionShort(i_creature:Creature):String {
 			var description:String = "";
-			var options:Array;
-			if(i_creature.buttRating <= 1)
-			{
-				options = ["insignificant ",
-							"very small "];
-				description = randomChoice(options);
+			if(i_creature.buttRating <= 1) {
+				description = randomChoice("insignificant ", "very small ");
+			} else if(i_creature.buttRating < 4) {
+				description = randomChoice("tight ", "firm ", "compact ");
+			} else if(i_creature.buttRating < 6) {
+				description = randomChoice("regular ", "unremarkable ");
+			} else if(i_creature.buttRating < 8) {
+				if (rand(3) == 0) {
+					return "handful of ass";
+				}
+				description = randomChoice("full ", "shapely ");
+			} else if(i_creature.buttRating < 10) {
+				description = randomChoice("squeezable ", "large ", "substantial ");
+			} else if(i_creature.buttRating < 13) {
+				description = randomChoice("jiggling ", "spacious ", "heavy ");
+			} else if(i_creature.buttRating < 16) {
+				if (rand(3) == 0) {
+					return "generous amount of ass";
+				}
+				description = randomChoice("expansive ", "voluminous ");
+			} else if(i_creature.buttRating < 20) {
+				if (rand(3) == 2) {
+					return "jiggling expanse of ass";
+				}
+				description = randomChoice("huge ", "vast ");
+			} else {
+				description = randomChoice("ginormous ", "colossal ", "tremendous ");
 			}
-			if(i_creature.buttRating > 1 && i_creature.buttRating < 4) {
-				options = ["tight ",
-							"firm ",
-							"compact "];
-				description = randomChoice(options);
+			description += randomChoice("butt ", "ass ");
+			if (rand(2) == 0) {
+				description += "cheeks";
 			}
-			if(i_creature.buttRating >= 4 && i_creature.buttRating < 6) {
-				options = ["regular ",
-							"unremarkable "];
-				description = randomChoice(options);
-			}
-			if(i_creature.buttRating >= 6 && i_creature.buttRating < 8) {
-				if(rand(3) == 0) return "handful of ass";
-				options = ["full ",
-							"shapely "];
-				description = randomChoice(options);
-			}
-			if(i_creature.buttRating >= 8 && i_creature.buttRating < 10) {
-				options = ["squeezable ",
-							"large ",
-							"substantial "];
-				description = randomChoice(options);
-			}
-			if(i_creature.buttRating >= 10 && i_creature.buttRating < 13) {
-				options = ["jiggling ",
-							"spacious ",
-							"heavy "];
-				description = randomChoice(options);
-			}
-			if(i_creature.buttRating >= 13 && i_creature.buttRating < 16) {
-				if(rand(3) == 0) return "generous amount of ass";
-				options = ["expansive ",
-							"voluminous "];
-				description = randomChoice(options);
-			}
-			if(i_creature.buttRating >= 16 && i_creature.buttRating < 20) {
-				if (rand(3) == 2) return "jiggling expanse of ass";
-				options = ["huge ",
-							"vast "];
-				description = randomChoice(options);
-			}
-			if(i_creature.buttRating >= 20) {
-				options = ["ginormous ",
-							"colossal ",
-							"tremendous "];
-				description = randomChoice(options);
-			}
-			options = ["butt ",
-			"ass "];
-			description += randomChoice(options);
-			if(rand(2) == 0) description += "cheeks";
 			return description;
 		}
 
-		public static function assholeDescript(i_creature:Creature):String
-		{
+		public static function assholeDescript(i_creature:Creature):String {
 			var description:String = "";
 			//66% wetness description
 			if (rand(3) <= 1) {
@@ -1623,102 +1535,51 @@
 					"backdoor",
 					"asshole",
 					"butthole");
-
 			return description;
 		}
 
-		private static function humanDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.HUMAN);
-			return descript;
+		private static function humanDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.HUMAN);
 		}
-
-		private static function kangaDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.KANGAROO);
-			return descript;
+		private static function kangaDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.KANGAROO);
 		}
-		private static function dogDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.DOG);
-			return descript;
+		private static function dogDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.DOG);
 		}
-		private static function foxDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.FOX);
-			return descript;
+		private static function foxDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.FOX);
 		}
-		private static function tentacleDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.TENTACLE);
-			return descript;
+		private static function tentacleDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.TENTACLE);
 		}
-		private static function demonDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.DEMON);
-			return descript;
+		private static function demonDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.DEMON);
 		}
-
 
 		//Horsecock + Descript
-		private static function horseDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.HORSE);
-			return descript;
+		private static function horseDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.HORSE);
 		}
 
-		private static function catDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.CAT);
-			return descript;
+		private static function catDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.CAT);
 		}
 
-		private static function anemoneDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.ANEMONE);
-			return descript;
+		private static function anemoneDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.ANEMONE);
 		}
-		private static function dragonDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.DRAGON);
-			return descript;
+		private static function dragonDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.DRAGON);
 		}
 
-		private static function displacerDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.DISPLACER);
-			return descript;
+		private static function displacerDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.DISPLACER);
 		}
 
 
-		private static function snakeDescript(cockNum:Number):String
-		{
-			var descript:String = "";
-			//if(rand(2) == 0) descript += cockAdjective(cockNum) + ", ";
-			descript += cockNoun(CockTypesEnum.LIZARD);
-			return descript;
+		private static function snakeDescript(cockNum:Number):String {
+			return cockNoun(CockTypesEnum.LIZARD);
 		}
 
 		public static const BREAST_CUP_NAMES:Array = [
@@ -1736,253 +1597,265 @@
 			"Y-cup",	"large Y-cup","YY-cup",	"large YY-cup",	"Z-cup","large Z-cup",	"ZZ-cup","large ZZ-cup","ZZZ-cup","large ZZZ-cup"//90-99
 		];
 		public static function breastCup(size:Number):String {
-			return BREAST_CUP_NAMES[Math.floor(size)]||BREAST_CUP_NAMES[BREAST_CUP_NAMES.length-1];
+			return BREAST_CUP_NAMES[Math.floor(size)] || BREAST_CUP_NAMES[BREAST_CUP_NAMES.length-1];
 		}
 		/**
 		 * Returns breast size from cup name.
 		 * Acceptable input: "flat","A","B","C","D","DD","DD+",... "ZZZ","ZZZ+" or exact match from BREAST_CUP_NAMES array
 		 */
-		public static function breastCupInverse(name:String,defaultValue:Number=0):Number{
-			if (name.length==0) return defaultValue;
-			if (name == "flat") return 0;
-			var big:Boolean = name.charAt(name.length-1)=="+";
-			if (big) name = name.substr(0,name.length-1);
-			for (var i:int=0; i<BREAST_CUP_NAMES.length; i++) {
-				if (name == BREAST_CUP_NAMES[i]) return i;
-				if (BREAST_CUP_NAMES[i].indexOf(name)==0) return i+(big?1:0);
+		public static function breastCupInverse(name:String, defaultValue:Number=0):Number{
+			if (name.length == 0) {
+				return defaultValue;
+			}
+			if (name == "flat") {
+				return 0;
+			}
+			var big:Boolean = name.charAt(name.length-1) == "+";
+			if (big) {
+				name = name.substr(0, name.length-1);
+			}
+			for (var i:int = 0, len:int = BREAST_CUP_NAMES.length; i < len; i++) {
+				if (name == BREAST_CUP_NAMES[i]) {
+					return i;
+				}
+				if (BREAST_CUP_NAMES[i].indexOf(name) == 0) {
+					return i + (big ? 1 : 0);
+				}
 			}
 			return defaultValue;
 		}
 		public static function createMapFromPairs(src:Array):Object{
 		    var result:Object = {};
-			for (var i:int=0; i<src.length; i++) result[src[i][0]]=src[i][1];
+			for (var i:int = 0, len:int = src.length; i < len; i++) {
+				result[src[i][0]] = src[i][1];
+			}
 			return result;
 		}
 		public static const DEFAULT_GENDER_NAMES:Object = createMapFromPairs(
-			[[GENDER_NONE,"genderless"],
-			[GENDER_MALE,"male"],
-			[GENDER_FEMALE,"female"],
-			[GENDER_HERM,"hermaphrodite"]]
+			[[GENDER_NONE, "genderless"],
+			[GENDER_MALE, "male"],
+			[GENDER_FEMALE, "female"],
+			[GENDER_HERM, "hermaphrodite"]]
 		);
 		public static const DEFAULT_SKIN_NAMES:Object = createMapFromPairs(
-			[[SKIN_TYPE_PLAIN,"skin"],
-			[SKIN_TYPE_FUR,"fur"],
-			[SKIN_TYPE_SCALES,"scales"],
-			[SKIN_TYPE_GOO,"goo"],
-			[SKIN_TYPE_UNDEFINED,"undefined flesh"]]
+			[[SKIN_TYPE_PLAIN, "skin"],
+			[SKIN_TYPE_FUR, "fur"],
+			[SKIN_TYPE_SCALES, "scales"],
+			[SKIN_TYPE_GOO, "goo"],
+			[SKIN_TYPE_UNDEFINED, "undefined flesh"]]
 		);
 		public static const DEFAULT_SKIN_DESCS:Object = createMapFromPairs(
-			[[SKIN_TYPE_PLAIN,"skin"],
-			[SKIN_TYPE_FUR,"fur"],
-			[SKIN_TYPE_SCALES,"scales"],
-			[SKIN_TYPE_GOO,"skin"],
-			[SKIN_TYPE_UNDEFINED,"skin"]]
+			[[SKIN_TYPE_PLAIN, "skin"],
+			[SKIN_TYPE_FUR, "fur"],
+			[SKIN_TYPE_SCALES, "scales"],
+			[SKIN_TYPE_GOO, "skin"],
+			[SKIN_TYPE_UNDEFINED, "skin"]]
 		);
 		public static const DEFAULT_HAIR_NAMES:Object = createMapFromPairs(
-			[[HAIR_NORMAL,"normal"],
-			[HAIR_FEATHER,"feather"],
-			[HAIR_GHOST,"transparent"],
-			[HAIR_GOO,"goopy"],
-			[HAIR_ANEMONE,"tentacle"]]
+			[[HAIR_NORMAL, "normal"],
+			[HAIR_FEATHER, "feather"],
+			[HAIR_GHOST, "transparent"],
+			[HAIR_GOO, "goopy"],
+			[HAIR_ANEMONE, "tentacle"]]
 		);
 		public static const DEFAULT_FACE_NAMES:Object = createMapFromPairs(
-			[[FACE_HUMAN,"human"],
-			[FACE_HORSE,"horse"],
-			[FACE_DOG,"dog"],
-			[FACE_COW_MINOTAUR,"cow"],
-			[FACE_SHARK_TEETH,"shark"],
-			[FACE_SNAKE_FANGS,"snake"],
-			[FACE_CAT,"cat"],
-			[FACE_LIZARD,"lizard"],
-			[FACE_BUNNY,"bunny"],
-			[FACE_KANGAROO,"kangaroo"],
-			[FACE_SPIDER_FANGS,"spider"],
-			[FACE_FOX,"fox"],
-			[FACE_DRAGON,"dragon"],
-			[FACE_RACCOON_MASK,"raccoon mask"],
-			[FACE_RACCOON,"racoon"],
-			[FACE_BUCKTEETH,"buckteeth"],
-			[FACE_MOUSE,"mouse"]]
+			[[FACE_HUMAN, "human"],
+			[FACE_HORSE, "horse"],
+			[FACE_DOG, "dog"],
+			[FACE_COW_MINOTAUR, "cow"],
+			[FACE_SHARK_TEETH, "shark"],
+			[FACE_SNAKE_FANGS, "snake"],
+			[FACE_CAT, "cat"],
+			[FACE_LIZARD, "lizard"],
+			[FACE_BUNNY, "bunny"],
+			[FACE_KANGAROO, "kangaroo"],
+			[FACE_SPIDER_FANGS, "spider"],
+			[FACE_FOX, "fox"],
+			[FACE_DRAGON, "dragon"],
+			[FACE_RACCOON_MASK, "raccoon mask"],
+			[FACE_RACCOON, "racoon"],
+			[FACE_BUCKTEETH, "buckteeth"],
+			[FACE_MOUSE, "mouse"]]
 		);
 		public static const DEFAULT_TONGUE_NAMES:Object = createMapFromPairs(
-			[[TONUGE_HUMAN,"human"],
-			[TONUGE_SNAKE,"snake"],
-			[TONUGE_DEMONIC,"demonic"],
-			[TONUGE_DRACONIC,"draconic"]]
+			[[TONUGE_HUMAN, "human"],
+			[TONUGE_SNAKE, "snake"],
+			[TONUGE_DEMONIC, "demonic"],
+			[TONUGE_DRACONIC, "draconic"]]
 		);
 		public static const DEFAULT_EYES_NAMES:Object = createMapFromPairs(
-			[[EYES_HUMAN,"human"],
-			[EYES_FOUR_SPIDER_EYES,"4 spider"],
-			[EYES_BLACK_EYES_SAND_TRAP,"sandtrap black"]]
+			[[EYES_HUMAN, "human"],
+			[EYES_FOUR_SPIDER_EYES, "4 spider"],
+			[EYES_BLACK_EYES_SAND_TRAP, "sandtrap black"]]
 		);
 		public static const DEFAULT_EARS_NAMES:Object = createMapFromPairs(
-			[[EARS_HUMAN,"human"],
-			[EARS_HORSE,"horse"],
-			[EARS_DOG,"dog"],
-			[EARS_COW,"cow"],
-			[EARS_ELFIN,"elfin"],
-			[EARS_CAT,"cat"],
-			[EARS_LIZARD,"lizard"],
-			[EARS_BUNNY,"bunny"],
-			[EARS_KANGAROO,"kangaroo"],
-			[EARS_FOX,"fox"],
-			[EARS_DRAGON,"dragon"],
-			[EARS_RACCOON,"raccoon"],
-			[EARS_MOUSE,"mouse"]]
+			[[EARS_HUMAN, "human"],
+			[EARS_HORSE, "horse"],
+			[EARS_DOG, "dog"],
+			[EARS_COW, "cow"],
+			[EARS_ELFIN, "elfin"],
+			[EARS_CAT, "cat"],
+			[EARS_LIZARD, "lizard"],
+			[EARS_BUNNY, "bunny"],
+			[EARS_KANGAROO, "kangaroo"],
+			[EARS_FOX, "fox"],
+			[EARS_DRAGON, "dragon"],
+			[EARS_RACCOON, "raccoon"],
+			[EARS_MOUSE, "mouse"]]
 		);
 		public static const DEFAULT_HORNS_NAMES:Object = createMapFromPairs(
-			[[HORNS_NONE,"non-existant"],
-			[HORNS_DEMON,"demon"],
-			[HORNS_COW_MINOTAUR,"cow"],
-			[HORNS_DRACONIC_X2,"2 draconic"],
-			[HORNS_DRACONIC_X4_12_INCH_LONG,"four 12\" long draconic"],
-			[HORNS_ANTLERS,"deer"]]
+			[[HORNS_NONE, "non-existant"],
+			[HORNS_DEMON, "demon"],
+			[HORNS_COW_MINOTAUR, "cow"],
+			[HORNS_DRACONIC_X2, "2 draconic"],
+			[HORNS_DRACONIC_X4_12_INCH_LONG, "four 12\" long draconic"],
+			[HORNS_ANTLERS, "deer"]]
 		);
 		public static const DEFAULT_ANTENNAE_NAMES:Object = createMapFromPairs(
-			[[ANTENNAE_NONE,"non-existant"],
-			[ANTENNAE_BEE,"bee"]]
+			[[ANTENNAE_NONE, "non-existant"],
+			[ANTENNAE_BEE, "bee"]]
 		);
 		public static const DEFAULT_ARM_NAMES:Object = createMapFromPairs(
-			[[ARM_TYPE_HUMAN,"human"],
-			[ARM_TYPE_HARPY,"harpy"],
-			[ARM_TYPE_SPIDER,"spider"]]
+			[[ARM_TYPE_HUMAN, "human"],
+			[ARM_TYPE_HARPY, "harpy"],
+			[ARM_TYPE_SPIDER, "spider"]]
 		);
 		public static const DEFAULT_TAIL_NAMES:Object = createMapFromPairs(
-			[[TAIL_TYPE_NONE,"non-existant"],
-			[TAIL_TYPE_HORSE,"horse"],
-			[TAIL_TYPE_DOG,"dog"],
-			[TAIL_TYPE_DEMONIC,"demonic"],
-			[TAIL_TYPE_COW,"cow"],
-			[TAIL_TYPE_SPIDER_ADBOMEN,"spider abdomen"],
-			[TAIL_TYPE_BEE_ABDOMEN,"bee abdomen"],
-			[TAIL_TYPE_SHARK,"shark"],
-			[TAIL_TYPE_CAT,"cat"],
-			[TAIL_TYPE_LIZARD,"lizard"],
-			[TAIL_TYPE_RABBIT,"rabbit"],
-			[TAIL_TYPE_HARPY,"harpy"],
-			[TAIL_TYPE_KANGAROO,"kangaroo"],
-			[TAIL_TYPE_FOX,"fox"],
-			[TAIL_TYPE_DRACONIC,"draconic"],
-			[TAIL_TYPE_RACCOON,"raccoon"],
-			[TAIL_TYPE_MOUSE,"mouse"]]
+			[[TAIL_TYPE_NONE, "non-existant"],
+			[TAIL_TYPE_HORSE, "horse"],
+			[TAIL_TYPE_DOG, "dog"],
+			[TAIL_TYPE_DEMONIC, "demonic"],
+			[TAIL_TYPE_COW, "cow"],
+			[TAIL_TYPE_SPIDER_ADBOMEN, "spider abdomen"],
+			[TAIL_TYPE_BEE_ABDOMEN, "bee abdomen"],
+			[TAIL_TYPE_SHARK, "shark"],
+			[TAIL_TYPE_CAT, "cat"],
+			[TAIL_TYPE_LIZARD, "lizard"],
+			[TAIL_TYPE_RABBIT, "rabbit"],
+			[TAIL_TYPE_HARPY, "harpy"],
+			[TAIL_TYPE_KANGAROO, "kangaroo"],
+			[TAIL_TYPE_FOX, "fox"],
+			[TAIL_TYPE_DRACONIC, "draconic"],
+			[TAIL_TYPE_RACCOON, "raccoon"],
+			[TAIL_TYPE_MOUSE, "mouse"]]
 		);
 		public static const DEFAULT_WING_NAMES:Object = createMapFromPairs(
-			[[WING_TYPE_NONE,"non-existant"],
-			[WING_TYPE_BEE_LIKE_SMALL,"small bee-like"],
-			[WING_TYPE_BEE_LIKE_LARGE,"large bee-like"],
-			[WING_TYPE_HARPY,"harpy"],
-			[WING_TYPE_IMP,"imp"],
-			[WING_TYPE_BAT_LIKE_TINY,"tiny bat-like"],
-			[WING_TYPE_BAT_LIKE_LARGE,"large bat-like"],
-			[WING_TYPE_SHARK_FIN,"shark fin"],
-			[WING_TYPE_FEATHERED_LARGE,"large feathered"],
-			[WING_TYPE_DRACONIC_SMALL,"small draconic"],
-			[WING_TYPE_DRACONIC_LARGE,"large draconic"],
-			[WING_TYPE_GIANT_DRAGONFLY,"giant dragonfly"]]
+			[[WING_TYPE_NONE, "non-existant"],
+			[WING_TYPE_BEE_LIKE_SMALL, "small bee-like"],
+			[WING_TYPE_BEE_LIKE_LARGE, "large bee-like"],
+			[WING_TYPE_HARPY, "harpy"],
+			[WING_TYPE_IMP, "imp"],
+			[WING_TYPE_BAT_LIKE_TINY, "tiny bat-like"],
+			[WING_TYPE_BAT_LIKE_LARGE, "large bat-like"],
+			[WING_TYPE_SHARK_FIN, "shark fin"],
+			[WING_TYPE_FEATHERED_LARGE, "large feathered"],
+			[WING_TYPE_DRACONIC_SMALL, "small draconic"],
+			[WING_TYPE_DRACONIC_LARGE, "large draconic"],
+			[WING_TYPE_GIANT_DRAGONFLY, "giant dragonfly"]]
 		);
 		public static const DEFAULT_WING_DESCS:Object = createMapFromPairs(
-			[[WING_TYPE_NONE,"non-existant"],
-			[WING_TYPE_BEE_LIKE_SMALL,"small bee-like"],
-			[WING_TYPE_BEE_LIKE_LARGE,"large bee-like"],
-			[WING_TYPE_HARPY,"large feathery"],
-			[WING_TYPE_IMP,"small"],
-			[WING_TYPE_BAT_LIKE_TINY,"tiny, bat-like"],
-			[WING_TYPE_BAT_LIKE_LARGE,"large, bat-like"],
-			[WING_TYPE_SHARK_FIN,""],
-			[WING_TYPE_FEATHERED_LARGE,"large, feathered"],
-			[WING_TYPE_DRACONIC_SMALL,"small, draconic"],
-			[WING_TYPE_DRACONIC_LARGE,"large, draconic"],
-			[WING_TYPE_GIANT_DRAGONFLY,"giant dragonfly"]]
+			[[WING_TYPE_NONE, "non-existant"],
+			[WING_TYPE_BEE_LIKE_SMALL, "small bee-like"],
+			[WING_TYPE_BEE_LIKE_LARGE, "large bee-like"],
+			[WING_TYPE_HARPY, "large feathery"],
+			[WING_TYPE_IMP, "small"],
+			[WING_TYPE_BAT_LIKE_TINY, "tiny, bat-like"],
+			[WING_TYPE_BAT_LIKE_LARGE, "large, bat-like"],
+			[WING_TYPE_SHARK_FIN, ""],
+			[WING_TYPE_FEATHERED_LARGE, "large, feathered"],
+			[WING_TYPE_DRACONIC_SMALL, "small, draconic"],
+			[WING_TYPE_DRACONIC_LARGE, "large, draconic"],
+			[WING_TYPE_GIANT_DRAGONFLY, "giant dragonfly"]]
 		);
 		public static const DEFAULT_LOWER_BODY_NAMES:Object = createMapFromPairs(
-			[[LOWER_BODY_TYPE_HUMAN,"human"],
-			[LOWER_BODY_TYPE_HOOFED,"hoofed"],
-			[LOWER_BODY_TYPE_DOG,"dog"],
-			[LOWER_BODY_TYPE_NAGA,"naga"],
-			[LOWER_BODY_TYPE_CENTAUR,"centaur"],
-			[LOWER_BODY_TYPE_DEMONIC_HIGH_HEELS,"demonic high-heels"],
-			[LOWER_BODY_TYPE_DEMONIC_CLAWS,"demonic claws"],
-			[LOWER_BODY_TYPE_BEE,"bee"],
-			[LOWER_BODY_TYPE_GOO,"goo"],
-			[LOWER_BODY_TYPE_CAT,"cat"],
-			[LOWER_BODY_TYPE_LIZARD,"lizard"],
-			[LOWER_BODY_TYPE_PONY,"pony"],
-			[LOWER_BODY_TYPE_BUNNY,"bunny"],
-			[LOWER_BODY_TYPE_HARPY,"harpy"],
-			[LOWER_BODY_TYPE_KANGAROO,"kangaroo"],
-			[LOWER_BODY_TYPE_CHITINOUS_SPIDER_LEGS,"chitinous spider legs"],
-			[LOWER_BODY_TYPE_DRIDER_LOWER_BODY,"drider"],
-			[LOWER_BODY_TYPE_FOX,"fox"],
-			[LOWER_BODY_TYPE_DRAGON,"dragon"],
-			[LOWER_BODY_TYPE_RACCOON,"raccoon"]]
+			[[LOWER_BODY_TYPE_HUMAN, "human"],
+			[LOWER_BODY_TYPE_HOOFED, "hoofed"],
+			[LOWER_BODY_TYPE_DOG, "dog"],
+			[LOWER_BODY_TYPE_NAGA, "naga"],
+			[LOWER_BODY_TYPE_CENTAUR, "centaur"],
+			[LOWER_BODY_TYPE_DEMONIC_HIGH_HEELS, "demonic high-heels"],
+			[LOWER_BODY_TYPE_DEMONIC_CLAWS, "demonic claws"],
+			[LOWER_BODY_TYPE_BEE, "bee"],
+			[LOWER_BODY_TYPE_GOO, "goo"],
+			[LOWER_BODY_TYPE_CAT, "cat"],
+			[LOWER_BODY_TYPE_LIZARD, "lizard"],
+			[LOWER_BODY_TYPE_PONY, "pony"],
+			[LOWER_BODY_TYPE_BUNNY, "bunny"],
+			[LOWER_BODY_TYPE_HARPY, "harpy"],
+			[LOWER_BODY_TYPE_KANGAROO, "kangaroo"],
+			[LOWER_BODY_TYPE_CHITINOUS_SPIDER_LEGS, "chitinous spider legs"],
+			[LOWER_BODY_TYPE_DRIDER_LOWER_BODY, "drider"],
+			[LOWER_BODY_TYPE_FOX, "fox"],
+			[LOWER_BODY_TYPE_DRAGON, "dragon"],
+			[LOWER_BODY_TYPE_RACCOON, "raccoon"]]
 		);
 		public static const DEFAULT_PIERCING_NAMES:Object = createMapFromPairs(
-			[[PIERCING_TYPE_NONE,"none"],
-			[PIERCING_TYPE_STUD,"stud"],
-			[PIERCING_TYPE_RING,"ring"],
-			[PIERCING_TYPE_LADDER,"ladder"],
-			[PIERCING_TYPE_HOOP,"hoop"],
-			[PIERCING_TYPE_CHAIN,"chain"]]
+			[[PIERCING_TYPE_NONE, "none"],
+			[PIERCING_TYPE_STUD, "stud"],
+			[PIERCING_TYPE_RING, "ring"],
+			[PIERCING_TYPE_LADDER, "ladder"],
+			[PIERCING_TYPE_HOOP, "hoop"],
+			[PIERCING_TYPE_CHAIN, "chain"]]
 		);
 		public static const DEFAULT_VAGINA_TYPE_NAMES:Object = createMapFromPairs(
-			[[VAGINA_TYPE_HUMAN,"human"],
-			[VAGINA_TYPE_BLACK_SAND_TRAP,"black sandtrap"]]
+			[[VAGINA_TYPE_HUMAN, "human"],
+			[VAGINA_TYPE_BLACK_SAND_TRAP, "black sandtrap"]]
 		);
 		public static const DEFAULT_VAGINA_WETNESS_SCALES:Array = [
-			[VAGINA_WETNESS_DRY,"dry"],
-			[VAGINA_WETNESS_NORMAL,"normal"],
-			[VAGINA_WETNESS_WET,"wet"],
-			[VAGINA_WETNESS_SLICK,"slick"],
-			[VAGINA_WETNESS_DROOLING,"drooling"],
-			[VAGINA_WETNESS_SLAVERING,"slavering"],
+			[VAGINA_WETNESS_DRY, "dry"],
+			[VAGINA_WETNESS_NORMAL, "normal"],
+			[VAGINA_WETNESS_WET, "wet"],
+			[VAGINA_WETNESS_SLICK, "slick"],
+			[VAGINA_WETNESS_DROOLING, "drooling"],
+			[VAGINA_WETNESS_SLAVERING, "slavering"],
 		];
 		public static const DEFAULT_VAGINA_LOOSENESS_SCALES:Array = [
-			[VAGINA_LOOSENESS_TIGHT,"tight"],
-			[VAGINA_LOOSENESS_NORMAL,"normal"],
-			[VAGINA_LOOSENESS_LOOSE,"loose"],
-			[VAGINA_LOOSENESS_GAPING,"gaping"],
-			[VAGINA_LOOSENESS_GAPING_WIDE,"gaping wide"],
-			[VAGINA_LOOSENESS_LEVEL_CLOWN_CAR,"clown-car level"]
+			[VAGINA_LOOSENESS_TIGHT, "tight"],
+			[VAGINA_LOOSENESS_NORMAL, "normal"],
+			[VAGINA_LOOSENESS_LOOSE, "loose"],
+			[VAGINA_LOOSENESS_GAPING, "gaping"],
+			[VAGINA_LOOSENESS_GAPING_WIDE, "gaping wide"],
+			[VAGINA_LOOSENESS_LEVEL_CLOWN_CAR, "clown-car level"]
 		];
 		public static const DEFAULT_ANAL_WETNESS_SCALES:Array = [
-			[ANAL_WETNESS_DRY,"dry"],
-			[ANAL_WETNESS_NORMAL,"normal"],
-			[ANAL_WETNESS_MOIST,"moist"],
-			[ANAL_WETNESS_SLIMY,"slimym"],
-			[ANAL_WETNESS_DROOLING,"drooling"],
-			[ANAL_WETNESS_SLIME_DROOLING,"slime-drooling"],
+			[ANAL_WETNESS_DRY, "dry"],
+			[ANAL_WETNESS_NORMAL, "normal"],
+			[ANAL_WETNESS_MOIST, "moist"],
+			[ANAL_WETNESS_SLIMY, "slimym"],
+			[ANAL_WETNESS_DROOLING, "drooling"],
+			[ANAL_WETNESS_SLIME_DROOLING, "slime-drooling"],
 		];
 		public static const DEFAULT_ANAL_LOOSENESS_SCALES:Array = [
-			[ANAL_LOOSENESS_VIRGIN,"virgin"],
-			[ANAL_LOOSENESS_TIGHT,"tight"],
-			[ANAL_LOOSENESS_NORMAL,"normal"],
-			[ANAL_LOOSENESS_LOOSE,"loose"],
-			[ANAL_LOOSENESS_STRETCHED,"stretched"],
-			[ANAL_LOOSENESS_GAPING,"gaping"]
+			[ANAL_LOOSENESS_VIRGIN, "virgin"],
+			[ANAL_LOOSENESS_TIGHT, "tight"],
+			[ANAL_LOOSENESS_NORMAL, "normal"],
+			[ANAL_LOOSENESS_LOOSE, "loose"],
+			[ANAL_LOOSENESS_STRETCHED, "stretched"],
+			[ANAL_LOOSENESS_GAPING, "gaping"]
 		];
 		public static const DEFAULT_HIP_RATING_SCALES:Array = [
-			[HIP_RATING_BOYISH,"boyish"],
-			[HIP_RATING_SLENDER,"slender"],
-			[HIP_RATING_AVERAGE,"average"],
-			[HIP_RATING_AMPLE,"ample"],
-			[HIP_RATING_CURVY,"curvy"],
-			[HIP_RATING_FERTILE,"fertile"],
-			[HIP_RATING_INHUMANLY_WIDE,"inhumanly wide"]
+			[HIP_RATING_BOYISH, "boyish"],
+			[HIP_RATING_SLENDER, "slender"],
+			[HIP_RATING_AVERAGE, "average"],
+			[HIP_RATING_AMPLE, "ample"],
+			[HIP_RATING_CURVY, "curvy"],
+			[HIP_RATING_FERTILE, "fertile"],
+			[HIP_RATING_INHUMANLY_WIDE, "inhumanly wide"]
 		];
 		public static const DEFAULT_BUTT_RATING_SCALES:Array = [
-			[BUTT_RATING_BUTTLESS,"buttless"],
-			[BUTT_RATING_TIGHT,"tight"],
-			[BUTT_RATING_AVERAGE,"average"],
-			[BUTT_RATING_NOTICEABLE,"noticeable"],
-			[BUTT_RATING_LARGE,"large"],
-			[BUTT_RATING_JIGGLY,"jiggly"],
-			[BUTT_RATING_EXPANSIVE,"expansive"],
-			[BUTT_RATING_HUGE,"huge"],
-			[BUTT_RATING_INCONCEIVABLY_BIG,"inconceivably big"]
+			[BUTT_RATING_BUTTLESS, "buttless"],
+			[BUTT_RATING_TIGHT, "tight"],
+			[BUTT_RATING_AVERAGE, "average"],
+			[BUTT_RATING_NOTICEABLE, "noticeable"],
+			[BUTT_RATING_LARGE, "large"],
+			[BUTT_RATING_JIGGLY, "jiggly"],
+			[BUTT_RATING_EXPANSIVE, "expansive"],
+			[BUTT_RATING_HUGE, "huge"],
+			[BUTT_RATING_INCONCEIVABLY_BIG, "inconceivably big"]
 		];
 
 		/**
-		 * Assume scale = [[0,"small"],[5,"average"],[10,"big"]]
+		 * Assume scale = [[0, "small"], [5, "average"], [10, "big"]]
 		 *      value < 0   ->   "less than small"
 		 *      value = 0   ->   "small"
 		 *  0 < value < 5   ->   "between small and average"
@@ -1991,28 +1864,43 @@
 		 *      value = 10  ->   "big"
 		 *      value > 10  ->   "more than big"
 		 */
-		public static function describeByScale(value:Number,scale:Array,lessThan:String="less than",moreThan:String="more than"):String{
-			if (scale.length == 0) return "undescribeale";
-			if (scale.length == 1) return "about "+scale[0][1];
-			if (value<scale[0][0]) return lessThan+" "+scale[0][1];
-			if (value==scale[0][0]) return scale[0][1];
-			for (var i:int = 1; i<scale.length; i++){
-				if (value<scale[i][0]) return "between "+scale[i-1][1]+" and "+scale[i][1];
-				if (value==scale[i][0]) return scale[i][1];
+		public static function describeByScale(value:Number, scale:Array, lessThan:String="less than", moreThan:String="more than"):String{
+			if (scale.length == 0) {
+				return "undescribeable";
+			} else if (scale.length == 1) {
+				return "about " + scale[0][1];
 			}
-			return moreThan+" "+scale[scale.length-1][1];
+			if (value < scale[0][0]) {
+				return lessThan + " " + scale[0][1];
+			} else if (value == scale[0][0]) {
+				return scale[0][1];
+			}
+			for (var i:int = 1, len:int = scale.length; i < len; i++){
+				if (value < scale[i][0]) {
+					return "between " + scale[i-1][1] + " and " + scale[i][1];
+				} else if (value == scale[i][0]) {
+					return scale[i][1];
+				}
+			}
+			return moreThan + " " + scale[scale.length-1][1];
 		}
 		/**
-		 * numberOfThings(0,"brain") = "no brains"
-		 * numberOfThings(1,"head") = "one head"
-		 * numberOfThings(2,"tail") = "2 tails"
-		 * numberOfThings(3,"hoof","hooves") = "3 hooves"
+		 * numberOfThings(0, "brain") = "no brains"
+		 * numberOfThings(1, "head") = "one head"
+		 * numberOfThings(2, "tail") = "2 tails"
+		 * numberOfThings(3, "hoof", "hooves") = "3 hooves"
 		 */
-		public static function numberOfThings(n:int,name:String,pluralForm:String=null):String{
-			pluralForm = pluralForm || (name+"s");
-			if (n == 0) return "no "+pluralForm;
-			if (n == 1) return "one "+name;
-			return n+" "+pluralForm;
+		public static function numberOfThings(n:int, name:String, pluralForm:String=null):String{
+			pluralForm ||= (name + "s");
+			var num:String = (n == 0)
+				? "no "
+				: (n == 1)
+					? "one "
+					: (n + " ");
+			var desc:String = (n == 1)
+				? name
+				: pluralForm;
+			return num + desc;
 		}
 
 		/**
@@ -2020,44 +1908,46 @@
 		 * 5.5 -> 5.5"
 		 * Positive only!
 		 */
-		public static function feetsAndInches(n:Number):String{
-			var feet:int = Math.floor(n/12);
-			var inches:Number = n-feet*12;
-			if (feet>0) return feet+"'"+inches+"\"";
-			else return inches+"\"";
+		public static function feetsAndInches(n:Number):String {
+			var feet:int = Math.floor(n / 12);
+			var inches:Number = n % 12;
+			var inchStr:String = feet > 0 ? inches + "\"" : "";
+			return feet + "'" + inchStr;
 		}
 
 		/**
-		 * 13 -> 13" (2'1")
+		 * 13 -> 13" (1'1")
 		 */
 		public static function inchesAndFeetsAndInches(n:Number):String {
-			if (n<12) return n+"\"";
-			return n+"\" ("+feetsAndInches(n)+")";
+			var feet:String =  n + "\"";
+			var feetAndInches:String = (n < 12) 
+				? ""
+				: (" (" + feetsAndInches(n) + ")");
+			return feet + feetAndInches;
 		}
 
 		public static function allBreastsDescript(creature:Creature):String
 		{
 			var storage:String = "";
-			if(creature.breastRows.length == 0) return "unremarkable chest muscles ";
-			if(creature.breastRows.length == 2) {
-				//if(player.totalBreasts() == 4) storage += "quartet of ";
+			if (creature.breastRows.length == 0) {
+				return "unremarkable chest muscles ";
+			} else if(creature.breastRows.length == 2) {
 				storage += "two rows of ";
-			}
-			if(creature.breastRows.length == 3) {
-				if(rand(2) == 0) storage += "three rows of ";
-				else storage += "multi-layered ";
-			}
-			if(creature.breastRows.length == 4) {
-				if(rand(2) == 0) storage += "four rows of ";
-				else storage += "four-tiered ";
-			}
-			if(creature.breastRows.length == 5) {
-				if(rand(2) == 0) storage += "five rows of ";
-				else storage += "five-tiered ";
+			} else if(creature.breastRows.length == 3) {
+				storage += (rand(2) == 0) 
+					? "three rows of "
+					: "multi-layered ";
+			} else if(creature.breastRows.length == 4) {
+				storage += (rand(2) == 0) 
+					? "four rows of "
+					: "four-tiered ";
+			} else if(creature.breastRows.length == 5) {
+				storage += (rand(2) == 0)
+					? "five rows of "
+					: "five-tiered ";
 			}
 			storage += biggestBreastSizeDescript(creature);
 			return storage;
-
 		}
 
 		public static function biggestBreastSizeDescript(creature:Creature):String {
@@ -2184,6 +2074,5 @@
 			}
 			return descript;
 		}
-
 	}
 }

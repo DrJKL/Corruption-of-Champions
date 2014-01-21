@@ -2155,15 +2155,12 @@
 			if(creature.totalCocks() < 1) {
 				return failMaybe("<B>Error: multiCockDescriptLight() called with no penises present.</B>");
 			}
-			//Get cock counts
 			var descript:String = "";
-			var same:Boolean = creature.homogenousCocks();
 			
-			//Quantity descriptors
 			if (creature.totalCocks() == 1) {
 				return creature.cockDescript(0);
 			}
-			if (same) {
+			if (creature.homogenousCocks()) {
 				if(creature.totalCocks() == 2) {
 					descript += randomChoice("pair of ", "two ", "brace of ", "matching ", "twin ");
 				} else if (creature.totalCocks() == 3) {

@@ -2162,41 +2162,28 @@
 			//Quantity descriptors
 			if (creature.totalCocks() == 1) {
 				return creature.cockDescript(0);
-			} else if(creature.totalCocks() == 2) {
-				//For cocks that are the same
-				if(same) {
+			}
+			if (same) {
+				if(creature.totalCocks() == 2) {
 					descript += randomChoice("pair of ", "two ", "brace of ", "matching ", "twin ");
-					descript += cockAdjective(creature);
-					descript += (creature.cocks[0].cockType == CockTypesEnum.HUMAN ? " " : ", ");
-					descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
-				} else { //Nonidentical
-					descript += randomChoice("pair of ", "two ", "brace of ");
-					descript += cockAdjective(creature) + ", ";
-					descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
-				}
-			} else if (creature.totalCocks() == 3) {
-				//For samecocks
-				if(same) {
+				} else if (creature.totalCocks() == 3) {
 					descript += randomChoice("three ", "group of ", "menage a trois of ", "triad of ", "triumvirate of ");
-					descript += cockAdjective(creature);
-					descript += (creature.cocks[0].cockType == CockTypesEnum.HUMAN ? " " : ", ");
-					descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
-				} else {
+				} else if(creature.totalCocks() > 3) {
+					descript += randomChoice("bundle of ", "obscene group of ", "cluster of ", "wriggling bunch of ");
+				}
+				descript += cockAdjective(creature);
+				descript += (creature.cocks[0].cockType == CockTypesEnum.HUMAN ? " " : ", ");
+				descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
+			} else {
+				if(creature.totalCocks() == 2) {
+					descript += randomChoice("pair of ", "two ", "brace of ");
+				} else if (creature.totalCocks() == 3) {
 					descript += randomChoice("three ", "group of ");
-					descript += cockAdjective(creature) + ", ";
-					descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
-				}
-			} else if(creature.totalCocks() > 3) { //Large numbers of cocks!
-				descript += randomChoice("bundle of ", "obscene group of ", "cluster of ", "wriggling bunch of ");
-				//Cock adjectives and nouns
-				if(same) {
-					descript += cockAdjective(creature);
-					descript += (creature.cocks[0].cockType == CockTypesEnum.HUMAN ? " " : ", ");
-					descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
-				} else {
-					descript += cockAdjective(creature) + ", ";
-					descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
-				}
+				} else if(creature.totalCocks() > 3) {
+					descript += randomChoice("bundle of ", "obscene group of ", "cluster of ", "wriggling bunch of ");
+				}	
+				descript += cockAdjective(creature) + ", ";
+				descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
 			}
 			return descript;
 		}

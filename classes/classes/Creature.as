@@ -1,11 +1,8 @@
 ﻿//CoC Creature.as
-package classes
-{
+package classes {
 	import classes.GlobalFlags.kGAMECLASS;
 
-	//import classes.CockClass;
-	public class Creature
-	{
+	public class Creature {
 
 		include "../../includes/appearanceDefs.as";
 
@@ -3821,55 +3818,45 @@ package classes
 			return false;
 		}
 
-		public function mostBreastsPerRow():Number
-		{
-			var counter:Number = breastRows.length;
+		public function mostBreastsPerRow():Number {
 			var index:Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[index].breasts < breastRows[counter].breasts)
-					index = counter;
+			for (var i:int = breastRows.length; i >= 0; i--) {
+				if (breastRows[index].breasts < breastRows[counter].breasts) {
+					index = i;
+				}
 			}
 			return breastRows[index].breasts;
 		}
 
-		public function averageNipplesPerBreast():Number
-		{
-			var counter:Number = breastRows.length;
+		public function averageNipplesPerBreast():Number {
 			var breasts:Number = 0;
 			var nipples:Number = 0;
-			while (counter > 0) {
-				counter--;
-				breasts += breastRows[counter].breasts;
-				nipples += breastRows[counter].nipplesPerBreast * breastRows[counter].breasts;
+			for (var i:int = breastRows.length; i >= 0; i--) {
+				breasts += breastRows[i].breasts;
+				nipples += breastRows[i].nipplesPerBreast * breastRows[i].breasts;
 			}
-			if (breasts == 0)
-				return 0;
-			return Math.floor(nipples / breasts);
+			return (breasts == 0)
+				? 0
+				: Math.floor(nipples / breasts);
 		}
 
-		public function allBreastsDescript():String
-		{
+		public function allBreastsDescript():String {
 			return Appearance.allBreastsDescript(this);
 		}
 
-		public function SMultiCockDesc():String
-		{
+		public function SMultiCockDesc():String {
 			return Appearance.cockMultiDesc(this, true, false);
 		}
 
-		public function vaginaDescript(idx:int = 0):String
-		{
+		public function vaginaDescript(idx:int = 0):String {
 			return Appearance.vaginaDescript(this, 0)
 		}
 
-		public function nippleDescript(rowIdx:int):String
-		{
+		public function nippleDescript(rowIdx:int):String {
 			return Appearance.nippleDescription(this, rowIdx);
 		}
 
-		public function chestDesc():String
-		{
+		public function chestDesc():String {
 			return Appearance.chestDesc(this);
 		}
 
@@ -3877,75 +3864,82 @@ package classes
 			return Appearance.clitDescription(this);
 		}
 
-		public function assholeOrPussy():String
-		{
+		public function assholeOrPussy():String {
 			return Appearance.assholeOrPussy(this);
 		}
 
-		public function multiCockDescriptLight():String
-		{
+		public function multiCockDescriptLight():String {
 			return Appearance.cockMultiLDescriptionShort(this);
 		}
 
-		public function ballsDescriptLight(forcedSize:Boolean = true):String
-		{
+		public function ballsDescriptLight(forcedSize:Boolean = true):String {
 			return Appearance.ballsDescription(forcedSize, true, this);
 		}
 
-		public function breastDescript(rowNum:int):String
-		{
+		public function breastDescript(rowNum:int):String {
 			//ERROR PREVENTION
 			if (breastRows.length - 1 < rowNum) {
-				if (CoC_Settings.haltOnErrors) throw new Error("");
-				return "<b>ERROR, breastDescript() working with invalid breastRow</b>";
+				return failMaybe("<b>ERROR, breastDescript() working with invalid breastRow</b>");
 			}
 			if (breastRows.length == 0) {
-				if (CoC_Settings.haltOnErrors) throw new Error("");
-				return "<b>ERROR, breastDescript() called when no breasts are present.</b>";
+				return failMaybe("<b>ERROR, breastDescript() called when no breasts are present.</b>");
 			}
-			var temp14:int = Math.random() * 3;
 			var descript:String = "";
-			if (breastRows[rowNum].breastRating == 0) return "flat breasts";
+			if (breastRows[rowNum].breastRating == 0) {
+				return "flat breasts";
+			}
 			//50% of the time size-descript them
-			if (rand(2) == 0) descript += breastSize(breastRows[rowNum].breastRating);
+			if (rand(2) == 0) {
+				descript += breastSize(breastRows[rowNum].breastRating);
+			}
 			//Nouns!
-			temp14 = rand(10);
-			if (temp14 == 0) descript += "breasts";
-			if (temp14 == 1) {
-				if (breastRows[rowNum].lactationMultiplier > 2) descript += "milk-udders";
-				else descript += "breasts";
-			}
-			if (temp14 == 2) {
-				if (breastRows[rowNum].lactationMultiplier > 1.5) descript += "milky ";
-				if (breastRows[rowNum].breastRating > 4) descript += "tits";
-				else descript += "breasts";
-			}
-			if (temp14 == 3) {
-				//if(breastRows[rowNum].breastRating > 6) descript += "rack";
+			var temp14:int = rand(10);
+			if (temp14 == 0) {
 				descript += "breasts";
-			}
-			if (temp14 == 4) descript += "tits";
-			if (temp14 == 5) descript += "tits";
-			if (temp14 == 6) descript += "tits";
-			if (temp14 == 7) {
-				if (breastRows[rowNum].lactationMultiplier >= 1 && breastRows[rowNum].lactationMultiplier < 2.5) descript += "milk jugs";
-				if (breastRows[rowNum].lactationMultiplier >= 2.5) descript += "udders";
-				if (breastRows[rowNum].lactationMultiplier < 1) descript += "jugs";
-			}
-			if (temp14 == 8) {
-				if (breastRows[rowNum].breastRating > 6) descript += "love-pillows";
-				else descript += "boobs";
-			}
-			if (temp14 == 9) {
-				if (breastRows[rowNum].breastRating > 6) descript += "tits";
-				else descript += "breasts";
+			} else if (temp14 == 1) {
+				descript += (breastRows[rowNum].lactationMultiplier > 2) 
+					? "milk-udders"
+					: "breasts";
+			} else if (temp14 == 2) {
+				if (breastRows[rowNum].lactationMultiplier > 1.5) {
+					descript += "milky ";
+				}
+				descript += (breastRows[rowNum].breastRating > 4) 
+					? "tits"
+					: "breasts";
+			} else if (temp14 == 3) {
+				descript += "breasts";
+			} else if (temp14 == 4 || temp14 == 5 || temp14 == 6) {
+				descript += "tits";
+			} else if (temp14 == 7) {
+				if (breastRows[rowNum].lactationMultiplier < 1) {
+					descript += "jugs";
+				} else if (breastRows[rowNum].lactationMultiplier < 2.5) {
+					descript += "milk jugs";
+				} else {
+					descript += "udders";
+				}
+			} else if (temp14 == 8) {
+				descript += (breastRows[rowNum].breastRating > 6)
+					? "love-pillows"
+					: "boobs";
+			} else if (temp14 == 9) {
+				descript += (breastRows[rowNum].breastRating > 6)
+					? "tits"
+					: "breasts";
 			}
 			return descript;
 		}
 
-		private function breastSize(val:Number):String
-		{
+		private function breastSize(val:Number):String {
 			return Appearance.breastSize(val);
+		}
+		
+		public static function failMaybe(errorDesc:String):String {
+			if (CoC_Settings.haltOnErrors) {
+				throw new Error(errorDesc);
+			}
+			return errorDesc;
 		}
 	}
 }

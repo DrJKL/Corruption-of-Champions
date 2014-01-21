@@ -2116,8 +2116,7 @@ package classes
 		{
 			var horseCockC:Number = 0;
 			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
+			while (counter > 0) {
 				counter--;
 				if (cocks[counter].cockType == CockTypesEnum.HORSE)
 					horseCockC++;
@@ -2247,11 +2246,17 @@ package classes
 		}
 		
 		//BOolean alternate
-		public function hasCock():Boolean
-		{
-			if (cocks.length >= 1)
-				return true;
-			return false;
+		public function hasCock():Boolean {
+			return (totalCocks() >= 1);
+		}
+		
+		public function homogenousCocks():Boolean {
+			for (var i:int = 1, len = totalCocks(); i < len; i++) {
+				if (cocks[i].cockType == cocks[0].cockType) {
+					return false;
+				}
+			}
+			return true;
 		}
 		
 		public function hasSockRoom():Boolean

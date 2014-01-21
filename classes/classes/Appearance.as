@@ -2157,32 +2157,7 @@
 			}
 			//Get cock counts
 			var descript:String = "";
-			
-			var normalCocks:Number = 0;
-			var dogCocks:Number = 0;
-			var horseCocks:Number = 0;
-			
-			var same:Boolean = true;
-			
-			var descripted:Boolean = false;
-			//If one, return normal cock descript
-			if (creature.totalCocks() == 1) {
-				return creature.cockDescript(0);
-			}
-			//Count cocks & Prep average totals
-			for (var currCock:int = 0, len:int = creature.totalCocks(); currCock < len; currCock++) {
-				if(creature.cocks[currCock].cockType == CockTypesEnum.HUMAN) {
-					normalCocks++;
-				} else if(creature.cocks[currCock].cockType == CockTypesEnum.HORSE) {
-					horseCocks++;
-				} else if(creature.cocks[currCock].cockType == CockTypesEnum.DOG) {
-					dogCocks++;
-				}
-				//If cocks are matched make sure they still are
-				if (currCock > 0) {
-					same &&= creature.cocks[currCock].cockType != creature.cocks[currCock - 1].cockType;
-				}
-			}
+			var same:Boolean = creature.homogenousCocks();
 			
 			//Quantity descriptors
 			if (creature.totalCocks() == 1) {
@@ -2218,7 +2193,6 @@
 					descript += cockAdjective(creature);
 					descript += (creature.cocks[0].cockType == CockTypesEnum.HUMAN ? " " : ", ");
 					descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
-					descripted = true;
 				} else {
 					descript += cockAdjective(creature) + ", ";
 					descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");

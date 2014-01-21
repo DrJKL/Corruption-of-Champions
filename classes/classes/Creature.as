@@ -1333,17 +1333,23 @@ package classes {
 			return index3;
 		}
 		
-		protected function rand(max:Number):Number
-		{
-			return int(Math.random() * max);
+		protected function rand(max:Number):Number {
+			return Math.floor(Math.random() * max);
+		}
+		
+		public static function randomChoice(... args:*):* {
+			var array:Array = ((args.length == 1) && (args[0] is Array))
+				? args[0]
+				: args;
+			return array[ rand(array.length) ];
 		}
 		
 		public function cockDescript(cockIndex:Number = 0):String {
 			if (totalCocks() == 0) {
-				return "<b>ERROR: CockDescript Called But No Cock Present</b>";
+				return failMaybe("<b>ERROR: CockDescript Called But No Cock Present</b>");
 			}
 			if (cockTotal() <= cockIndex && cockIndex != 99)
-				return "<b>ERROR: CockDescript called with index of " + cockIndex + " - out of BOUNDS</b>";
+				return failMaybe("<b>ERROR: CockDescript called with index of " + cockIndex + " - out of BOUNDS</b>");
 			//Cocknum 99 to default to boring descriptions!
 			if (cockIndex != 99) {
 				if (rand(2) == 0) {
@@ -1358,7 +1364,7 @@ package classes {
 			if (rand(2) == 0)
 				descript += cockAdjective(cockIndex) + " ";
 			var rando:Number = 0;
-			rando = int(Math.random() * 10)
+			rando = rand(10)
 			if (rando >= 0 && rando <= 4)
 				descript += "cock";
 			if (rando == 5 || rando == 6)
@@ -3052,7 +3058,7 @@ package classes {
 				return "cute pony-legs";
 			//Bunnah!
 			if (lowerBody == 12) {
-				select = Math.floor(Math.random() * (5));
+				select = rand(5);
 				if (select == 0)
 					return "fuzzy, bunny legs";
 				else if (select == 1)
@@ -3063,7 +3069,7 @@ package classes {
 					return "legs";
 			}
 			if (lowerBody == 13) {
-				select = Math.floor(Math.random() * (5));
+				select = rand(5);
 				if (select == 0)
 					return "bird-like legs";
 				else if (select == 1)
@@ -3072,7 +3078,7 @@ package classes {
 					return "legs";
 			}
 			if (lowerBody == 17) {
-				select = Math.floor(Math.random() * (4));
+				select = rand(4);
 				if (select == 0)
 					return "fox-like legs";
 				else if (select == 1)
@@ -3083,7 +3089,7 @@ package classes {
 					return "vulpine legs";
 			}
 			if (lowerBody == 19) {
-				select = Math.floor(Math.random() * (4));
+				select = rand(4);
 				if (select == 0)
 					return "raccoon-like legs";
 				else
@@ -3136,7 +3142,7 @@ package classes {
 				return "cartoonish pony-leg";
 			//BUNNAH
 			if (lowerBody == 12) {
-				select = Math.random() * (5);
+				select = rand(5);
 				if (select == 0)
 					return "fuzzy, bunny leg";
 				else if (select == 1)
@@ -3147,7 +3153,7 @@ package classes {
 					return "leg";
 			}
 			if (lowerBody == 13) {
-				select = Math.floor(Math.random() * (5));
+				select = rand(5);
 				if (select == 0)
 					return "bird-like leg";
 				else if (select == 1)
@@ -3156,7 +3162,7 @@ package classes {
 					return "leg";
 			}
 			if (lowerBody == 17) {
-				select = Math.floor(Math.random() * (4));
+				select = rand(4);
 				if (select == 0)
 					return "fox-like leg";
 				else if (select == 1)
@@ -3167,7 +3173,7 @@ package classes {
 					return "vulpine leg";
 			}
 			if (lowerBody == 19) {
-				select = Math.floor(Math.random() * (4));
+				select = ran(4);
 				if (select == 0)
 					return "raccoon-like leg";
 				else
@@ -3176,262 +3182,176 @@ package classes {
 			return "leg";
 		}
 
-		public function feet():String
-		{
-			var select:Number = 0;
+		public function feet():String{
 			//lowerBody:
-			//0 - normal
-			if (lowerBody == 0)
+			switch(lowerBody) {
+			case 0: //0 - normal
 				return "feet";
-			//1 - hooves
-			if (lowerBody == 1)
+			case 1: //1 - hooves
 				return "hooves";
-			//2 - paws
-			if (lowerBody == 2)
+			case 2: //2 - paws
 				return "paws";
-			//3 - snakelike body
-			if (lowerBody == 3)
+			case 3: //3 - snakelike body
 				return "coils";
-			//4 - centaur!
-			if (lowerBody == 4)
+			case 4: //4 - centaur!
 				return "hooves";
-			//5 - demonic heels
-			if (lowerBody == 5)
+			case 5: //5 - demonic heels
 				return "demonic high-heels";
-			//6 - demonic claws
-			if (lowerBody == 6)
+			case 6: //6 - demonic claws
 				return "demonic foot-claws";
-			//8 - goo shit
-			if (lowerBody == 8)
+			case 8: //8 - goo shit
 				return "slimey cillia";
-			if (lowerBody == 11)
+			case 11: 
 				return "flat pony-feet";
-			//BUNNAH
-			if (lowerBody == 12) {
-				select = rand(5);
-				if (select == 0)
-					return "large bunny feet";
-				else if (select == 1)
-					return "rabbit feet";
-				else if (select == 2)
-					return "large feet";
-				else
-					return "feet";
-			}
-			if (lowerBody == 13) {
-				select = Math.floor(Math.random() * (5));
-				if (select == 0)
-					return "taloned feet";
-				else
-					return "feet";
-			}
-			if (lowerBody == 14)
+			case 12: //BUNNAH
+				return randomChoice("large bunny feet", "rabbit feet", "large feet", "feet", "feet");
+			case 13:
+				return randomChoice("taloned feet", "feet", "feet", "feet", "feet");
+			case 14: 
 				return "foot-paws";
-			if (lowerBody == 17) {
-				select = rand(4);
-				if (select == 0)
-					return "paws";
-				else if (select == 1)
-					return "soft, padded paws";
-				else if (select == 2)
-					return "fox-like feet";
-				else
-					return "paws";
-			}
-			if (lowerBody == 19) {
-				select = Math.floor(Math.random() * (3));
-				if (select == 0)
-					return "raccoon-like feet";
-				else if (select == 1)
-					return "long-toed paws";
-				else if (select == 2)
-					return "feet";
-				else
-					return "paws";
-			}
-			return "feet";
+			case 17:
+				return randomChoice("paws", "soft, padded paws", "fox-like feet", "paws");
+			case 19:
+				return randomChoice("raccoon-like feet", "long-toed paws", "feet", "paws");
+			default:
+				return "feet";
 		}
 
-		public function foot():String
-		{
-			var select:Number = 0;
+		public function foot():String {
 			//lowerBody:
-			//0 - normal
-			if (lowerBody == 0)
+			switch (lowerBody) {
+			case 0: //0 - normal
 				return "foot";
-			//1 - hooves
-			if (lowerBody == 1)
+			case 1: //1 - hooves
 				return "hoof";
-			//2 - paws
-			if (lowerBody == 2)
+			case 2: //2 - paws
 				return "paw";
-			//3 - snakelike body
-			if (lowerBody == 3)
+			case 3: //3 - snakelike body
 				return "coiled tail";
-			//4 - centaur!
-			if (lowerBody == 4)
+			case 4: //4 - centaur!
 				return "hoof";
-			//8 - goo shit
-			if (lowerBody == 8)
+			case 8: //8 - goo shit
 				return "slimey undercarriage";
-			//PONY
-			if (lowerBody == 11)
+			case 11: //PONY
 				return "flat pony-foot";
-			//BUNNAH
-			if (lowerBody == 12) {
-				select = Math.random() * (5);
-				if (select == 0)
-					return "large bunny foot";
-				else if (select == 1)
-					return "rabbit foot";
-				else if (select == 2)
-					return "large foot";
-				else
-					return "foot";
-			}
-			if (lowerBody == 13) {
-				select = Math.floor(Math.random() * (5));
-				if (select == 0)
-					return "taloned foot";
-				else
-					return "foot";
-			}
-			if (lowerBody == 17) {
-				select = Math.floor(Math.random() * (4));
-				if (select == 0)
-					return "paw";
-				else if (select == 1)
-					return "soft, padded paw";
-				else if (select == 2)
-					return "fox-like foot";
-				else
-					return "paw";
-			}
-			if (lowerBody == 14)
+			case 12: //BUNNAH
+				return randomChoice("large bunny foot", "rabbit foot", "large foot", "foot", "foot");
+			case 13: 
+				return randomChoice("taloned foot", "foot", "foot", "foot", "foot");
+			case 14: 
 				return "foot-paw";
-			if (lowerBody == 19) {
-				select = Math.floor(Math.random() * (3));
-				if (select == 0)
-					return "raccoon-like foot";
-				else if (select == 1)
-					return "long-toed paw";
-				else if (select == 2)
-					return "foot";
-				else
-					return "paw";
+			case 17: 
+				return randomChoice("paw", "soft, padded paw", "fox-like foot", "paw");
+			case 19:  
+				return randomChoice("raccoon-like foot", "long-toed paw", "foot", "paw");
+			default:
+				return "foot";
 			}
-			return "foot";
 		}
 
-		public function canOvipositSpider():Boolean
-		{
-			if (eggs() >= 10 && hasPerk("Spider Ovipositor") >= 0 && isDrider() && tailType == 5)
-				return true;
-			return false;
+		public function canOvipositSpider():Boolean {
+			return (eggs() >= 10 && hasPerk("Spider Ovipositor") >= 0 && isDrider() && tailType == 5);
 		}
 
-		public function canOvipositBee():Boolean
-		{
-			if (eggs() >= 10 && hasPerk("Bee Ovipositor") >= 0 && tailType == 6)
-				return true;
-			return false;
+		public function canOvipositBee():Boolean {
+			return (eggs() >= 10 && hasPerk("Bee Ovipositor") >= 0 && tailType == 6);
 		}
 
-		public function canOviposit():Boolean
-		{
-			if (canOvipositSpider() || canOvipositBee())
-				return true;
-			return false;
+		public function canOviposit():Boolean {
+			return (canOvipositSpider() || canOvipositBee());
 		}
 
-		public function eggs():int
-		{
-			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0)
+		public function eggs():int {
+			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0) {
 				return -1;
-			else if (hasPerk("Spider Ovipositor") >= 0)
+			} else if (hasPerk("Spider Ovipositor") >= 0) {
 				return perkv1("Spider Ovipositor");
-			else
+			} else {
 				return perkv1("Bee Ovipositor");
+			}
 		}
 
-		public function addEggs(arg:int = 0):int
-		{
-			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0)
+		public function addEggs(arg:int = 0):int {
+			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0) {
 				return -1;
-			else {
+			} else {
 				if (hasPerk("Spider Ovipositor") >= 0) {
 					addPerkValue("Spider Ovipositor", 1, arg);
-					if (eggs() > 50)
+					if (eggs() > 50) {
 						changePerkValue("Spider Ovipositor", 1, 50);
+					}
 					return perkv1("Spider Ovipositor");
 				}
 				else {
 					addPerkValue("Bee Ovipositor", 1, arg);
-					if (eggs() > 50)
+					if (eggs() > 50) {
 						changePerkValue("Bee Ovipositor", 1, 50);
+					}
 					return perkv1("Bee Ovipositor");
 				}
 			}
 		}
 
-		public function dumpEggs():void
-		{
-			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0)
+		public function dumpEggs():void {
+			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0) {
 				return;
+			}
 			setEggs(0);
 			//Sets fertile eggs = regular eggs (which are 0)
 			fertilizeEggs();
 		}
 
-		public function setEggs(arg:int = 0):int
-		{
-			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0)
+		public function setEggs(arg:int = 0):int {
+			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0) {
 				return -1;
-			else {
+			} else {
 				if (hasPerk("Spider Ovipositor") >= 0) {
 					changePerkValue("Spider Ovipositor", 1, arg);
-					if (eggs() > 50)
+					if (eggs() > 50) {
 						changePerkValue("Spider Ovipositor", 1, 50);
+					}
 					return perkv1("Spider Ovipositor");
-				}
-				else {
+				} else {
 					changePerkValue("Bee Ovipositor", 1, arg);
-					if (eggs() > 50)
+					if (eggs() > 50) {
 						changePerkValue("Bee Ovipositor", 1, 50);
+					}
 					return perkv1("Bee Ovipositor");
 				}
 			}
 		}
 
-		public function fertilizedEggs():int
-		{
-			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0)
+		public function fertilizedEggs():int {
+			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0) {
 				return -1;
-			else if (hasPerk("Spider Ovipositor") >= 0)
+			} else if (hasPerk("Spider Ovipositor") >= 0) {
 				return perkv2("Spider Ovipositor");
-			else
+			} else {
 				return perkv2("Bee Ovipositor");
+			}
 		}
 
-		public function fertilizeEggs():int
-		{
-			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0)
+		public function fertilizeEggs():int {
+			if (hasPerk("Spider Ovipositor") < 0 && hasPerk("Bee Ovipositor") < 0) {
 				return -1;
-			else if (hasPerk("Spider Ovipositor") >= 0)
+			} else if (hasPerk("Spider Ovipositor") >= 0) {
 				changePerkValue("Spider Ovipositor", 2, eggs());
-			else
+			} else {
 				changePerkValue("Bee Ovipositor", 2, eggs());
+			}
 			return fertilizedEggs();
 		}
 
-		public function increaseCock(increase:Number, cockNum:Number):Number
-		{
-			if (hasPerk("Big Cock") >= 0)
+		public function increaseCock(increase:Number, cockNum:Number):Number {
+			if (hasPerk("Big Cock") >= 0) {
 				increase *= perks[hasPerk("Big Cock")].value1;
-			if (hasPerk("Phallic Potential") >= 0)
+			}
+			if (hasPerk("Phallic Potential") >= 0) {
 				increase *= 1.5;
-			if (hasPerk("Phallic Restraint") >= 0)
+			}
+			if (hasPerk("Phallic Restraint") >= 0) {
 				increase *= .25;
+			}
 			return cocks[cockNum].growCock(increase);
 		}
 

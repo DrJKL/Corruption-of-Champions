@@ -2304,343 +2304,77 @@ package classes {
 		}
 		
 		public function manWoman(caps:Boolean = false):String {
-			//Dicks?
-			if (hasCock())
-			{
-				if (hasVagina())
-				{
-					if (caps)
-						return "Futa";
-					else
-						return "futa";
-				}
-				else
-				{
-					if (caps)
-						return "Man";
-					else
-						return "man";
-				}
-			}
-			else
-			{
-				if (hasVagina())
-				{
-					if (caps)
-						return "Woman";
-					else
-						return "woman";
-				}
-				else
-				{
-					if (caps)
-						return "Eunuch";
-					else
-						return "eunuch";
-				}
-			}
-		}
-		
-		public function guyGirl(caps:Boolean = false):String
-		{
-			//Dicks?
-			if (hasCock())
-			{
-				if (hasVagina())
-				{
-					if (caps)
-						return "Girl";
-					else
-						return "girl";
-				}
-				else
-				{
-					if (caps)
-						return "Guy";
-					else
-						return "guy";
-				}
-			}
-			else
-			{
-				if (hasVagina())
-				{
-					if (caps)
-						return "Girl";
-					else
-						return "girl";
-				}
-				else
-				{
-					if (biggestTitSize() >= 3)
-					{
-						if (caps)
-							return "Girl";
-						else
-							return "girl";
-					}
-					if (caps)
-						return "Guy";
-					else
-						return "guy";
-				}
-			}
-		}
-		
-		public function mfn(male:String, female:String, neuter:String):String
-		{
-			if (gender == 0)
-				return neuter;
-			else
-				return mf(male, female);
-		}
-		
-		public function mf(male:String, female:String):String
-		{
-			//Dicks?
-			if (hasCock())
-			{
-				if (hasVagina())
-					return female;
-				else
-					return male;
-			}
-			else
-			{
-				if (hasVagina())
-					return female;
-				else
-				{
-					if (biggestTitSize() >= 3)
-						return female;
-					else
-						return male;
-				}
-			}
-		}
-		
-		public function boyGirl(caps:Boolean = false):String
-		{
-			//Dicks?
-			if (hasCock())
-			{
-				if (hasVagina())
-				{
-					if (caps)
-						return "Girl";
-					else
-						return "girl";
-				}
-				else
-				{
-					if (caps)
-						return "Boy";
-					else
-						return "boy";
-				}
-			}
-			else
-			{
-				if (hasVagina())
-				{
-					if (caps)
-						return "Girl";
-					else
-						return "girl";
-				}
-				else
-				{
-					if (biggestTitSize() >= 3)
-					{
-						if (caps)
-							return "Girl";
-						else
-							return "girl";
-					}
-					if (caps)
-						return "Boy";
-					else
-						return "boy";
-				}
-			}
-		}
-		
-		public function heShe(caps:Boolean = false):String
-		{
-			//Dicks?
-			if (hasCock())
-			{
-				if (hasVagina())
-				{
-					if (caps)
-						return "She";
-					else
-						return "she";
-				}
-				else
-				{
-					if (caps)
-						return "He";
-					else
-						return "he";
-				}
-			}
-			else
-			{
-				if (hasVagina())
-				{
-					if (caps)
-						return "She";
-					else
-						return "she";
-				}
-				else
-				{
-					if (biggestTitSize() >= 3)
-					{
-						if (caps)
-							return "She";
-						else
-							return "she";
-					}
-					if (caps)
-						return "It";
-					else
-						return "it";
-				}
-			}
-		}
-		
-		public function himHer(caps:Boolean = false):String
-		{
-			//Dicks?
-			if (hasCock()) {
-				if (hasVagina()) {
-					if (caps)
-						return "Her";
-					else
-						return "her";
-				} else {
-					if (caps)
-						return "Him";
-					else
-						return "him";
-				}
-			} else {
-				if (hasVagina()) {
-					if (caps)
-						return "Her";
-					else
-						return "her";
-				} else {
-					if (biggestTitSize() >= 3) {
-						if (caps)
-							return "Her";
-						else
-							return "her";
-					}
-					if (caps)
-						return "Him";
-					else
-						return "him";
-				}
-			}
-		}
-		
-		public function maleFemale(caps:Boolean = false):String {
-			//Dicks?
-			if (hasCock()) {
-				if (hasVagina()) {
-					if (caps)
-						return "Female";
-					else
-						return "female";
-				} else {
-					if (caps)
-						return "Male";
-					else
-						return "male";
-				}
-			} else {
-				if (hasVagina()) {
-					if (caps)
-						return "Female";
-					else
-						return "female";
-				} else {
-					if (biggestTitSize() >= 3) {
-						if (caps)
-							return "Female";
-						else
-							return "female";
-					}
-					if (caps)
-						return "Male";
-					else
-						return "male";
-				}
-			}
-		}
-		
-		public function hisHer(caps:Boolean = false):String {
-			//Dicks?
-			if (hasCock()) {
-				if (hasVagina()) {
-					if (caps)
-						return "Her";
-					else
-						return "her";
-				} else {
-					if (caps)
-						return "Him";
-					else
-						return "him";
-				}
-			} else {
-				if (hasVagina())
-				{
-					if (caps)
-						return "Her";
-					else
-						return "her";
-				} else {
-					if (biggestTitSize() >= 3) {
-						if (caps)
-							return "Her";
-						else
-							return "her";
-					}
-					if (caps)
-						return "Him";
-					else
-						return "him";
-				}
-			}
-		}
-		
-		private function sirMadamTitCheck():String {
-			return (biggestTitSize() >= 2) 
-				? "madam"
-				: "sir";
-		}
-		
-		public function sirMadam(caps:Boolean = false):String {
 			var title:String = "";
 			switch (gender) {
 			case GENDER_MALE:
-				title = "sir";
+				title = "man";
 				break;
 			case GENDER_FEMALE:
-				title = "madam";
+				title = "woman";
 				break;
 			case GENDER_HERM:
+				title = "futa";
+				break;
 			case GENDER_NONE:
-				title = sirMadamTitCheck();
+				title = "eunuch";
 				break;
 			}
+			return maybeCapitalize(title, caps);
+		}
+		
+		public function guyGirl(caps:Boolean = false):String {
+			return maybeCapitalize(mf("Guy", "Girl"), caps);
+		}
+		
+		public function mfn(male:String, female:String, neuter:String):String {
+			return (gender == GENDER_NONE)
+				? neuter
+				: mf(male, female);
+		}
+		
+		public function mf(male:String, female:String):String {
+			switch (gender) {
+			case GENDER_MALE:
+				return male;
+			case GENDER_FEMALE:
+			case GENDER_HERM:
+				return female;
+			case GENDER_NONE:
+				return (biggestTitSize() >= 3)
+					? female 
+					: male;
+			}
+			return failMaybe("ERROR, PROPER GENDER NOT FOUND");
+		}
+		
+		private function maybeCapitalize(str:String, caps:Boolean = false) {
 			return (caps) 
-				? (title.charAt(0).toUpperCase() + title.substr(1))
-				: title;
+				? (str.charAt(0).toUpperCase() + str.substr(1))
+				: str;
+		}
+		
+		public function boyGirl(caps:Boolean = false):String {
+			return maybeCapitalize(mf("boy","girl"), caps);
+		}
+		
+		public function heShe(caps:Boolean = false):String {
+			return maybeCapitalize(mfn("he", "she", "it"), caps);
+		}
+		
+		public function himHer(caps:Boolean = false):String {
+			return maybeCapitalize(mf("him","her"), caps);
+		}
+		
+		public function maleFemale(caps:Boolean = false):String {
+			return maybeCapitalize(mf("male","female"), caps);
+		}
+		
+		public function hisHer(caps:Boolean = false):String {
+			return maybeCapitalize(mf("his","her"), caps);
+		}
+		
+		public function sirMadam(caps:Boolean = false):String {
+			return maybeCapitalize(mf("sir", "madam"), caps);
 		}
 		
 		//Create a cock. Default type is HUMAN

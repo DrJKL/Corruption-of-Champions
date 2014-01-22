@@ -2248,7 +2248,7 @@ package classes {
 		
 		//BOolean alternate
 		public function hasCock():Boolean {
-			return (totalCocks() >= 1);
+			return (totalCocks() > 0);
 		}
 		
 		public function homogenousCocks():Boolean {
@@ -2287,22 +2287,17 @@ package classes {
 			return false
 		}
 		
-		public function canAutoFellate():Boolean
-		{
-			if (!hasCock())
-				return false;
-			return (cocks[0].cockLength >= 20);
+		public function canAutoFellate():Boolean {
+			return hasCock() && (cocks[0].cockLength >= 20);
 		}
 		
 		//Deprecated
-		public function canSelfSuck():Boolean
-		{
+		public function canSelfSuck():Boolean {
 			return canAutoFellate();
 		}
 		
 		//PC can fly?
-		public function canFly():Boolean
-		{
+		public function canFly():Boolean {
 			//web also makes false!
 			if (hasStatusAffect("Web") >= 0)
 				return false;
@@ -2581,39 +2576,28 @@ package classes {
 			}
 		}
 		
-		public function maleFemale(caps:Boolean = false):String
-		{
+		public function maleFemale(caps:Boolean = false):String {
 			//Dicks?
-			if (totalCocks() > 0)
-			{
-				if (hasVagina())
-				{
+			if (totalCocks() > 0) {
+				if (hasVagina()) {
 					if (caps)
 						return "Female";
 					else
 						return "female";
-				}
-				else
-				{
+				} else {
 					if (caps)
 						return "Male";
 					else
 						return "male";
 				}
-			}
-			else
-			{
-				if (hasVagina())
-				{
+			} else {
+				if (hasVagina()) {
 					if (caps)
 						return "Female";
 					else
 						return "female";
-				}
-				else
-				{
-					if (biggestTitSize() >= 3)
-					{
+				} else {
+					if (biggestTitSize() >= 3) {
 						if (caps)
 							return "Female";
 						else
@@ -2627,39 +2611,29 @@ package classes {
 			}
 		}
 		
-		public function hisHer(caps:Boolean = false):String
-		{
+		public function hisHer(caps:Boolean = false):String {
 			//Dicks?
-			if (totalCocks() > 0)
-			{
-				if (hasVagina())
-				{
+			if (hasCock()) {
+				if (hasVagina()) {
 					if (caps)
 						return "Her";
 					else
 						return "her";
-				}
-				else
-				{
+				} else {
 					if (caps)
 						return "Him";
 					else
 						return "him";
 				}
-			}
-			else
-			{
+			} else {
 				if (hasVagina())
 				{
 					if (caps)
 						return "Her";
 					else
 						return "her";
-				}
-				else
-				{
-					if (biggestTitSize() >= 3)
-					{
+				} else {
+					if (biggestTitSize() >= 3) {
 						if (caps)
 							return "Her";
 						else
@@ -2673,85 +2647,39 @@ package classes {
 			}
 		}
 		
-		//sir/madam
-		public function sirMadam(caps:Boolean = false):String
-		{
-			//Dicks?
-			if (totalCocks() > 0)
-			{
-				//herm
-				if (hasVagina())
-				{
-					//Boy unless has tits!
-					if (biggestTitSize() >= 2)
-					{
-						if (caps)
-							return "Madam";
-						else
-							return "madam";
-					}
-					else
-					{
-						if (caps)
-							return "Sir";
-						else
-							return "sir";
-					}
-				}
-				//Dude
-				else
-				{
-					if (caps)
-						return "Sir";
-					else
-						return "sir";
-				}
+		private function sirMadamTitCheck():String {
+			return (biggestTitSize() >= 2) 
+				? "madam"
+				: "sir";
+		}
+		
+		public function sirMadam(caps:Boolean = false):String {
+			var title:String = "";
+			switch (gender) {
+			case GENDER_MALE:
+				title = "sir";
+				break;
+			case GENDER_FEMALE:
+				title = "madam";
+				break;
+			case GENDER_HERM:
+			case GENDER_NONE:
+				title = sirMadamTitCheck();
+				break;
 			}
-			//No dicks
-			else
-			{
-				//Girl
-				if (hasVagina())
-				{
-					if (caps)
-						return "Madam";
-					else
-						return "madam";
-				}
-				//Eunuch!
-				else
-				{
-					//Called girl if has tits!
-					if (biggestTitSize() >= 2)
-					{
-						if (caps)
-							return "Madam";
-						else
-							return "madam";
-					}
-					//Called dude with no tits
-					else
-					{
-						if (caps)
-							return "Sir";
-						else
-							return "sir";
-					}
-				}
-			}
+			return (caps) 
+				? (title.charAt(0).toUpperCase() + title.substr(1))
+				: title;
 		}
 		
 		//Create a cock. Default type is HUMAN
-		public function createCock(clength:Number = 5.5, cthickness:Number = 1,ctype:CockTypesEnum=null):Boolean {
+		public function createCock(clength:Number = 5.5, cthickness:Number = 1, ctype:CockTypesEnum=null):Boolean {
 			if (cocks.length >= 10) {
 				return false;
 			}
-			ctype ||= CockTypesEnum.HUMAN;
 			var newCock:Cock = new Cock(clength, cthickness, ctype);
 			cocks.push(newCock);
 			// Should be able to remove.
-			//cocks[cocks.length-1].cockThickness = cthickness;
-			//cocks[cocks.length-1].cockLength = clength;
 			return true;
 		}
 		

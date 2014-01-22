@@ -3,7 +3,9 @@
 import classes.GlobalFlags.kFLAGS;
 import classes.Appearance;
 import classes.CockTypesEnum;
-public class KihaScene extends NPCAwareContent {
+	import classes.ItemType;
+
+	public class KihaScene extends NPCAwareContent {
 
 	public function KihaScene()
 	{
@@ -175,6 +177,7 @@ public function kihaExplore(clearScreen:Boolean = true):void {
 	//spriteSelect(72);
 	flags[kFLAGS.KIHA_TOLL_DURATION]--;
 	var event:Number = rand(10);
+	var itype:ItemType;
 	//Grabbin' Inquisitor Armor
 	if(event == 0 && flags[kFLAGS.GOTTEN_INQUISITOR_ARMOR] == 0) {
 		kGAMECLASS.inquisitorRobesDiscovery();
@@ -186,13 +189,13 @@ public function kihaExplore(clearScreen:Boolean = true):void {
 		return;
 	}
 	//Reducto
-	else if(event < 7) shortName = "Reducto";
-	else if(event < 8) shortName = "GroPlus";
-	else if(event < 9) shortName = "Coal   ";
-	else if(event < 10) shortName = "T.SSilk";
+	else if(event < 7) itype = consumables.REDUCTO;
+	else if(event < 8) itype = consumables.GROPLUS;
+	else if(event < 9) itype = consumables.COAL___;
+	else if(event < 10) itype = useables.T_SSILK;
 	outputText("While exploring, you find an item on the ground!  ", false);
 	menuLoc = 2;
-	takeItem();
+	inventory.takeItem(itype);
 }
 
 //[This was my idea!]
@@ -403,9 +406,9 @@ private function kihaRapesHerms():void {
 	var dicked:Boolean = false;
 	
 	//[If the player has an incubus draft: 
-	if(hasItem("IncubiD",1)) {
+	if(player.hasItem(consumables.INCUBID)) {
 		outputText("As the two of you entwine yourselves against Kiha's honey-slick tail, she notices your belongings in a heap next to the two of you. \"<i>What kind of s-s-shitty gifts did you bring me,</i>\" she pants through a toothy grin.  Scattering your belongings with one hand, she notices the phallic shape of your incubus draft, and snatches the bottle between her thumb and forefinger.  \"<i>Demon trash, of course.  You wouldn't even know how to use this right.  Let me show you.</i>\"  She flicks the cork from the vial and upends the concoction down her gullet in one swallow.  You don't have time to protest as the hood over her clitoris slides back, the fingertip-sized bead above her engorged vulva swelling thicker by the second. With a lurching spasm, the flesh of her joy buzzer rises into the air, growing three, then six inches before finally settling at nine inches long.  The two-inch-thick shaft of her massive clit throbs, the underside bulging outward as rectangular, interlocking plates harden into a ladder from base to summit. The featureless, rounded tip of her draconic phallus swells and juts obscenely as it curves into a sloping crest, tinted with the flush of arousal as a thin slit opens at the very crown of her newly grown cock.\n\n", false);
-		consumeItem("IncubiD",1);
+		player.consumeItem(consumables.INCUBID);
 		//[Incubus Draft cont.: 
 		outputText("Without breaking her stride, Kiha threads more of her tail between the gushing lips of your spurting nethers and loops the long, flexible tip around your " + cockDescript(0) + ", pulling it against her new shaft.  Completing the circle, the dexterous limb, varnished in girl-cum, tightens around the organs, sliding up and down frantically.  The feeling of her long, smooth cock-plates against the sensitive underside of your shaft is delicious and you reach a hand out to help the dragon's tail with its rapid, coiled jerking. Kiha kicks her leg up, smacking your arm back with the heel of her padded foot.  \"<i>This is for me,</i>\" she practically screams, \"<i>You're just here for the ride!  I don't even like your h-h-hot cock rubbing against mine or your gushing pussy sucking my t-ta-tail.  So just lie back like the little ssssSHIT you are and fucking… CUM!</i>\"  At that, the dragoness loses herself to the sensations, her virginal dick erupting in a shower of seething spunk that arcs backward, splattering her face and tits with her own creamy seed.\n\n", false);
 		dicked = true;
@@ -500,11 +503,11 @@ private function kihaVictoryPomfTail():void {
 	outputText(".\n\n", false);
 	
 	outputText("Satisfied that it is sufficiently lubricated, you squeeze the now-slippery tail and point its nubby tip at your entrance.  It bumps your " + clitDescript() + " as you wrangle with the struggling hind-limb, only turning you on all the more.  Feeling the tip circling your tunnel's opening, you push it up and seat the tentacle-like tail deep inside yourself.  ", false);
-	cuntChange(1,true,false,true);
+	player.cuntChange(1,true,false,true);
 	outputText("Gods she's so... warm, and the ridges, they're stroking every inch of your interior, even your g-spot!  Your " + player.legs() + " wobble unsteadily, but spurred by lust, you keep an iron grip on your new-found toy.  Kiha doesn't stop resisting either.\n\n", false);
 	
 	outputText("Leaning back against the tree the dragon previously occupied, you slide down, letting your " + player.legs() + " go completely nerveless.  Kiha's struggles unintentionally add to your pleasure, turning her tail into the world's warmest, most powerful vibrator.  Your hands begin to push more of her girthy thickness inside, stretching your poor puss further and further.  ", false);
-	cuntChange(35,true,false,true);
+	player.cuntChange(35,true,false,true);
 	outputText("Moaning, you look at her and meet her gaze.  She still looks mad, but her face also carries a hint of confusion.  Peeking down, you see she's dripping even faster, as evidenced by a massive puddle of lady-spunk that pools between her muscular, tightly-clenched thighs.  She must be turned on beyond belief, but she's still resisting!\n\n", false);
 	
 	outputText("Well, that's her loss.  You keep fucking yourself on her ridged posterior, enjoying the rapid twitches, hard wiggles, and other constant movements.  It almost feels like it's attacking your pussy, battering your womanhood with pleasurable strikes.  Your " + hipDescript() + " push back against the welcome intrusion, stuffing another inch or two inside yourself as you move closer and closer to the release you oh-so-desperately crave.  It feels so good!  You scream out in bliss and undulate your entire body, pumping, thrusting, and squirming yourself to the absolute highest peak of pleasure, the summit of sensation.  ", false);

@@ -437,7 +437,7 @@ private function loseToIzma():void {
 			outputText("\n\n\"<i>Holy-!  Think I better take it easy on this...</i>\" you hear Izma proclaim.  \"<i>For my own safety moreso than anything else!</i>\"  Her efforts become more gentle.  She still forces her way into you, inch by painstaking inch, but she does so at a slower, steady pace, allowing your pucker time to adjust to the fierce stretching she is subjecting it to and using her hot pre-cum like lubricant.", false);
 			//(If Izmafight <= -4)
 			if(flags[kFLAGS.IZMA_TIMES_FOUGHT_AND_WON] <= -4) outputText("  You find yourself pushing back to speed up the process, desperate for Izma to fill you again.", false);
-			buttChange(monster.cockArea(0),true,true,false);
+			player.buttChange(monster.cockArea(0),true,true,false);
 		}
 		//(If player has middling anus:) 
 		else if(player.analCapacity() < 60) {
@@ -446,7 +446,7 @@ private function loseToIzma():void {
 			outputText("\"<i>Ahhhh... now that's a nice little hole!  Did you lose on purpose?</i>\" she asks, and you can hear the grin in her voice.", false);
 			//(If the player has lost 4+ times)  
 			if(flags[kFLAGS.IZMA_TIMES_FOUGHT_AND_WON] <= -4) outputText("  You find yourself wondering that as well...", false);
-			buttChange(monster.cockArea(0),true,true,false);
+			player.buttChange(monster.cockArea(0),true,true,false);
 		}
 		//(If player has a loosey goosey:)
 		else {
@@ -501,7 +501,7 @@ private function loseToIzma():void {
 			outputText("  Don't worry kiddo; I'll go easy on you... at least for the first few thrusts.</i>\"  Surprisingly she's telling the truth, and her efforts become more gentle.  She still forces her way into you, inch by painstaking inch, but she does so at a slower, steady pace, allowing your pussy time to adjust to the fierce stretching she is subjecting it to, using her hot pre-cum like lubricant.", false);
 			//(If Izmafight <= -4)
 			if(flags[kFLAGS.IZMA_TIMES_FOUGHT_AND_WON] <= -4) outputText("  You find yourself pushing back to speed up the process, desperate for Izma to fill you again.", false);
-			cuntChange(monster.cockArea(0),true,true,false);
+			player.cuntChange(monster.cockArea(0),true,true,false);
 		}
 		//(If player has ordinary, everyday cunt:)
 		else if(player.vaginalCapacity() < 60) {
@@ -510,7 +510,7 @@ private function loseToIzma():void {
 			outputText("\"<i>Ahhhh~  Now that's a nice little hole!  Did you lose on purpose?</i>\" she asks, and you can hear the grin in her voice.", false);
 			//(If the player has lost 4+ times)  
 			if(flags[kFLAGS.IZMA_TIMES_FOUGHT_AND_WON] <= -4) outputText("  You find yourself wondering that as well...", false);
-			cuntChange(monster.cockArea(0),true,true,false);
+			player.cuntChange(monster.cockArea(0),true,true,false);
 		}
 		//(If player is loose:)
 		else {
@@ -584,7 +584,7 @@ private function loseToIzma():void {
 		else outputText("Izma gives a low whistle at the sight of your " + cockDescript(x) + ".  \"<i>Now THAT'S a cock.  Looks like you've got a third leg down there!</i>\"", false);
 		
 		outputText("\n\nSeemingly done appraising you, Izma roughly grabs your " + player.feet() + " and pulls your rear upwards, forcing your weight onto your spine and making you cry out from the uncomfortable position.  She doesn't waste time on foreplay, simply deciding to bury her cock into you slowly, inch by painstaking inch until she's pushing against the entrance to your womb.", false);
-		cuntChange(monster.cockArea(0),true,true,false);
+		player.cuntChange(monster.cockArea(0),true,true,false);
 		outputText("\n\n", false);
 
 		outputText("She starts thrusting in and out of you, gradually increasing the speed and force, her hot pre-cum and your feminine juices acting like a lubricant to make things easier.  \"<i>Ahh~  You're a lovely cock-sleeve... you like being treated like this, don't ya, weakling?</i>\" Izma taunts, slamming in and out of your " + vaginaDescript(0) + ".", false);
@@ -620,7 +620,7 @@ private function loseToIzma():void {
 	else if(flags[kFLAGS.IZMA_TIMES_FOUGHT_AND_WON] >= -4) outputText("  You have only the vaguest thought that maybe you shouldn't be thinking about Izma in that way, but it's so tempting to just immerse yourself in the sexiness of having a hot herm shark-girl dominate you so thoroughly. After all, it's not as if there's any harm in doing so, is there?", false);
 	//Izmafight -5: 
 	else outputText("  You embrace the dreams fully, desperate to cling to them as long as you can. It's getting so hard to care about your former mission anymore; why fight the demons when you can just give it up and surrender yourself to Izma? Yes... such a strong, powerful, worthy alpha she is; Izma is all you need. Let her take control of your life, why don't you?", false);
-	flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234] = "TSTooth";
+	flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID] = consumables.TSTOOTH.id;
 	player.slimeFeed();
 	cleanupAfterCombat();
 }
@@ -650,7 +650,7 @@ private function finalIzmaSubmission():void {
 	outputText("\"<i>Beg,</i>\" she orders, licking your neck and collarbone, giving off a few growls and purrs as she goes.  \"<i>Wh-what?</i>\" you manage to reply, lost in your anticipation.  \"<i>You heard me,</i>\" she replies sternly, grinding her throbbing cock, now erect and well over sixteen inches, against your back.  It seems like giving free rein to her dominating instincts is making her harder than you've ever felt.  You moan loudly from the sensation.  \"<i>Please fuck me!  Please, Izma, mistress, I need your cock!</i>\" you cry, not caring if anything is nearby to hear you.  Izma chuckles in response before pulling you in and roughly kissing you, her long tongue curling around your own.  She continues to tongue-fuck you until you nearly run out of breath, and you feel like Izma could make you orgasm from this alone.\n\n", false);
 
 	outputText("She keeps you held in place as she positions the tip of her cock against your " + assholeDescript() + ".  With no warning, she forces her meat-pole into you, making you squeal in delight from the familiar heat of her cock.  ", false);
-	buttChange(monster.cockArea(0),true,false,true);
+	player.buttChange(monster.cockArea(0),true,false,true);
 	outputText("She keeps forcing her way in your backdoor, inch after inch, and you only feel weaker against Izma the further in she goes.  Eventually she manages to bury her entire dick into your pucker, sighing in delight as her meaty quads press against your " + buttDescript() + ".\n\n", false);
 
 	outputText("She pulls back out, and for a moment you feel a bit of trepidation at the absence of her cock, before crying out as she again goes balls-deep into your backside.  She continues to thrust and grind into you, giving a few animalistic snarls of pleasure.  You manage to glance back, only to notice how completely the bookworm has turned into some sort of proud wild woman.  It suits her; she's proven that she's so much stronger than you, after all.  So strong, so in control, so powerful... it feels right to be like this, underneath Izma as she asserts her position over you.\n\n", false);
@@ -746,7 +746,7 @@ private function victoryPenisIzma():void {
 	//[(if Izmafight <=4)
 	if(flags[kFLAGS.IZMA_TIMES_FOUGHT_AND_WON] <= 4 || flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00235] > 0) {
 		outputText("You say your goodbyes to the pretty tigershark and leave once she hands you your tooth-shaped reward.", false);
-		flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234] = "TSTooth";
+		flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID] = consumables.TSTOOTH.id;
 		cleanupAfterCombat();
 	}
 	//(if Izmafight >=5 then go to [Victor's Choice]] (Izmafight +1)
@@ -760,7 +760,7 @@ private function useVagooOnIzmaWin():void {
 	outputText("You watch the defeated tigershark closely and a grin forms on your face.  You touch a hand to her forehead and push her onto her back with minimal effort, slipping her clothing off.  She lacks the strength to stop you, but she knows full well what the terms of the battle were, so she's not going to go back on her word.  You strip off your " + player.armorName + " and spread Izma's legs wide, licking your lips at the sight of her throbbing erection and meaty quads.  You give Izma's massive cock a few test strokes, earning some pleasured groans from the tiger shark.\n\n", false);
 	
 	outputText("Deciding you've had enough foreplay, you mount her and slide down her cock.", false);
-	cuntChange(monster.cockArea(0),true,true,false);
+	player.cuntChange(monster.cockArea(0),true,true,false);
 	outputText("  You start grinding and gyrating atop her, ", false);
 	//[(taur)
 	if(player.isTaur()) outputText("your weight pinning her to the sand and preventing her from taking control.", false);
@@ -787,7 +787,7 @@ private function eatIzmasLeafAfterRapinHer():void {
 	outputText("", true);
 	outputText("You accept the leaf gingerly and eat it.  Izma smiles.", false);
 	//Set loot
-	flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234] = "TSTooth";
+	flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID] = consumables.TSTOOTH.id;
 	//[(if Izmafight <=4) 
 	if(flags[kFLAGS.IZMA_TIMES_FOUGHT_AND_WON] <= 4 || flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00235] > 0) {
 		outputText("  You say your goodbyes to the pretty tigershark and leave once she hands you your tooth-shaped reward.", false);
@@ -826,7 +826,7 @@ private function takeItInZeButtVictoryLikeFromIzma():void {
 	outputText("Gradually you start to suck more and more of her cock, inch after inch moving down your throat.  You gag lightly as you finally reach the base of her cock, before pulling it out.  She whines weakly and looks at you pitifully, wondering why you're teasing her.  You remove your " + player.armorName + " before turning to show her your " + buttDescript() + ", and a small smile spreads over her angular face as she realizes what you have planned.  You plant your hands on your backside and pull your cheeks wide, before starting to slide onto her well-lubed pecker.\n\n", false);
 	
 	outputText("She grunts and huffs as you slide down, and you too feel a strain from her iron-hard dick despite the various fluids lubricating it.  But gradually pain turns to pleasure and you're both moaning loudly and calling each other's names as you ride her.", false);
-	buttChange(monster.cockArea(0),true,true,false);
+	player.buttChange(monster.cockArea(0),true,true,false);
 	outputText("\n\n", false);
 	
 	outputText("The shark grits her teeth and gives a roar as she cums, blowing a massive, hot load straight up your " + assholeDescript() + ", bloating you slightly as she empties her quads inside you.  Your muscles twitch and contract, and you can swear you see stars as she ejaculates.  It takes you a while to catch your breath as you slide off her slowly softening meat pole and crawl onto the sand.\n\n", false);
@@ -834,7 +834,7 @@ private function takeItInZeButtVictoryLikeFromIzma():void {
 	//[(if Izmafight <=4)
 	if(flags[kFLAGS.IZMA_TIMES_FOUGHT_AND_WON] <= 4 || flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00235] > 0) {
 		outputText("You say your goodbyes to the pretty tigershark and leave once she hands you your tooth-shaped reward.", false);
-		flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234] = "TSTooth";
+		flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID] = consumables.TSTOOTH.id;
 		cleanupAfterCombat();
 	}
 	//(if Izmafight >=5 then go to [Victor's Choice]]
@@ -860,7 +860,7 @@ private function leaveIzmaVictoryTease():void {
 	//(Izmafight +1)
 	
 	flags[kFLAGS.IZMA_TIMES_FOUGHT_AND_WON]++;
-	flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234] = "TSTooth";
+	flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID] = consumables.TSTOOTH.id;
 	cleanupAfterCombat();
 }
 
@@ -875,7 +875,7 @@ private function chooseIzmaTooth():void {
 	outputText("", true);
 	outputText("You accept the tooth from her with a polite word of thanks.", false);
 	//(gain 1 t-shark toof)
-	flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234] = "TSTooth";
+	flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID] = consumables.TSTOOTH.id;
 	cleanupAfterCombat();
 }
 
@@ -890,7 +890,7 @@ private function chooseIzmaGloves():void {
 	
 	outputText("Meekly, she picks up the gloves and hands them to you.", false);
 	//(gain 1 Hooked gauntlets) 
-	flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234] = "H.Gaunt";
+	flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID] = weapons.H_GAUNT;
 	flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00235]++;
 	cleanupAfterCombat();
 }
@@ -969,8 +969,7 @@ private function nonFightIzmaSmexPAINUS():void {
 	flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00230]++;
 	menuLoc = 2;
 	dynStats("lus=", 0);
-	shortName = "TSTooth";
-	takeItem();
+	inventory.takeItem(consumables.TSTOOTH);
 }
 
 //[no-fight sex: get your ass in the car]
@@ -1016,8 +1015,7 @@ private function nonFightIzmaSmexCUNTPUSSYSNATCHQUIM():void {
 	flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00230]++;
 	menuLoc = 2;
 	dynStats("lus=", 0);
-	shortName = "TSTooth";
-	takeItem();
+	inventory.takeItem(consumables.TSTOOTH);
 }
 
 //Decline Izma moving in
@@ -1247,7 +1245,7 @@ private function izmaLakeDominate():void {
 		outputText("You strip off your " + player.armorName + " and spread Izma's legs wide, licking your lips at the sight of her throbbing erection and meaty quads.  You give Izma's massive cock a few test strokes, earning some pleasured groans from the tiger shark.\n\n", false);
  
 		outputText("Deciding you've had enough foreplay, you mount her and slide down her cock.", false);
-		cuntChange(30,true,true,false);
+		player.cuntChange(30,true,true,false);
 		outputText("  You start grinding and gyrating atop her, ", false);
 		//[(taur)
 		if(player.isTaur()) outputText("your weight pinning her to the sand and preventing her from taking control.", false);
@@ -1278,7 +1276,7 @@ private function izmaLakeDominate():void {
 		outputText("Gradually you start to suck more and more of her cock, inch after inch moving down your throat.  You gag lightly as you finally reach the base of her cock, before pulling it out.  She whines weakly and looks at you pitifully, wondering why you're teasing her.  You remove your " + player.armorName + " before turning to show her your " + buttDescript() + ", and a small smile spreads over her angular face as she realises what you have planned.  You plant your hands on your backside and pull your cheeks wide, before starting to slide onto her well-lubed pecker.\n\n", false);
  
 		outputText("She grunts and huffs as you slide down, and you too feel a strain from her iron-hard dick despite the various fluids lubricating it.  But gradually pain turns to pleasure and you're both moaning loudly and calling each others' names as you ride her.", false);
-		buttChange(30,true,true,false);
+		player.buttChange(30,true,true,false);
 		outputText("\n\n", false);
  
 		outputText("The shark grits her teeth and gives a roar as she cums, blowing a massive, hot load straight up your " + assholeDescript() + ", bloating you slightly as she empties her quads inside you.  Your muscles twitch and contract, and you can swear you see stars as she ejaculates.  It takes you a while to catch your breath as you slide off her slowly softening meat pole and crawl onto the sand.", false);
@@ -1387,7 +1385,7 @@ private function submitToLakeIzma():void {
 		///[(If player has tight butthole:)
 		if(player.analCapacity() < 26) {
 			outputText("You can't help but yell in pain at the sudden sensation of something so huge forcing its way into your " + assholeDescript() + ".", false);
-			buttChange(30,true,true,false);
+			player.buttChange(30,true,true,false);
 			outputText("\n\n", false);
 
 			outputText("\"<i>Holy-!  Think I better take it easy on this...</i>\" you hear Izma proclaim.  \"<i>For my own safety moreso than anything else!</i>\"  Her efforts become more gentle.  She still forces her way into you, inch by painstaking inch, but she does so at a slower, steady pace, allowing your pucker time to adjust to the fierce stretching she is subjecting it to and using her hot pre-cum like lubricant.\n\n", false);
@@ -1454,7 +1452,7 @@ private function submitToLakeIzma():void {
  
 			outputText("\"<i>The heck!?  What kind of monsters have you been running into?</i>\" she wonders aloud.", false);
 		}
-		cuntChange(30,true,true,false);
+		player.cuntChange(30,true,true,false);
 		outputText("\n\n", false);
 		
  		outputText("Fully buried, she tightly grips your " + buttDescript() + " and then starts to pull out, before thrusting herself back in fiercely.  \"<i>Thought you were clever, eh?  Wanted to try doing it like shark people do, did you?  Well, among the sharks, there're only two sorts - the strong and the weak.  And this is what the weak get.</i>\"  She growls fiercely.\n\n", false);
@@ -1497,7 +1495,7 @@ private function submitToLakeIzma():void {
 		outputText("\n\n", false);
 		
 		outputText("Seemingly done appraising you, Izma roughly grabs your " + player.feet() + " and pulls your rear upwards, forcing your weight onto your spine and making you cry out from the uncomfortable position.  She doesn't waste time on foreplay, simply deciding to bury her cock into you slowly, inch by painstaking inch until she's pushing against the entrance to your womb.", false);
-		cuntChange(30,true,true,false);
+		player.cuntChange(30,true,true,false);
 		outputText("\n\n", false);
 		
  		outputText("She starts thrusting in and out of you, gradually increasing the speed and force, her hot pre-cum and your feminine juices acting like a lubricant to make things easier.  \"<i>Ahh~  You're a lovely cock-sleeve... you like being treated like this, don't ya, weakling?</i>\" Izma taunts, slamming in and out of your " + vaginaDescript(0) + ".  You're not even really ashamed to admit that such is the case anymore.\n\n", false);
@@ -1580,10 +1578,9 @@ private function gatASharkTooth():void {
 	}
 	else {
 		outputText("Izma smiles as she pulls a tooth from her chest.  She hands it to you with a pleased expression.  \"<i>Anything for you, my Alpha.</i>\"  ", false);
-		shortName = "TSTooth";
 		menuLoc = 0;
 		flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00246]++;
-		takeItem();
+		inventory.takeItem(consumables.TSTOOTH);
 	}
 }
 //[Appearance]
@@ -1724,7 +1721,7 @@ private function RadarIzmaLeaveHerWangUnWingWanged():void {
 	clearOutput();
 	outputText("As much as you think Izma would enjoy a handjob, you are not too keen on stimulating her member right now.  Izma notices your momentary stare at her rather large cock and grins mischievously at you.  \"<i>Come on, bitch! Pleasure your \"Alpha\"; you know you want to!</i>\" she chimes.  You stare back at her, and kindly inform her that her Alpha isn't keen on doing that; your reasons are your own, but you simply don't want to do that.  Her confident smirk almost immediately evaporates.  \"<i>Oh... sorry. I was caught up in the moment. If it's okay with you, I'll just jerk my cock while I dominate my Alpha,</i>\" she purrs.  Smiling back at her, you nod and give her a slap on the ass, giving her the message to giddy up.  With complete abandon, your tigershark lover giggles and bounces against your lap, manhandling your cock with those pussy feelers.  Moaning in appreciation, you dart your hands up to her rump and grasp it in your hands.  Driven by pleasure and sexual instinct, Izma fiercely strokes her member, moaning blissfully as her closed eyelids twitch from the dual pleasures of ravaging her cunt with your cock and jerking her prick in her hand.  She tries hard to contain the force of her sexual euphoria, but her expression ultimately betrays her escalating passion as she grits her teeth and physically opens her mouth to let out a hardy moan; dead silence is the only thing that escapes from her wide open mouth for a few briefs moments, before she releases a prolonged, erratic series of wails.");
 	outputText("\n\nIzma bites her lip in response, clearly wanting to enjoy her time on top just a little bit longer.  But the grunts and moans of ecstasy make it clear that the tigershark can't hold back much longer.  Her vaginal walls clamp down hard against your cock.  She squeals loudly as thick ropes of jizz launch from her cock, her hands cupping her cockhead to keep the cum from streaming onto your face or body."); 
-	outputText("\n\nYour own cock has been just as teased and tormented - and as her inner walls grip down, her tentacles squeezing as hard as they can, it's too much. You let out a cry of your own as you flood her interior with your spooge", false)
+	outputText("\n\nYour own cock has been just as teased and tormented - and as her inner walls grip down, her tentacles squeezing as hard as they can, it's too much. You let out a cry of your own as you flood her interior with your spooge", false);
 	//[(if vagina)
 	if(player.hasVagina()) {
 		outputText(", your cunt ", false);
@@ -1824,7 +1821,7 @@ private function followerIzmaTakesItInPooper():void {
 	else {
 		outputText("Izma starts to push and, meeting no resistance from your well-trained ass, slams her hips against yours with a groan of satisfaction.\n\n", false);
 	}
-	buttChange(30,true,true,false);
+	player.buttChange(30,true,true,false);
 	outputText("\n\n", false);
 
 	outputText("With her hips securely pressed against yours, she leans over you to grab your wrists and hold them to the ground, her elbows hooked behind your knees to immobilize you with your ass in the air.  Her cock feels warm inside of you, and you could swear she's making it throb deliberately, just to feel you twitch in response.\n\n", false);
@@ -2233,7 +2230,6 @@ private function talkWivIzma():void {
 		doNext(13);
 		return;
 	}
-	doNext(13);
 }
 //[Leave]
 private function chooseNotToFlirtWithIzma():void {
@@ -2241,7 +2237,6 @@ private function chooseNotToFlirtWithIzma():void {
 	outputText("", true);
 	outputText("You thank Izma for the interesting conversation, even if it did end up meandering a bit, and then walk away, leaving her to her private thoughts.\n\n", false);
 	doNext(13);
-	return;
 }
 //Flirt]
 private function chooseToFlirtWithIzma():void {
@@ -2379,7 +2374,7 @@ public function pcPopsOutASharkTot():void {
 		outputText("You crumple suddenly; strong pains and pressures pulverize the nerves in your gut.  As your eyes shoot wide open, you look down to see your belly absurdly full and distended.  You can feel movement underneath the skin, and watch as its bulges and shifts reflect another living being moving independently inside you.  Instinctively, you spread your legs as you feel the creature press outward, parting your cervix and allowing a gush of water to spill forth - far more water than you thought you were holding.\n\n", false);
  
 		outputText("You cry out as the first wrenching labor pain begins in earnest, unthinkingly hoping for somebody to come and help you.  Much to your despair, no-one does, leaving you alone to deliver the baby.  You double your focus, set on pushing in time with its own frantic attempts to escape.  Squeezing over and over, you try to force out the child before the pain robs you of consciousness; luckily it seems to oblige, sliding out of you legs-first after a few more pushes.  The shark-skin rasps your inflamed pussy, drawing gasps of shock from you as she squeezes past your lips in fits and starts.", false);
-		cuntChange(100,true,true,false);
+		player.cuntChange(100,true,true,false);
 		outputText("\n\n", false);
 
 		outputText("Finally, she's out; you quiver weakly as she crawls over to you and it takes all your effort to lift your " + player.armorName + " and expose your " + nippleDescript(0) + "s to her.  As she sucks greedily at them, the haze begins to clear from your vision.  For the first time, you can actually make out distinct features on your new daughter; she's a ", false);
@@ -2421,7 +2416,7 @@ public function pcPopsOutASharkTot():void {
 		outputText("Time slips away; you're too overwhelmed by the pain of your womb contracting and the pleasure as Izma ministers to your " + vaginaDescript(), false);
 		if(player.hasCock()) outputText(" and " + multiCockDescriptLight(), false);
 		outputText(", which makes the birth pangs become less painful and more orgasmic. You lose yourself in the haze to the point you're barely aware when the birth finally comes to an end; you feel a great pressure welling up inside you, an overwhelming urge to push, and then, the next thing you know, relief washes over you as your stomach deflates.", false);
-		cuntChange(100,true,true,false);
+		player.cuntChange(100,true,true,false);
 		outputText("\n\n");
  
 		outputText("\"<i>We've got her, " + player.short + "! Whoa- hold still, you slippery little girl! Stop wriggling so much, you're out now, it's me, your daddy!</i>\" Izma cries out. As you regain your strength and your vision clears, you are presented with the sight of Izma trying desperately to wrangle a squirming baby shark-morph; from her ", false);
@@ -2463,7 +2458,7 @@ public function pcPopsOutASharkTot():void {
 private function izmaKidsPlaytime():void {
 	spriteSelect(32);
 	outputText("", true);
-	var choices:Array = new Array();
+	var choices:Array = [];
 	//Build an array of the possible scenes
 	if(flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00252] > 0) {
 		//NEITHER GOOD
@@ -2598,7 +2593,7 @@ private function inCampRideIzmasDickDongTheWitchIsDead():void {
 	else if(player.vaginalCapacity() < 50) outputText("  You groan and shudder slightly as you slide down the generous 15 inches of dick, the slight pain being drowned out by the sensation of being filled as full as you could possibly hold.", false);
 	//(Gaping)
 	else outputText("  You shudder and lick your lips. Izma may be big but you've had bigger, and you fit her cock like a glove.", false);
-	cuntChange(30,true,true,false);
+	player.cuntChange(30,true,true,false);
  	outputText("  Once you have made it to the very base of Izma's cock you pause for a moment to help yourself adjust, then, clenching your vaginal muscles, you start to rock back and forth; your body is sliding up and then slamming down, picking up speed and force as you continue to thrust.  Your hands reach out to maul Izma's tits", false);
 	if(player.hasCock()) {
 		outputText(", your erect cock", false);
@@ -2767,7 +2762,7 @@ private function removeIzmasPenis():void {
 	var pMilk:int = 0;
 	var count:int = 5;
 	while(count > 0) {
-		if(hasItem("SucMilk",count)) {
+		if(player.hasItem(consumables.SUCMILK,count)) {
 		   succMilk = count;
 		   break;
 		}
@@ -2775,7 +2770,7 @@ private function removeIzmasPenis():void {
 	}
 	count = 5;
 	while(count > 0) {
-		if(hasItem("P.S.Mlk",count)) {
+		if(player.hasItem(consumables.P_S_MLK,count)) {
 			pMilk = count;
 			break;
 		}
@@ -2802,7 +2797,7 @@ private function forceIzmaPenis():void {
 	var pMilk:int = 0;
 	var count:int = 5;
 	while(count > 0) {
-		if(hasItem("SucMilk",count)) {
+		if(player.hasItem(consumables.SUCMILK,count)) {
 		   succMilk = count;
 		   break;
 		}
@@ -2810,7 +2805,7 @@ private function forceIzmaPenis():void {
 	}
 	count = 5;
 	while(count > 0) {
-		if(hasItem("P.S.Mlk",count)) {
+		if(player.hasItem(consumables.P_S_MLK,count)) {
 			pMilk = count;
 			break;
 		}
@@ -2842,12 +2837,12 @@ private function izmaDickToggle():void {
 		outputText("\n\nYou carry her to the stream to keep her moist, tending to her for a half-hour before she wakens.  When her eyes open, Izma says, \"<i>Tch, that wasn't too bad.  Maybe I can get used to it, if that's what it's like for 'pure' women.</i>\"  Izma's tail wags back and forth mischievously, splashing up a storm as she suggests, \"<i>Just let me know if I'm ever allowed my penis again, okay?</i>\"  You sigh and agree.  <b>Izma is a female!</b>");
 		flags[kFLAGS.IZMA_NO_COCK] = 1;
 		var count:int = 0;
-		while(hasItem("P.S.Mlk",1) && count < 5) {
-			consumeItem("P.S.Mlk",1);
+		while(player.hasItem(consumables.P_S_MLK) && count < 5) {
+			player.consumeItem(consumables.P_S_MLK);
 			count++;
 		}
-		while(hasItem("SucMilk",1) && count < 5) {
-			consumeItem("SucMilk",1);
+		while(player.hasItem(consumables.SUCMILK) && count < 5) {
+			player.consumeItem(consumables.SUCMILK);
 			count++;
 			dynStats("cor", 3);
 		}
@@ -2971,7 +2966,7 @@ private function radarIzmaAnalDominant():void {
 	if(player.analCapacity() < 35) outputText("painfully rending the tight shape of your anus on it, causing both of you to moan in pain as you envelop more and more of her dick inside of you.  Izma slams into you forcefully as she unleashes a huge gasp, face utterly flooded with ecstasy as she stares into the sky behind closed eyes."); 
 	//(If loose to gaping: 
 	else outputText("slipping past the fleshy \"gates\" of your anus, requiring little stretching or working of your " + assholeDescript() + ".  You're worried that this might not work the way you want it to, given how easy it was to take Izma; a series of wild, erratic thrashings against your ass as the penile intruder tunnels deeper seems to dispel that notion.");
-	buttChange(42,true,true,false);
+	player.buttChange(42,true,true,false);
 
 	outputText("\n\nWith a cool, yet skittish breath of air, you tell Izma that you will be working her cock with your ass ");
 	if(player.isGoo()) outputText("and goo");

@@ -146,13 +146,14 @@ package classes.Scenes.Areas.Plains
 			init04Ass(ANAL_LOOSENESS_STRETCHED,ANAL_WETNESS_NORMAL,20);
 			init05Body(rand(37) + 64,HIP_RATING_AVERAGE,BUTT_RATING_AVERAGE+1,LOWER_BODY_TYPE_HOOFED);
 			init06Skin("tan");
-			init07Hair(Appearance.randomChoice("black","brown"),3+rand(20));
+			init07Hair(randomChoice("black","brown"),3+rand(20));
 			init08Face(FACE_COW_MINOTAUR);
 			init09PrimaryStats(75,70,110,70,60,35,45);
 			init10Weapon("fist","punch");
 			init11Armor("thick fur");
 			init12Combat(300,20,0.30,Monster.TEMPERMENT_LUSTY_GRAPPLES);
 			init13Level(14,rand(25) + 25);
+			init14ChainedDrop().add(consumables.INCUBID,1/2);
 			initX_Tail(TAIL_TYPE_COW);
 
 		}

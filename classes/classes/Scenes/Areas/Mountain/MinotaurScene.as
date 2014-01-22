@@ -5,6 +5,7 @@
 	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
+	import classes.Items.Armors.LustyMaidensArmor;
 
 	public class MinotaurScene extends BaseContent {
 		public function MinotaurScene() {}
@@ -55,9 +56,9 @@
 		feedposit = "Lay Eggs";
 		temp2 = layEggsInAMinotaurSpiderLike;
 	}
-	if((temp2 == null || rand(2) == 0) && player.hasVagina() && player.biggestTitSize() >= 4 && player.armorName == "lusty maiden's armor") {
+	if((temp2 == null || rand(2) == 0) && player.hasVagina() && player.biggestTitSize() >= 4 && player.armor is LustyMaidensArmor) {
 		feedposit = "B.Titfuck";
-		temp2 = kGAMECLASS.lustyMaidenPaizuri;
+		temp2 = (player.armor as LustyMaidensArmor).lustyMaidenPaizuri;
 	}
 	//Used for tracking prostate milking and injection
 	var tempText:String = "";

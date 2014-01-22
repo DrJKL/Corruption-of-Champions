@@ -1,8 +1,10 @@
 ﻿package classes 
 {
-	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
+	import classes.Items.*;
 	import classes.Scenes.Camp;
+	import classes.Scenes.Inventory;
+	import classes.internals.Utils;
 
 	import coc.model.GameModel;
 	import coc.model.TimeModel;
@@ -15,7 +17,7 @@
 	 * Also this means we might start being able to get IDE autocomplete shit working again! Huzzah!
 	 * @author Gedan
 	 */
-	public class BaseContent 
+	public class BaseContent extends Utils
 	{
 		// TODO remove when we have proper enums for this
 		include "../../includes/appearanceDefs.as";
@@ -23,6 +25,10 @@
 		public function BaseContent()
 		{
 			
+		}
+		protected function getGame():CoC
+		{
+			return kGAMECLASS;
 		}
 
 		protected function cheatTime(time:Number):void
@@ -87,6 +93,18 @@
 			return kGAMECLASS.inCombat();
 		}
 
+		protected function get inDungeon():Boolean
+		{
+			return kGAMECLASS.inDungeon;
+		}
+		protected function get itemSubMenu():Boolean
+		{
+			return kGAMECLASS.itemSubMenu;
+		}
+		protected function set itemSubMenu(value:Boolean):void
+		{
+			kGAMECLASS.itemSubMenu = value;
+		}
 		protected function showStats():void
 		{
 			kGAMECLASS.showStats();
@@ -102,14 +120,45 @@
 			kGAMECLASS.cleanupAfterCombat();
 		}
 
+		protected function combatRoundOver():void
+		{
+			kGAMECLASS.combatRoundOver();
+		}
+
+		protected function enemyAI():void
+		{
+			kGAMECLASS.enemyAI();
+		}
+
 		protected function spriteSelect(choice:Number = 0):void
 		{
 			kGAMECLASS.spriteSelect(choice);
 		}
 
+		protected function hideStats():void
+		{
+			kGAMECLASS.hideStats();
+		}
 		protected function hideUpDown():void
 		{
 			kGAMECLASS.hideUpDown();
+		}
+
+		protected function curry(func:Function,...args):Function
+		{
+			return Utils.curry.apply(null,[func].concat(args));
+		}
+		protected function lazyIndex(obj:*,...args):Function
+		{
+			return Utils.lazyIndex.apply(null,[obj].concat(args));
+		}
+		protected function lazyCallIndex(func:Function,...args):Function
+		{
+			return Utils.lazyCallIndex.apply(null,[func].concat(args));
+		}
+		protected function lazyCallIndexCall(func:Function,...args):Function
+		{
+			return Utils.lazyCallIndexCall.apply(null,[func].concat(args));
 		}
 
 		protected function createCallBackFunction(func:Function, arg:*):Function
@@ -208,11 +257,6 @@
 		protected function hasButton(arg:*):Boolean
 		{
 			return kGAMECLASS.hasButton(arg);
-		}
-		
-		protected function rand(maxVal:Number):Number
-		{
-			return kGAMECLASS.rand(maxVal);
 		}
 
 		protected function clearList():void{
@@ -466,41 +510,6 @@
 			// Bullshit to unroll the incoming array
 			kGAMECLASS.dynStats.apply(null, args);
 		}
-		protected function cuntChange(cArea:Number, display:Boolean, spacingsF:Boolean = false, spacingsB:Boolean = true):Boolean {
-			return player.cuntChange(cArea,display,spacingsF,spacingsB);
-		}
-		protected function buttChange(cArea:Number, display:Boolean, spacingsF:Boolean = true, spacingsB:Boolean = true):Boolean {
-			return player.buttChange(cArea,display,spacingsF,spacingsB);
-		}
-
-		protected function hasItem(itemName:String, minQuantity:Number):Boolean
-		{
-			return kGAMECLASS.hasItem(itemName,minQuantity);
-		}
-
-
-		protected function consumeItem(itemName:String, quantity:Number):Boolean
-		{
-			return kGAMECLASS.consumeItem(itemName,quantity);
-		}
-
-		protected function itemLongName(shortName1:String):String
-		{
-			return kGAMECLASS.itemLongName(shortName1);
-		}
-
-		protected function itemValue(item:String):Number
-		{
-			return kGAMECLASS.itemValue(item);
-		}
-
-		protected function takeItem():void{
-			kGAMECLASS.takeItem();
-		}
-		protected function destroyItems(itemName:String, numOfItemToRemove:Number):Boolean
-		{
-			return kGAMECLASS.destroyItems(itemName,numOfItemToRemove);
-		}
 
 		protected function silly():Boolean
 		{
@@ -517,10 +526,6 @@
 			kGAMECLASS.fatigue(mod,type);
 		}
 
-		protected function isWeapon(shortName:String):Boolean
-		{
-			return kGAMECLASS.isWeapon(shortName);
-		}
 
 		protected function get eventParser():Function
 		{
@@ -596,7 +601,23 @@
 		{
 			kGAMECLASS.monster = val;
 		}
-		
+
+		protected function get consumables():ConsumableLib{
+			return kGAMECLASS.consumables;
+		}
+		protected function get useables():UseableLib{
+			return kGAMECLASS.useables;
+		}
+		protected function get weapons():WeaponLib{
+			return kGAMECLASS.weapons;
+		}
+		protected function get armors():ArmorLib{
+			return kGAMECLASS.armors;
+		}
+		protected function get inventory():Inventory{
+			return kGAMECLASS.inventory;
+		}
+
 		protected function get itemSwapping():Boolean
 		{
 			return kGAMECLASS.itemSwapping;
@@ -637,61 +658,16 @@
 			kGAMECLASS.gameState = val;
 		}
 
-		protected function get itemSlot1():ItemSlotClass
+		protected function get itemSlots():Array
 		{
-			return kGAMECLASS.itemSlot1;
-		}
-		
-		protected function get itemSlot2():ItemSlotClass
-		{
-			return kGAMECLASS.itemSlot2;
-		}
-		
-		protected function get itemSlot3():ItemSlotClass
-		{
-			return kGAMECLASS.itemSlot3;
-		}
-		
-		protected function get itemSlot4():ItemSlotClass
-		{
-			return kGAMECLASS.itemSlot4;
-		}
-		
-		protected function get itemSlot5():ItemSlotClass
-		{
-			return kGAMECLASS.itemSlot5;
-		}
-		
-		protected function set itemSlot1(val:ItemSlotClass):void
-		{
-			kGAMECLASS.itemSlot1 = val;
-		}
-		
-		protected function set itemSlot2(val:ItemSlotClass):void
-		{
-			kGAMECLASS.itemSlot2 = val;
-		}
-		
-		protected function set itemSlot3(val:ItemSlotClass):void
-		{
-			kGAMECLASS.itemSlot3 = val;
-		}
-		
-		protected function set itemSlot4(val:ItemSlotClass):void
-		{
-			kGAMECLASS.itemSlot4 = val;
-		}
-		
-		protected function set itemSlot5(val:ItemSlotClass):void
-		{
-			kGAMECLASS.itemSlot5 = val;
+			return kGAMECLASS.player.itemSlots;
 		}
 		
 		protected function get itemStorage():Array
 		{
 			return kGAMECLASS.itemStorage;
 		}
-		
+
 		protected function set itemStorage(val:Array):void
 		{
 			kGAMECLASS.itemStorage = val;
@@ -705,16 +681,6 @@
 		protected function set gearStorage(val:Array):void
 		{
 			kGAMECLASS.gearStorage = val;
-		}
-		
-		protected function get shortName():String
-		{
-			return kGAMECLASS.shortName;
-		}
-		
-		protected function set shortName(val:String):void
-		{
-			kGAMECLASS.shortName = val;
 		}
 		
 		protected function get temp():int

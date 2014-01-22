@@ -2,9 +2,14 @@
 package classes
 {
 	import classes.GlobalFlags.kGAMECLASS;
+	import classes.Items.Armor;
+	import classes.Items.ArmorLib;
+	import classes.Items.Weapon;
+	import classes.Items.WeaponLib;
+	import classes.internals.Utils;
 
 	//import classes.CockClass;
-	public class Creature
+	public class Creature extends Utils
 	{
 
 		include "../../includes/appearanceDefs.as";
@@ -28,17 +33,112 @@ package classes
 		}
 		
 		//Clothing/Armor
-		public var armorName:String = "";
-		public var weaponName:String = "";
-		public var weaponVerb:String = "";
-		public var armorDef:Number = 0;
-		public var armorPerk:String = "";
-		public var weaponAttack:Number = 0;
-		public var weaponPerk:String = "";
-		public var weaponValue:Number = 0;
-		public var armorValue:Number = 0;
-		
-		//Primary stats
+		private var _armorName:String = "";
+		private var _weaponName:String = "";
+		private var _weaponVerb:String = "";
+		private var _armorDef:Number = 0;
+		private var _armorPerk:String = "";
+		private var _weaponAttack:Number = 0;
+		private var _weaponPerk:String = "";
+		private var _weaponValue:Number = 0;
+		private var _armorValue:Number = 0;
+
+
+		// since we cannot have public getters and protected setters...
+		protected function setArmorName(value:String):void
+		{
+			_armorName = value;
+		}
+
+		protected function setWeaponName(value:String):void
+		{
+			_weaponName = value;
+		}
+
+		protected function setWeaponVerb(value:String):void
+		{
+			_weaponVerb = value;
+		}
+
+		protected function setArmorDef(value:Number):void
+		{
+			_armorDef = value;
+		}
+
+		protected function setArmorPerk(value:String):void
+		{
+			_armorPerk = value;
+		}
+
+		protected function setWeaponAttack(value:Number):void
+		{
+			_weaponAttack = value;
+		}
+
+		protected function setWeaponPerk(value:String):void
+		{
+			_weaponPerk = value;
+		}
+
+		protected function setWeaponValue(value:Number):void
+		{
+			_weaponValue = value;
+		}
+
+		protected function setArmorValue(value:Number):void
+		{
+			_armorValue = value;
+		}
+
+		public function get weaponName():String
+		{
+			return _weaponName;
+		}
+
+		public function get weaponVerb():String
+		{
+			return _weaponVerb;
+		}
+
+		public function get weaponAttack():Number
+		{
+			return _weaponAttack;
+		}
+
+		public function get weaponPerk():String
+		{
+			return _weaponPerk;
+		}
+
+		public function get weaponValue():Number
+		{
+			return _weaponValue;
+		}
+
+		public function get armorName():String
+		{
+			return _armorName;
+		}
+
+		public function get armorDef():Number
+		{
+			return _armorDef;
+		}
+
+		public function get armorPerk():String
+		{
+			return _armorPerk;
+		}
+
+		public function get armorValue():Number
+		{
+			return _armorValue;
+		}
+
+
+
+
+//Primary stats
 		public var str:Number = 0;
 		public var tou:Number = 0;
 		public var spe:Number = 0;
@@ -1336,45 +1436,11 @@ package classes
 				index3 = 0;
 			return index3;
 		}
-		
-		protected function rand(max:Number):Number
-		{
-			return int(Math.random() * max);
-		}
+
 		
 		public function cockDescript(cockIndex:Number = 0):String
 		{
-
-			//trace("WRONG COCKDESCRIPT FUNCTION CALLED");
-			if (totalCocks() == 0)
-				return "<b>ERROR: CockDescript Called But No Cock Present</b>";
-			if (cockTotal() <= cockIndex && cockIndex != 99)
-				return "<b>ERROR: CockDescript called with index of " + cockIndex + " - out of BOUNDS</b>";
-			//Cocknum 99 to default to boring descriptions!
-			if (cockIndex != 99)
-			{
-				if (rand(2) == 0)
-					descript += cockAdjective(cockIndex) + ", ";
-				descript += Appearance.cockNoun(cocks[cockIndex].cockType);
-			}
-			else
-				cockIndex = 0;
-			var descript:String = "";
-			//50% of the time add a descriptor
-			if (rand(2) == 0)
-				descript += cockAdjective(cockIndex) + " ";
-			var rando:Number = 0;
-			rando = int(Math.random() * 10)
-			if (rando >= 0 && rando <= 4)
-				descript += "cock";
-			if (rando == 5 || rando == 6)
-				descript += "prick";
-			if (rando == 7)
-				descript += "pecker";
-			if (rando > 7)
-				descript += "shaft";
-			
-			return descript;
+			return Appearance.cockDescript(this,cockIndex);
 		}
 		
 		
@@ -3883,7 +3949,12 @@ package classes
 
 		public function multiCockDescriptLight():String
 		{
-			return Appearance.cockMultiLDescriptionShort(this);
+			return Appearance.multiCockDescriptLight(this);
+		}
+
+		public function multiCockDescript():String
+		{
+			return Appearance.multiCockDescript(this);
 		}
 
 		public function ballsDescriptLight(forcedSize:Boolean = true):String
@@ -3891,15 +3962,20 @@ package classes
 			return Appearance.ballsDescription(forcedSize, true, this);
 		}
 
+		public function sackDescript():String
+		{
+			return Appearance.sackDescript(this);
+		}
+
 		public function breastDescript(rowNum:int):String
 		{
 			//ERROR PREVENTION
 			if (breastRows.length - 1 < rowNum) {
-				if (CoC_Settings.haltOnErrors) throw new Error("");
+				CoC_Settings.error("");
 				return "<b>ERROR, breastDescript() working with invalid breastRow</b>";
 			}
 			if (breastRows.length == 0) {
-				if (CoC_Settings.haltOnErrors) throw new Error("");
+				CoC_Settings.error("");
 				return "<b>ERROR, breastDescript() called when no breasts are present.</b>";
 			}
 			var temp14:int = Math.random() * 3;

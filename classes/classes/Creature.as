@@ -1998,181 +1998,92 @@ package classes {
 			return quantity;
 		}
 		
-		//How many tentaclecocks?
-		public function tentacleCocks():Number
-		{
-			var tentacleCockC:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.TENTACLE)
-					tentacleCockC++;
+		public function cocksOfType(type:CockTypesEnum = null):int {
+			var count:int = 0;
+			for (var i:int = cocks.length - 1; i >= 0; i--) {
+				if (cocks[i].cockType == type) {
+					count++;
+				}
 			}
-			return tentacleCockC;
+			return count;
+		}
+		
+		//How many tentaclecocks?
+		public function tentacleCocks():int {
+			return cocksOfType(CockTypesEnum.TENTACLE);
 		}
 		
 		//How many demoncocks?
-		public function demonCocks():Number
-		{
-			var demonCockC:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.DEMON)
-					demonCockC++;
-			}
-			return demonCockC;
+		public function demonCocks():int {
+			return cocksOfType(CockTypesEnum.DEMON);
 		}
 		
 		//How many cat-cocks?
-		public function catCocks():Number
-		{
-			var catCockC:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.CAT)
-					catCockC++;
-			}
-			return catCockC;
+		public function catCocks():int {
+			return cocksOfType(CockTypesEnum.CAT);
 		}
 		
 		//How many lizard/snake-cocks?
-		public function lizardCocks():Number
-		{
-			var lizCockC:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.LIZARD)
-					lizCockC++;
-			}
-			return lizCockC;
+		public function lizardCocks():int {
+			return cocksOfType(CockTypesEnum.LIZARD);
 		}
 		
-		public function findFirstCockType(type:CockTypesEnum):Number
-		{
-			var index:Number = 0;
-			if (cocks[index].cockType == type)
-				return index;
-			while (index < cocks.length)
-			{
-				index++;
-				if (cocks[index].cockType == type)
-					return index;
+		public function findFirstCockType(type:CockTypesEnum):int {
+			for (var i:int = 0, len = cocks.length; i < len; i++) {
+				if (cocks[i].cockType == type) {
+					return i;
+				}
 			}
-			//trace("Creature.findFirstCockType ERROR - searched for cocktype: " + type + " and could not find it.");
-			return 0;
+			return -1;
 		}
 		
-		/*public function findFirstCockType(type:Number = 0):Number
-		{
-			var index:Number = 0;
-			if (cocks[index].cockType == type)
-				return index;
-			while (index < cocks.length)
-			{
-				index++;
-				if (cocks[index].cockType == type)
-					return index;
-			}
-			//trace("Creature.findFirstCockType ERROR - searched for cocktype: " + type + " and could not find it.");
-			return 0;
-		}*/
-		
-		public function displacerCocks():Number
-		{
-			var displacerWang:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.DISPLACER)
-					displacerWang++;
-			}
-			return displacerWang;
+		public function displacerCocks():int {
+			return cocksOfType(CockTypesEnum.DISPLACER);
 		}
 		
 		//How many kangawangs
-		public function kangaCocks():Number
-		{
-			var kangaWang:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.KANGAROO)
-					kangaWang++;
-			}
-			return kangaWang;
+		public function kangaCocks():Number {
+			return cocksOfType(CockTypesEnum.KANGAROO);
 		}
 		
 		//How many horsecocks?
-		public function horseCocks():Number
-		{
-			var horseCockC:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0) {
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.HORSE)
-					horseCockC++;
-			}
-			return horseCockC;
+		public function horseCocks():int {
+			return cocksOfType(CockTypesEnum.HORSE);
 		}
 		
 		//How many anemonecocks?
-		public function anemoneCocks():Number
-		{
-			var anemoneCockC:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.ANEMONE)
-					anemoneCockC++;
-			}
-			return anemoneCockC;
+		public function anemoneCocks():int {
+			return cocksOfType(CockTypesEnum.ANEMONE);
 		}
 		
 		//Change first normal cock to horsecock!
 		//Return number of affected cock, otherwise -1
-		public function addHorseCock():Number
-		{
+		public function addHorseCock():Number {
 			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
+			while (counter > 0) {
 				counter--;
 				//Human - > horse
-				if (cocks[counter].cockType == CockTypesEnum.HUMAN)
-				{
+				if (cocks[counter].cockType == CockTypesEnum.HUMAN) {
 					cocks[counter].cockType = CockTypesEnum.HORSE;
 					return counter;
 				}
 				//Dog - > horse
-				if (cocks[counter].cockType == CockTypesEnum.DOG)
-				{
+				if (cocks[counter].cockType == CockTypesEnum.DOG) {
 					cocks[counter].cockType = CockTypesEnum.HORSE;
 					return counter;
 				}
 				//Tentacle - > horse
-				if (cocks[counter].cockType == CockTypesEnum.TENTACLE)
-				{
+				if (cocks[counter].cockType == CockTypesEnum.TENTACLE) {
 					cocks[counter].cockType = CockTypesEnum.HORSE;
 					return counter;
 				}
 				//Demon -> horse
-				if (cocks[counter].cockType == CockTypesEnum.DEMON)
-				{
+				if (cocks[counter].cockType == CockTypesEnum.DEMON) {
 					cocks[counter].cockType = CockTypesEnum.HORSE;
 					return counter;
 				}
 				//Catch-all
-				if (cocks[counter].cockType.Index > 4)
-				{
+				if (cocks[counter].cockType.Index > 4) {
 					cocks[counter].cockType = CockTypesEnum.HORSE;
 					return counter;
 				}
@@ -2184,54 +2095,23 @@ package classes {
 		// of the PC's attributes, and this is recaluculated every hour spent at camp.
 		// As such, delineating between the two is kind of silly.
 		//How many dogCocks
-		public function dogCocks():int
-		{
-			var dogCockC:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.DOG || cocks[counter].cockType == CockTypesEnum.FOX)
-					dogCockC++;
-			}
-			return dogCockC;
+		public function dogCocks():int {
+			return cocksOfType(CockTypesEnum.DOG) + cocksOfType(CockTypesEnum.FOX);
 		}
 		
 		//How many foxCocks
-		public function foxCocks():int
-		{
-			
+		public function foxCocks():int {
 			return dogCocks();
 		}
 
-		
-
 		//How many dragonCocks
-		public function dragonCocks():int
-		{
-			var dragonCockC:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.DRAGON)
-					dragonCockC++;
-			}
-			return dragonCockC;
+		public function dragonCocks():int {
+			return cocksOfType(CockTypesEnum.DRAGON);
 		}
 		
 		//How many normalCocks
-		public function normalCocks():int
-		{
-			var normalCockC:Number = 0;
-			var counter:Number = cocks.length;
-			while (counter > 0)
-			{
-				counter--;
-				if (cocks[counter].cockType == CockTypesEnum.HUMAN)
-					normalCockC++;
-			}
-			return normalCockC;
+		public function normalCocks():int {
+			return cocksOfType(CockTypesEnum.HUMAN);
 		}
 		
 		//TODO Seriously wtf. 1500+ calls to cockTotal, 340+ call to totalCocks. I'm scared to touch either.

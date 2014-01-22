@@ -1273,10 +1273,10 @@ package classes {
 		}
 		
 		//Find the third biggest dick index.
-		public function biggestCockIndex3():Number
-		{
-			if (cocks.length <= 2)
+		public function biggestCockIndex3():Number {
+			if (cocks.length <= 2) {
 				return 0;
+			}
 			var counter:Number = cocks.length;
 			var index:Number = 0;
 			var index2:Number = -1;
@@ -1307,33 +1307,32 @@ package classes {
 				}
 			}
 			//If it couldn't find a second biggest...
-			if (index == index2 || index2 == -1)
+			if (index == index2 || index2 == -1) {
 				index2 = 0;
+			}
 			//Reset counter and find the next biggest
 			counter = cocks.length;
-			while (counter > 0)
-			{
+			while (counter > 0) {
 				counter--;
 				//If this index isn't used already
 				if (counter != index && counter != index2)
 				{
 					//Has index been set to anything yet?
-					if (index3 == -1)
+					if (index3 == -1) {
 						index3 = counter;
-					//Is the stored value less than the current one?
-					else if (cockArea(index3) < cockArea(counter))
-					{
+					} else if (cockArea(index3) < cockArea(counter)) { //Is the stored value less than the current one?
 						index3 = counter;
 					}
 				}
 			}
 			//If it fails for some reason.
-			if (index3 == -1)
+			if (index3 == -1) {
 				index3 = 0;
+			}
 			return index3;
 		}
 		
-		protected function rand(max:Number):Number {
+		protected static function rand(max:Number):Number {
 			return Math.floor(Math.random() * max);
 		}
 		
@@ -1341,7 +1340,7 @@ package classes {
 			var array:Array = ((args.length == 1) && (args[0] is Array))
 				? args[0]
 				: args;
-			return array[ rand(array.length) ];
+			return array[rand(array.length)];
 		}
 		
 		public function cockDescript(cockIndex:Number = 0):String {
@@ -2743,34 +2742,34 @@ package classes {
 		}
 		
 		//Create a cock. Default type is HUMAN
-		public function createCock(clength:Number = 5.5, cthickness:Number = 1,ctype:CockTypesEnum=null):Boolean
-		{
-			if (ctype == null) ctype = CockTypesEnum.HUMAN;
-			if (cocks.length >= 10)
+		public function createCock(clength:Number = 5.5, cthickness:Number = 1,ctype:CockTypesEnum=null):Boolean {
+			if (cocks.length >= 10) {
 				return false;
-			var newCock:Cock = new Cock(clength, cthickness,ctype);
-			//var newCock:cockClass = new cockClass();
+			}
+			ctype ||= CockTypesEnum.HUMAN;
+			var newCock:Cock = new Cock(clength, cthickness, ctype);
 			cocks.push(newCock);
-			cocks[cocks.length-1].cockThickness = cthickness;
-			cocks[cocks.length-1].cockLength = clength;
+			// Should be able to remove.
+			//cocks[cocks.length-1].cockThickness = cthickness;
+			//cocks[cocks.length-1].cockLength = clength;
 			return true;
 		}
 		
 		//create vagoo
-		public function createVagina(virgin:Boolean = true, vaginalWetness:Number = 1, vaginalLooseness:Number = 0):Boolean
-		{
-			if (vaginas.length >= 2)
+		public function createVagina(virgin:Boolean = true, vaginalWetness:Number = 1, vaginalLooseness:Number = 0):Boolean {
+			if (vaginas.length >= 2) {
 				return false;
+			}
 			var newVagina:VaginaClass = new VaginaClass(vaginalWetness,vaginalLooseness,virgin);
 			vaginas.push(newVagina);
 			return true;
 		}
 		
 		//create a row of breasts
-		public function createBreastRow(size:Number=0,nipplesPerBreast:Number=1):Boolean
-		{
-			if (breastRows.length >= 10)
+		public function createBreastRow(size:Number=0, nipplesPerBreast:Number=1):Boolean {
+			if (breastRows.length >= 10) {
 				return false;
+			}
 			var newBreastRow:BreastRowClass = new BreastRowClass();
 			newBreastRow.breastRating = size;
 			newBreastRow.nipplesPerBreast = nipplesPerBreast;
@@ -2778,119 +2777,59 @@ package classes {
 			return true;
 		}
 		
-		public function genderCheck():void
-		{
-			if (hasCock() && hasVagina())
+		public function genderCheck():void {
+			if (hasCock() && hasVagina()) {
 				gender = GENDER_HERM;
-			else if (hasCock())
+			} else if (hasCock()) {
 				gender = GENDER_MALE;
-			else if (hasVagina())
+			} else if (hasVagina()) {
 				gender = GENDER_FEMALE;
-			else
+			} else {
 				gender = GENDER_NONE;
+			}
 		}
 		
 		//Remove cocks
-		public function removeCock(arraySpot:int, totalRemoved:int):void
-		{
+		public function removeCock(arraySpot:int, totalRemoved:int):void {
 			//Various Errors preventing action
-			if (arraySpot < 0 || totalRemoved <= 0)
-			{
+			if (arraySpot < 0 || totalRemoved <= 0 || cocks.length == 0 || arraySpot > cocks.length - 1) {
 				//trace("ERROR: removeCock called but arraySpot is negative or totalRemoved is 0.");
 				return;
 			}
-			if (cocks.length == 0)
-			{
-				//trace("ERROR: removeCock called but cocks do not exist.");
-			}
-			else
-			{
-				if (arraySpot > cocks.length - 1)
-				{
-					//trace("ERROR: removeCock failed - array location is beyond the bounds of the array.");
-				}
-				else
-				{
-					try
-					{
-						cocks.splice(arraySpot, totalRemoved);
-					}
-					catch (e:Error)
-					{
-						trace("Argument error in Creature[" + this.short + "]: " + e.message);
-					}
-					//trace("Attempted to remove " + totalRemoved + " cocks.");
-				}
-			}
+			cocks.splice(arraySpot, totalRemoved);
 			genderCheck();
 		}
 		
-		//REmove vaginas
-		public function removeVagina(arraySpot:int = 0, totalRemoved:int = 1):void
-		{
+		//Remove vaginas
+		public function removeVagina(arraySpot:int = 0, totalRemoved:int = 1):void {
 			//Various Errors preventing action
-			if (arraySpot < -1 || totalRemoved <= 0)
-			{
+			if (arraySpot < -1 || totalRemoved <= 0 || vaginas.length == 0 || arraySpot > vaginas.length - 1) {
 				//trace("ERROR: removeVagina called but arraySpot is negative or totalRemoved is 0.");
 				return;
 			}
-			if (vaginas.length == 0)
-			{
-				//trace("ERROR: removeVagina called but cocks do not exist.");
-			}
-			else
-			{
-				if (arraySpot > vaginas.length - 1)
-				{
-					//trace("ERROR: removeVagina failed - array location is beyond the bounds of the array.");
-				}
-				else
-				{
-					vaginas.splice(arraySpot, totalRemoved);
-					//trace("Attempted to remove " + totalRemoved + " vaginas.");
-				}
-			}
+			vaginas.splice(arraySpot, totalRemoved);
 			genderCheck();
 		}
 		
 		//Remove a breast row
-		public function removeBreastRow(arraySpot:int, totalRemoved:int):void
-		{
+		public function removeBreastRow(arraySpot:int, totalRemoved:int):void {
 			//Various Errors preventing action
-			if (arraySpot < -1 || totalRemoved <= 0)
-			{
+			if (arraySpot < -1 || totalRemoved <= 0 || breastRows.length == 0 || arraySpot > breastRows.length - 1) {
 				//trace("ERROR: removeBreastRow called but arraySpot is negative or totalRemoved is 0.");
 				return;
 			}
-			if (breastRows.length == 0)
-			{
-				//trace("ERROR: removeBreastRow called but cocks do not exist.");
-			}
-			else
-			{
-				if (arraySpot > breastRows.length - 1)
-				{
-					//trace("ERROR: removeBreastRow failed - array location is beyond the bounds of the array.");
-				}
-				else
-				{
-					breastRows.splice(arraySpot, totalRemoved);
-					//trace("Attempted to remove " + totalRemoved + " breastRows.");
-				}
-			}
+			breastRows.splice(arraySpot, totalRemoved);
 		}
 		
 		// This is placeholder shit whilst I work out a good way of BURNING ENUM TO THE FUCKING GROUND
 		// and replacing it with something that will slot in and work with minimal changes and not be
 		// A FUCKING SHITSTAIN when it comes to intelligent de/serialization.
-		public function fixFuckingCockTypesEnum():void
-		{
-			if (this.cocks.length > 0)
-			{
-				for (var i:int = 0; i < this.cocks.length; i++)
-				{
-					this.cocks[i].cockType = CockTypesEnum.ParseConstantByIndex(this.cocks[i].cockType.Index);
-				}
+		public function fixFuckingCockTypesEnum():void {
+			if (this.cocks.length < 0) {
+				return;
+			}
+			for (var i:int = 0; i < this.cocks.length; i++) {
+				this.cocks[i].cockType = CockTypesEnum.ParseConstantByIndex(this.cocks[i].cockType.Index);
 			}
 		}
 
@@ -2898,11 +2837,14 @@ package classes {
 			var stretched:Boolean = false;
 			//cArea > capacity = autostreeeeetch half the time.
 			if(cArea >= analCapacity() && rand(2) == 0) {
-				if(ass.analLooseness >= 5) {}
-				else ass.analLooseness++;
+				if (ass.analLooseness < 5) {
+					ass.analLooseness++;
+				}
 				stretched = true;
 				//Reset butt stretchin recovery time
-				if(hasStatusAffect("ButtStretched") >= 0) changeStatusValue("ButtStretched",1,0);
+				if (hasStatusAffect("ButtStretched") >= 0) {
+					changeStatusValue("ButtStretched",1,0);
+				}
 			}
 			//If within top 10% of capacity, 25% stretch
 			if(cArea < analCapacity() && cArea >= .9*analCapacity() && rand(4) == 0) {
@@ -2922,9 +2864,11 @@ package classes {
 			//Delay un-stretching
 			if(cArea >= .5 * analCapacity()) {
 				//Butt Stretched used to determine how long since last enlargement
-				if(hasStatusAffect("ButtStretched") < 0) createStatusAffect("ButtStretched",0,0,0,0);
-				//Reset the timer on it to 0 when restretched.
-				else changeStatusValue("ButtStretched",1,0);
+				if (hasStatusAffect("ButtStretched") < 0) {
+					createStatusAffect("ButtStretched",0,0,0,0);
+				} else { //Reset the timer on it to 0 when restretched.
+					changeStatusValue("ButtStretched",1,0);
+				}
 			}
 			if(stretched) {
 				trace("BUTT STRETCHED TO " + (ass.analLooseness) + ".");
@@ -2932,26 +2876,25 @@ package classes {
 			return stretched;
 		}
 
-		public function cuntChangeNoDisplay(cArea:Number):Boolean{
-			if(vaginas.length == 0) return false;
+		public function cuntChangeNoDisplay(cArea:Number):Boolean {
+			if (vaginas.length == 0) {
+				return false;
+			}
 			var stretched:Boolean = false;
 			var devirgined:Boolean = false;
 			if(hasPerk("Fera's Boon - Milking Twat") < 0 || vaginas[0].vaginalLooseness <= VAGINA_LOOSENESS_NORMAL) {
-			//cArea > capacity = autostreeeeetch.
-			if(cArea >= vaginalCapacity()) {
-				if(vaginas[0].vaginalLooseness >= VAGINA_LOOSENESS_LEVEL_CLOWN_CAR) {}
-				else vaginas[0].vaginalLooseness++;
-				stretched = true;
-			}
-			//If within top 10% of capacity, 50% stretch
-			else if(cArea >= .9 * vaginalCapacity() && rand(2) == 0) {
-				vaginas[0].vaginalLooseness++;
-				stretched = true;
-			}
-			//if within 75th to 90th percentile, 25% stretch
-			else if(cArea >= .75 * vaginalCapacity() && rand(4) == 0) {
-				vaginas[0].vaginalLooseness++;
-				stretched = true;
+				//cArea > capacity = autostreeeeetch.
+				if(cArea >= vaginalCapacity()) {
+					if (vaginas[0].vaginalLooseness < VAGINA_LOOSENESS_LEVEL_CLOWN_CAR) {
+						vaginas[0].vaginalLooseness++;
+					}
+					stretched = true;
+				} else if(cArea >= .9 * vaginalCapacity() && rand(2) == 0) { //If within top 10% of capacity, 50% stretch
+					vaginas[0].vaginalLooseness++;
+					stretched = true;
+				} else if(cArea >= .75 * vaginalCapacity() && rand(4) == 0) { //if within 75th to 90th percentile, 25% stretch
+					vaginas[0].vaginalLooseness++;
+					stretched = true;
 				}
 			}
 			//If virgin
@@ -2962,65 +2905,58 @@ package classes {
 			//Delay anti-stretching
 			if(cArea >= .5 * vaginalCapacity()) {
 				//Cunt Stretched used to determine how long since last enlargement
-				if(hasStatusAffect("CuntStretched") < 0) createStatusAffect("CuntStretched",0,0,0,0);
-				//Reset the timer on it to 0 when restretched.
-				else changeStatusValue("CuntStretched",1,0);
+				if (hasStatusAffect("CuntStretched") < 0) {
+					createStatusAffect("CuntStretched",0,0,0,0);
+				} else { //Reset the timer on it to 0 when restretched.
+					changeStatusValue("CuntStretched",1,0);
+				}
 			}
-			if(stretched) {
+			if (stretched) {
 				trace("CUNT STRETCHED TO " + (vaginas[0].vaginalLooseness) + ".");
 			}
 			return stretched;
 		}
 
-		public function bonusFertility():Number
-		{
+		public function bonusFertility():Number {
 			var counter:Number = 0;
-			if (hasPerk("heat") >= 0)
+			if (hasPerk("heat") >= 0) {
 				counter += perks[hasPerk("heat")].value1;
-			if (hasPerk("Fertility+") >= 0)
+			}
+			if (hasPerk("Fertility+") >= 0) {
 				counter += 15;
-			if (hasPerk("Marae's Gift - Fertility") >= 0)
+			}
+			if (hasPerk("Marae's Gift - Fertility") >= 0) {
 				counter += 50;
-			if (hasPerk("Fera's Boon - Breeding Bitch") >= 0)
+			}
+			if (hasPerk("Fera's Boon - Breeding Bitch") >= 0) {
 				counter += 30;
-			if (hasPerk("Magical Fertility") >= 0)
+			}
+			if (hasPerk("Magical Fertility") >= 0) {
 				counter += 10;
+			}
 			counter += perkv2("Elven Bounty");
 			counter += perkv1("Pierced: Fertite");
 			return counter;
 		}
 
-		public function totalFertility():Number
-		{
+		public function totalFertility():Number {
 			return (bonusFertility() + fertility);
 		}
 
-		public function isBiped():Boolean
-		{
+		public function isBiped():Boolean {
 			//Naga/Centaur
-			if (lowerBody == 3 || lowerBody == 4)
-				return false;
-			if (lowerBody == 8 || lowerBody == 11)
-				return false;
-			return true;
+			return !(isNaga() || isTaur() || isGoo());
 		}
 
-		public function isNaga():Boolean
-		{
-			if (lowerBody == 3)
-				return true;
-			return false;
+		public function isNaga():Boolean {
+			return (lowerBody == 3);
 		}
 
-		public function isTaur():Boolean
-		{
-			if (lowerBody == 4 || lowerBody == 11)
-				return true;
-			return false;
+		public function isTaur():Boolean {
+			return (lowerBody == 4 || lowerBody == 11);
 		}
 
-		public function isDrider():Boolean
-		{
+		public function isDrider():Boolean {
 			return (lowerBody == 16);
 		}
 
@@ -3129,6 +3065,7 @@ package classes {
 				return randomChoice("raccoon-like feet", "long-toed paws", "feet", "paws");
 			default:
 				return "feet";
+			}
 		}
 
 		public function foot():String {
@@ -3313,8 +3250,8 @@ package classes {
 		public function smallestTitSize():Number {
 			var index:Number = 0;
 			for (var i:int = breastRows.length - 1; i >= 0; i-- ) {
-				if (breastRows[index].breastRating > breastRows[counter].breastRating) {
-					index = counter;
+				if (breastRows[index].breastRating > breastRows[i].breastRating) {
+					index = i;
 				}
 			}
 			return (breastRows.length == 0)
@@ -3324,9 +3261,9 @@ package classes {
 
 		public function smallestTitRow():Number {
 			var index:Number = 0;
-			for (var counter:Number = breastRows.length - 1; counter >= 0 ; counter-- ) {
-				if (breastRows[index].breastRating > breastRows[counter].breastRating) {
-					index = counter;
+			for (var i:Number = breastRows.length - 1; i >= 0 ; i-- ) {
+				if (breastRows[index].breastRating > breastRows[i].breastRating) {
+					index = i;
 				}
 			}
 			return (breastRows.length == 0)
@@ -3338,7 +3275,7 @@ package classes {
 			var index:Number = 0;
 			for (var i:int = breastRows.length - 1; i >= 0; i--) {
 				if (breastRows[index].breastRating < breastRows[i].breastRating) {
-					index = counter;
+					index = i;
 				}
 			}
 			return index;
@@ -3417,7 +3354,7 @@ package classes {
 		public function mostBreastsPerRow():Number {
 			var index:Number = 0;
 			for (var i:int = breastRows.length - 1; i >= 0; i--) {
-				if (breastRows[index].breasts < breastRows[counter].breasts) {
+				if (breastRows[index].breasts < breastRows[i].breasts) {
 					index = i;
 				}
 			}

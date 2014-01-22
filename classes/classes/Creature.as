@@ -633,8 +633,7 @@ package classes {
 		}
 		
 		//TODO Change this to Boolean
-		public function hasStatusAffect(statusName:String):Number
-		{
+		public function hasStatusAffect(statusName:String):Number {
 			var counter:Number = statusAffects.length;
 			//Various Errors preventing action
 			if (statusAffects.length <= 0)
@@ -2246,13 +2245,13 @@ package classes {
 			return (cocks.length);
 		}
 		
-		//BOolean alternate
+		//Boolean alternate
 		public function hasCock():Boolean {
 			return (totalCocks() > 0);
 		}
 		
 		public function homogenousCocks():Boolean {
-			for (var i:int = 1, len:int = totalCocks(); i < len; i++) {
+			for (var i:int = totalCocks() - 1; i > 0; i--) {
 				if (cocks[i].cockType == cocks[0].cockType) {
 					return false;
 				}
@@ -2260,28 +2259,19 @@ package classes {
 			return true;
 		}
 		
-		public function hasSockRoom():Boolean
-		{
-			var index:int = cockTotal();
-			while (index > 0)
-			{
-				index--;
-				if (cocks[index].sock == "")
+		public function hasSockRoom():Boolean {
+			for (var i:int = totalCocks() - 1; i >= 0; i--) {
+				if (cocks[i].sock == "") {
 					return true;
+				}
 			}
 			return false
 		}
 		
-		public function hasSock(arg:String = ""):Boolean
-		{
-			var index:int = cockTotal();
-			while (index > 0)
-			{
-				index--;
-				if (cocks[index].sock != "")
-				{
-					if (arg == "" || cocks[index].sock == arg)
-						return true;
+		public function hasSock(arg:String = ""):Boolean {
+			for (var i:int = totalCocks() - 1; i >= 0; i--) {
+				if (cocks[i].sock != "" && (arg == "" || cocks[i].sock == arg)) {
+					return true;
 				}
 			}
 			return false
@@ -2301,30 +2291,21 @@ package classes {
 			//web also makes false!
 			if (hasStatusAffect("Web") >= 0)
 				return false;
-			if (wingType == 2 || wingType == 7 || wingType == 9 || wingType == 11 || wingType == 12)
-				return true;
-			return false;
+			return (wingType == 2 || wingType == 7 || wingType == 9 || wingType == 11 || wingType == 12);
 		}
 		
 		//check for vagoo
-		public function hasVagina():Boolean
-		{
-			if (vaginas.length > 0)
-				return true;
-			return false;
+		public function hasVagina():Boolean {
+			return (vaginas.length > 0);
 		}
 		
-		public function hasVirginVagina():Boolean
-		{
-			if (vaginas.length > 0)
-				return vaginas[0].virgin;
-			return false;
+		public function hasVirginVagina():Boolean {
+			return (vaginas.length > 0 && vaginas[0].virgin);
 		}
 		
-		public function manWoman(caps:Boolean = false):String
-		{
+		public function manWoman(caps:Boolean = false):String {
 			//Dicks?
-			if (totalCocks() > 0)
+			if (hasCock())
 			{
 				if (hasVagina())
 				{
@@ -2363,7 +2344,7 @@ package classes {
 		public function guyGirl(caps:Boolean = false):String
 		{
 			//Dicks?
-			if (totalCocks() > 0)
+			if (hasCock())
 			{
 				if (hasVagina())
 				{
@@ -2417,7 +2398,7 @@ package classes {
 		public function mf(male:String, female:String):String
 		{
 			//Dicks?
-			if (totalCocks() > 0)
+			if (hasCock())
 			{
 				if (hasVagina())
 					return female;
@@ -2441,7 +2422,7 @@ package classes {
 		public function boyGirl(caps:Boolean = false):String
 		{
 			//Dicks?
-			if (totalCocks() > 0)
+			if (hasCock())
 			{
 				if (hasVagina())
 				{
@@ -2487,7 +2468,7 @@ package classes {
 		public function heShe(caps:Boolean = false):String
 		{
 			//Dicks?
-			if (totalCocks() > 0)
+			if (hasCock())
 			{
 				if (hasVagina())
 				{
@@ -2533,36 +2514,26 @@ package classes {
 		public function himHer(caps:Boolean = false):String
 		{
 			//Dicks?
-			if (totalCocks() > 0)
-			{
-				if (hasVagina())
-				{
+			if (hasCock()) {
+				if (hasVagina()) {
 					if (caps)
 						return "Her";
 					else
 						return "her";
-				}
-				else
-				{
+				} else {
 					if (caps)
 						return "Him";
 					else
 						return "him";
 				}
-			}
-			else
-			{
-				if (hasVagina())
-				{
+			} else {
+				if (hasVagina()) {
 					if (caps)
 						return "Her";
 					else
 						return "her";
-				}
-				else
-				{
-					if (biggestTitSize() >= 3)
-					{
+				} else {
+					if (biggestTitSize() >= 3) {
 						if (caps)
 							return "Her";
 						else
@@ -2578,7 +2549,7 @@ package classes {
 		
 		public function maleFemale(caps:Boolean = false):String {
 			//Dicks?
-			if (totalCocks() > 0) {
+			if (hasCock()) {
 				if (hasVagina()) {
 					if (caps)
 						return "Female";

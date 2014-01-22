@@ -3115,75 +3115,34 @@ package classes {
 			return skinzilla;
 		}
 
-		public function leg():String
-		{
-			var select:Number = 0;
-			//lowerBody:
-			//0 - normal
-			if (lowerBody == 0)
+		public function leg():String {
+			switch (lowerBody) {
+			case 0: 
+			case 1: 
+			case 2: 
 				return "leg";
-			//1 - hooves
-			if (lowerBody == 1)
-				return "leg";
-			//2 - paws
-			if (lowerBody == 2)
-				return "leg";
-			//3 - snakelike body
-			if (lowerBody == 3)
+			case 3: 
 				return "snake-tail";
-			//4 - centaur!
-			if (lowerBody == 4)
+			case 4: 
 				return "equine leg";
-			//8 - goo shit
-			if (lowerBody == 8)
+			case 8: 
 				return "mound of goo";
-			//PONY
-			if (lowerBody == 11)
+			case 11: 
 				return "cartoonish pony-leg";
-			//BUNNAH
-			if (lowerBody == 12) {
-				select = rand(5);
-				if (select == 0)
-					return "fuzzy, bunny leg";
-				else if (select == 1)
-					return "fur-covered leg";
-				else if (select == 2)
-					return "furry leg";
-				else
-					return "leg";
+			case 12:
+				return randomChoice("fuzzy, bunny leg", "fur-covered leg", "furry leg", "leg", "leg");
+			case 13:
+				return randomChoice("bird-like leg", "feathered leg", "leg", "leg", "leg");
+			case 17:
+				return randomChoice( "fox-like leg","vulpine leg","leg", "leg");
+			case 19:
+				return randomChoice("raccoon-like leg", "leg", "leg", "leg", "leg");
+			default:
+				return "leg";
 			}
-			if (lowerBody == 13) {
-				select = rand(5);
-				if (select == 0)
-					return "bird-like leg";
-				else if (select == 1)
-					return "feathered leg";
-				else
-					return "leg";
-			}
-			if (lowerBody == 17) {
-				select = rand(4);
-				if (select == 0)
-					return "fox-like leg";
-				else if (select == 1)
-					return "leg";
-				else if (select == 2)
-					return "leg";
-				else
-					return "vulpine leg";
-			}
-			if (lowerBody == 19) {
-				select = ran(4);
-				if (select == 0)
-					return "raccoon-like leg";
-				else
-					return "leg";
-			}
-			return "leg";
 		}
 
 		public function feet():String{
-			//lowerBody:
 			switch(lowerBody) {
 			case 0: //0 - normal
 				return "feet";
@@ -3218,7 +3177,6 @@ package classes {
 		}
 
 		public function foot():String {
-			//lowerBody:
 			switch (lowerBody) {
 			case 0: //0 - normal
 				return "foot";

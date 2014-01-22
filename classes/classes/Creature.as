@@ -3024,94 +3024,49 @@ package classes {
 			return (lowerBody == 16);
 		}
 
-		public function isGoo():Boolean
-		{
-			if (lowerBody == 8)
-				return true;
-			return false;
+		public function isGoo():Boolean {
+			return (lowerBody == 8);
 		}
 
-		public function legs():String
-		{
+		public function legs():String {
 			var select:Number = 0;
-			//lowerBody:
-			//0 - normal
-			if (lowerBody == 0)
+			switch (lowerBody) {
+			case 0: 
+			case 1: 
+			case 2: 
 				return "legs";
-			//1 - hooves
-			if (lowerBody == 1)
-				return "legs";
-			//2 - paws
-			if (lowerBody == 2)
-				return "legs";
-			//3 - snakelike body
-			if (lowerBody == 3)
+			case 3: 
 				return "snake-like coils";
-			//4 - centaur!
-			if (lowerBody == 4)
+			case 4: 
 				return "four legs";
-			//8 - goo shit
-			if (lowerBody == 8)
+			case 8: 
 				return "mounds of goo";
-			//PONY
-			if (lowerBody == 11)
+			case 11: 
 				return "cute pony-legs";
-			//Bunnah!
-			if (lowerBody == 12) {
-				select = rand(5);
-				if (select == 0)
-					return "fuzzy, bunny legs";
-				else if (select == 1)
-					return "fur-covered legs";
-				else if (select == 2)
-					return "furry legs";
-				else
-					return "legs";
+			case 12:
+				return randomChoice("fuzzy, bunny legs", "fur-covered legs", "furry legs", "legs", "legs");
+			case 13:
+				return randomChoice("bird-like legs", "feathered legs", "legs", "legs", "legs");
+			case 17:
+				return randomChoice("fox-like legs", "vulpine legs", "legs", "legs");
+			case 19:
+				return randomChoice("raccoon-like legs", "legs", "legs", "legs");
+			default:
+				return "legs";
 			}
-			if (lowerBody == 13) {
-				select = rand(5);
-				if (select == 0)
-					return "bird-like legs";
-				else if (select == 1)
-					return "feathered legs";
-				else
-					return "legs";
-			}
-			if (lowerBody == 17) {
-				select = rand(4);
-				if (select == 0)
-					return "fox-like legs";
-				else if (select == 1)
-					return "legs";
-				else if (select == 2)
-					return "legs";
-				else
-					return "vulpine legs";
-			}
-			if (lowerBody == 19) {
-				select = rand(4);
-				if (select == 0)
-					return "raccoon-like legs";
-				else
-					return "legs";
-			}
-
-			return "legs";
 		}
 
-		public function skinFurScales():String
-		{
+		public function skinFurScales():String {
 			var skinzilla:String = "";
 			//Adjectives first!
-			if (skinAdj != "")
+			if (skinAdj != "") {
 				skinzilla += skinAdj + ", ";
-			//Fur handled a little differently since it uses
-			//haircolor
-			if (skinType == 1)
-				skinzilla += hairColor + " ";
-			else
-				skinzilla += skinTone + " ";
-			skinzilla += skinDesc;
+			}
+			//Fur handled a little differently since it uses haircolor
+			skinzilla += (skinType == 1)
+				? hairColor
+				: skinTone;
+			skinzilla += " " + skinDesc;
 			return skinzilla;
 		}
 

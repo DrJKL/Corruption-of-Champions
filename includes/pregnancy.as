@@ -1456,7 +1456,8 @@
 		if (player.buttChange(20, true)) {
 			outputText("\n", false);
 		}
-		if(player.buttRating < 17) {
+		
+		if (player.buttRating < 17) {
 			//Guaranteed increase up to level 10
 			if (player.buttRating < 13) {
 				player.buttRating++;

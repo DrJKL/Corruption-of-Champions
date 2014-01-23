@@ -2009,8 +2009,7 @@
 			return descript;
 		}
 
-		public static function breastSize(val:Number):String
-		{
+		public static function breastSize(val:Number):String {
 			var descript:String = "";
 			//Catch all for dudes.
 			if (val < 1) {

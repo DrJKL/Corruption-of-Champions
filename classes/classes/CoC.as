@@ -1,5 +1,4 @@
-﻿package classes
-{
+﻿package classes {
 	// BREAKING ALL THE RULES.
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
@@ -272,19 +271,16 @@
 
 		public var kFLAGS_REF:*;
 
-		public function rand(max:int):int
-		{
+		public function rand(max:int):int {
 			return Utils.rand(max);
 		}
 
 		// holidayz
-		public function isEaster():Boolean
-		{
+		public function isEaster():Boolean {
 			return plains.bunnyGirl.isItEaster();
 		}
 
-		public function CoC()
-		{
+		public function CoC() {
 			// Cheatmode.
 			kGAMECLASS = this;
 			
@@ -544,8 +540,7 @@
 		}
 
 
-		public function run():void
-		{
+		public function run():void{
 			mainMenu();
 			this.stop();
 		}

@@ -4,6 +4,7 @@ package classes.Scenes.Quests.UrtaQuest
 	import classes.Appearance;
 	import classes.Cock;
 	import classes.GlobalFlags.kGAMECLASS;
+	import classes.Items.WeaponLib;
 	import classes.Monster;
 	import classes.CockTypesEnum;
 
@@ -59,7 +60,7 @@ package classes.Scenes.Quests.UrtaQuest
 		{
 			outputText("The giant of a minotaur raises his chain threateningly into the air, clearly intent on striking you down.  With your trained reflexes, you quickly move to block his blow with your halberd.  You recoil as the chain impacts your halberd with a loud clang, wrapping around it.  You smile triumphantly at the minotaur, only to glance at his smirk.  With a strong pull, he rips the halberd off your hands and into a corner of the room. Shit!");
 			outputText("\n\nThe succubus laughs maniacally.  \"<i>Good boy, Fido!  Take that fox slut's toys away so she'll be easier to play with!</i>\"  The minotaur puffs his chest, proud of himself for pleasing his mistress.");
-			player.weaponName = "fists";
+			player.weapon = WeaponLib.FISTS;
 			kGAMECLASS.combatRoundOver();
 		}
 
@@ -140,7 +141,7 @@ package classes.Scenes.Quests.UrtaQuest
 			init04Ass(ANAL_LOOSENESS_STRETCHED,ANAL_WETNESS_NORMAL,50);
 			init05Body(rand(37) + 84,HIP_RATING_AVERAGE, BUTT_RATING_AVERAGE+1,LOWER_BODY_TYPE_HOOFED);
 			init06Skin("red",SKIN_TYPE_FUR,"shaggy fur");
-			init07Hair(Appearance.randomChoice("black","brown"),3);
+			init07Hair(randomChoice("black","brown"),3);
 			init08Face(FACE_COW_MINOTAUR);
 			init09PrimaryStats(125,90,30,30,70,25,85);
 			init10Weapon("chain","chain-whip",50);

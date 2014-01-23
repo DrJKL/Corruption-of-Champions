@@ -4,6 +4,7 @@
 package classes.Scenes.Areas.Swamp
 {
 	import classes.GlobalFlags.kFLAGS;
+	import classes.Items.WeaponLib;
 	import classes.Monster;
 
 	public class AbstractSpiderMorph extends Monster
@@ -170,10 +171,9 @@ package classes.Scenes.Areas.Swamp
 			}
 			else {
 				outputText("You don't react fast enough and the sticky webbing pulls your " + player.weaponName + " out of your grip, gluing it to a nearby tree.  There's no way to get it back right now, you'll have to fight bare-handed!", false);
-				flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00268] = player.weaponName;
-				flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00269] = player.weaponAttack;
-				player.weaponName = "fists";
-				player.weaponAttack = 0;
+				flags[kFLAGS.PLAYER_DISARMED_WEAPON_ID] = player.weapon.id;
+				flags[kFLAGS.PLAYER_DISARMED_WEAPON_ATTACK] = player.weaponAttack;
+				player.weapon = WeaponLib.FISTS;
 				player.createStatusAffect("Disarmed", 0, 0, 0, 0);
 			}
 			combatRoundOver();

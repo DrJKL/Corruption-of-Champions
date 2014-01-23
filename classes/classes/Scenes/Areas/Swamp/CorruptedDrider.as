@@ -147,8 +147,8 @@ package classes.Scenes.Areas.Swamp
 		public function CorruptedDrider()
 		{
 
-			var hairColor:String = Appearance.randomChoice("red", "orange", "green");
-			var skinTone:String = Appearance.randomChoice("yellow", "purple", "red", "turquoise");
+			var hairColor:String = randomChoice("red", "orange", "green");
+			var skinTone:String = randomChoice("yellow", "purple", "red", "turquoise");
 
 			var pierced:Boolean = rand(2)==0;
 			init01Names("the ", "corrupted drider", "corrupteddrider",
@@ -172,6 +172,10 @@ package classes.Scenes.Areas.Swamp
 				init12Combat(250,30,.4,TEMPERMENT_RANDOM_GRAPPLES);
 				init13Level(14,rand(10) + 20);
 			}
+			init14WeightedDrop()
+					.add(consumables.B_GOSSR,5)
+					.add(useables.T_SSILK,1)
+					.add(null,4);
 		}
 
 	}

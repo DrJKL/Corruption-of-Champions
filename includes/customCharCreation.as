@@ -72,25 +72,17 @@ public function customPCSetup():void {
 		player.clitLength = 0.2;
 		player.femininity = 85;
 		//Beautiful Sword
-		player.weaponName = "beautiful sword";
-		player.weaponAttack = fixedDamage("beautiful sword");
-		player.weaponVerb = "slash";
-		player.weaponPerk = "holySword";
-		player.weaponValue = itemValue("beautiful sword");
-		player.weaponAttack = fixedDamage("beautiful sword");
-		player.armorName = "spider-silk armor";
-		player.armorDef = 25;
-		player.armorPerk = "";
-		player.armorValue = itemValue("spider-silk armor");
+		player.weapon = weapons.B_SWORD;
+		player.armor = armors.SSARMOR;
 		//Bow skill 100 (Sorry Kelt, I can't hear your insults over my mad Robin Hood skillz)
 		player.createStatusAffect("Kelt",100,0,0,0);		
 		player.createKeyItem("Bow",0,0,0,0);
-		createStorage();
-		createStorage();
-		createStorage();
-		createStorage();
-		createStorage();
-		createStorage();
+		inventory.createStorage();
+		inventory.createStorage();
+		inventory.createStorage();
+		inventory.createStorage();
+		inventory.createStorage();
+		inventory.createStorage();
 		player.createKeyItem("Camp - Chest",0,0,0,0);
 		player.createKeyItem("Equipment Rack - Weapons",0,0,0,0);
 		flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00254] = 1;
@@ -99,7 +91,7 @@ public function customPCSetup():void {
 		//(Flexibility), (Incorporeality), History: Religious, Dragonfire, Brood Mother, Magical Fertility, Wet Pussy, Tough, Strong, Fast, Smart, History: Scholar, History: Slacker, Strong Back, Strong Back 2: Stronger Harder
 		player.createPerk("Flexibility",0,0,0,0,"Due to your cat-like body, you're able to dodge attacks more often.");
 		player.createPerk("History: Religious",0,0,0,0,"");
-		player.createPerk("Dragonfire",0,0,0,0,"You're a cheater, cheater.")
+		player.createPerk("Dragonfire",0,0,0,0,"You're a cheater, cheater.");
 		player.createPerk("Brood Mother",0,0,0,0,"Pregnancy moves twice as fast as a normal woman's.");
 		player.createPerk("Fertile",1.5,0,0,0,"CHEATER JACKASS JERKFACE");
 		player.vaginas[0].vaginalWetness = VAGINA_WETNESS_WET;
@@ -110,8 +102,8 @@ public function customPCSetup():void {
 		player.createPerk("Smart", 0.25, 0, 0, 0,"Gain intelligence 25% faster.");
 		player.createPerk("History: Scholar", 0, 0, 0, 0,"You cheated.");
 		player.createPerk("Strong Back",0,0,0,0,"Cheating Nerd!");
-		itemSlot4.unlocked = true;
-		itemSlot5.unlocked = true;
+		player.itemSlot4.unlocked = true;
+		player.itemSlot5.unlocked = true;
 		player.createPerk("Strong Back 2: Strong Harder",0,0,0,0,"Cheating Nerd!");
 		player.createPerk("History: Slacker",0,0,0,0,"Cheating Nerd!");
 		player.str += 4;
@@ -122,20 +114,12 @@ public function customPCSetup():void {
 		outputText("You're something of a powerhouse, and you wager that between your odd mutations, power strong enough to threaten the village order, and talents, you're the natural choice to send through the portal.");
 	}
 	if(player.short == "Leah") {
-		player.armorName = "leather armor segments";
-		player.armorDef = 5;
-		player.armorPerk = "Light";
-		player.armorValue = itemValue("leather armor segments");
+		player.armor = armors.URTALTA;
 		if(player.hasPerk("Wizard's Endurance") < 0) player.createPerk("Wizard's Endurance",30,0,0,0,"Your spellcasting equipment makes it harder for spell-casting to fatigue you!");
-		player.weaponName = "wizard's staff";
-		player.weaponVerb = "smack";
-		player.weaponValue = itemValue("wizard's staff");
-		player.weaponAttack = fixedDamage("wizard's staff");
-		itemSlot1.shortName = "B. Book";
-		itemSlot1.quantity = 1;
-		itemSlot1.shortName = "W. Book";
-		itemSlot1.quantity = 2;
-		
+		player.weapon = weapons.W_STAFF;
+		player.itemSlot1.setItemAndQty(consumables.B__BOOK, 1);
+		player.itemSlot2.setItemAndQty(consumables.W__BOOK, 2);
+
 		player.createBreastRow();
 		player.createVagina();
 		player.breastRows[0].breastRating = 4;
@@ -352,17 +336,10 @@ public function customPCSetup():void {
 		player.earType = EARS_DOG;
 		////"	"I'm picturing a tall, feminine German-Shepherd morph, solid white and gorgeous. She has both sets of genitals, with no balls, and a large set of breasts. She wields a large claymore and is dressed in a full chain vest and pants. 
 		//large claymore (and the strength to use it)
-		player.weaponName = "large claymore";
-		player.weaponVerb = "cleaving sword-slash";
-		player.weaponPerk = "Large";
-		player.weaponValue = itemValue("large claymore");
-		player.weaponAttack = fixedDamage("large claymore");
+		player.weapon = weapons.CLAYMOR;
 		player.str = 40;
 		//full chain
-		player.armorName = "full-body chainmail";
-		player.armorDef = 8;
-		player.armorPerk = "Medium";
-		player.armorValue = itemValue("full-body chainmail");
+		player.armor = armors.FULLCHN;
 		outputText("As a German-Shepherd morph, the rest of the village never really knew what to do with you... until they sent you through the portal to face whatever's on the other side...");
 	}
 	if(player.short == "Galatea") {
@@ -391,35 +368,24 @@ public function customPCSetup():void {
 
 		//Equipment: 
     	//Weapon: Warhammer
-		player.weaponName = "huge warhammer";
-		player.weaponVerb = "smash";
-		player.weaponPerk = "Large";
-		player.weaponValue = itemValue("huge warhammer");
-		player.weaponAttack = fixedDamage("huge warhammer");
+		player.weapon = weapons.WARHAMR;
     	//Armor: Lusty shit
-		player.armorName = "lusty maiden's armor";
-		player.armorPerk = "Light";
-		player.armorDef = 9 + flags[kFLAGS.BIKINI_ARMOR_BONUS];
+		player.armor = armors.LMARMOR;
 		player.createPerk("Slutty Seduction",10 + flags[kFLAGS.BIKINI_ARMOR_BONUS],0,0,0,"Your incredibly revealing steel armor allows you access to 'Seduce', an improved form of 'Tease'.");
-		player.armorValue = itemValue("lusty maiden's armor");
 
 		//Stats: (if possible)
   		//Strength: 90
-		player.str = 90
+		player.str = 90;
   		//Fertility: 100
 		player.fertility = 100;
 		player.cor = 25;
 		//Inventory: Lactaid, GroPlus, BimboLq
-		itemSlot1.shortName = "Lactaid";
-		itemSlot1.quantity = 5;
-		itemSlot2.shortName = "GroPlus";
-		itemSlot2.quantity = 5;
-		itemSlot3.shortName = "BimboLq";
-		itemSlot3.quantity = 1;
-		itemSlot4.unlocked = true;
-		itemSlot4.shortName = "BimboSk";
-		itemSlot4.quantity = 1;
-		itemSlot5.unlocked = true;
+		player.itemSlot1.setItemAndQty(consumables.LACTAID,5);
+		player.itemSlot2.setItemAndQty(consumables.GROPLUS,5);
+		player.itemSlot3.setItemAndQty(consumables.BIMBOLQ,1);
+		player.itemSlot4.unlocked = true;
+		player.itemSlot4.setItemAndQty(armors.BIMBOSK,1);
+		player.itemSlot5.unlocked = true;
 		outputText("You've got large breasts prone to lactation.  You aren't sure WHY you got chosen as a champion, but with your considerable strength, you're sure you'll do a good job protecting Ingnam.");
 	}
 	if(player.short == "Siveen") {
@@ -451,10 +417,7 @@ public function customPCSetup():void {
 		//Fallen Angel gear (complete with flaming sword and light arrows)
 		//dark skin tone
 		player.skinTone = "dark";
-		player.weaponName = "inscribed spellblade";
-		player.createPerk("Wizard's Focus",.4,0,0,0,"Your wizard's staff grants you additional focus, reducing the use of fatigue for spells.");
-		player.weaponPerk = "Wizard's Focus";
-		player.weaponAttack = 8;
+		player.weapon = weapons.S_BLADE;
 
 		//Elfin ears
 		player.earType = EARS_ELFIN;
@@ -498,10 +461,10 @@ public function customPCSetup():void {
 		player.createCock();
 		player.balls = 4;
 		player.ballSize = 3;
-		player.cocks[0].cockThickness == 5.5;
-		player.cocks[1].cockThickness == 5.5;
-		player.cocks[0].cockLength == 12;
-		player.cocks[1].cockLength == 12;
+		player.cocks[0].cockThickness = 5.5;
+		player.cocks[1].cockThickness = 5.5;
+		player.cocks[0].cockLength = 12;
+		player.cocks[1].cockLength = 12;
 		player.cocks[0].pierced = 2;
 		player.cocks[1].pierced = 2;
 		player.cocks[0].pShortDesc = "silver cock-ring";
@@ -526,13 +489,10 @@ public function customPCSetup():void {
 			
 		player.skinTone = "ghostly pale";
 		player.createPerk("Incorporeality",0,0,0,0,"You seem to have inherited some of the spiritual powers of the residents of the afterlife!  While you wouldn't consider doing it for long due to its instability, you can temporarily become incorporeal for the sake of taking over enemies and giving them a taste of ghostly libido.");
-		equipArmor("inquisitor's corset",false);
+		player.armor = armors.I_CORST;
 		player.level = 5;
-		player.weaponName = "wizard's staff";
-		player.weaponVerb = "smack";
-		player.weaponValue = itemValue("wizard's staff");
-		player.weaponAttack = fixedDamage("wizard's staff");
-		
+		player.weapon = weapons.W_STAFF;
+
 		player.createPerk("Regeneration",0,0,0,0);
 		player.createPerk("Smart",0,0,0,0);
 		player.createPerk("Channeling",0,0,0,0);
@@ -594,24 +554,16 @@ public function customPCSetup():void {
 		player.skinTone = "light";
 		//Starting Equipment: Wizard's Robe, Wizards Staff, and one White and one Black book in inventory.
 		//equipArmor("inquisitor's corset",false);
-		player.armorName = "wizard's robes";
-		player.armorDef = 1;
-		player.armorPerk = "Light";
-		player.armorValue = itemValue("wizard's robes");
+		player.armor = armors.W_ROBES;
 		if(player.hasPerk("Wizard's Endurance") < 0) player.createPerk("Wizard's Endurance",30,0,0,0,"Your spellcasting equipment makes it harder for spell-casting to fatigue you!");
 		
-		player.weaponName = "wizard's staff";
-		player.weaponVerb = "smack";
-		player.weaponValue = itemValue("wizard's staff");
-		player.weaponAttack = fixedDamage("wizard's staff");
+		player.weapon = weapons.W_STAFF;
 		//Gift Perk- Smarts
 		player.createPerk("Smart",0,0,0,0);
 		//History- Schooling
 		player.createPerk("History: Scholar",0,0,0,0);
-		itemSlot1.quantity = 1;
-		itemSlot2.quantity = 1;
-		itemSlot1.shortName = "W. Book";
-		itemSlot2.shortName = "B. Book";
+		player.itemSlot1.setItemAndQty(consumables.W__BOOK,1);
+		player.itemSlot2.setItemAndQty(consumables.B__BOOK,1);
 			
 		player.gender = 2;
 		player.tallness = 64;
@@ -713,14 +665,10 @@ public function customPCSetup():void {
 		//Posted everything above sorry if it wasn't supposed to go there.
 		//starting equipment: black leather armor surrounded by voluminous robes
 		//starting weapon: Spellblade if not gamebreaking otherwise spear is fine.
-		player.armorName = "black leather armor surrounded by voluminous robes";
-		player.armorDef = 6;
-		player.armorPerk = "Light";
-		player.armorValue = itemValue("black leather armor surrounded by voluminous robes");
-		player.weaponName = "inscribed spellblade";
+		player.armor = armors.LTHRROB;
+		player.weapon = weapons.S_BLADE;
 		if(player.hasPerk("Wizard's Focus") < 0) player.createPerk("Wizard's Focus",.5,0,0,0,"Your wizard's staff grants you additional focus, reducing the use of fatigue for spells.");
-		player.weaponPerk = "Wizard's Focus";
-		player.weaponAttack = 8;
+
 	}
 	if(player.short == "Aria") {
 		outputText("It's really no surprise that you were sent through the portal to deal with the demons - you look enough like one as-is.  Your numerous fetish-inducing piercings, magical fox-tails, and bimbo-licious personality were all the motivation the elders needed to keep you from corrupting the village youth.");
@@ -762,15 +710,8 @@ public function customPCSetup():void {
 		player.createPerk("Pure and Loving",0,0,0,0,"Q-q-quit peaking in my code, desu-chan!");
 		player.createPerk("Sensual Lover",0,0,0,0,"Q-q-quit peaking in my code, desu-chan!");
 		player.createPerk("One Track Mind",0,0,0,0,"Q-q-quit peaking in my code, desu-chan!");
-		player.weaponName = "succubi whip";
-		player.weaponVerb = "sexy whipping";
-		player.weaponPerk = "";
-		player.weaponValue = itemValue("succubi whip");
-		player.weaponAttack = fixedDamage("succubi whip");
-		player.armorName = "skimpy nurse's outfit";
-		player.armorDef = 0;
-		player.armorPerk = "Light";
-		player.armorValue = itemValue("skimpy nurse's outfit");
+		player.weapon = weapons.SUCWHIP;
+		player.armor = armors.NURSECL;
 		if(player.hasPerk("Slutty Seduction") < 0) player.createPerk("Slutty Seduction",8,0,0,0,"Your fetishy nurse outfit allows you access to an improved form of 'Tease'.");
 
 	}
@@ -856,33 +797,23 @@ public function customPCSetup():void {
 		player.tongueType = TONUGE_DEMONIC;
 		player.nippleLength = 0.1;
 		//Starting with an Inscribed Spellblade and Bondage Straps.	Charaun
-		player.armorName = "barely-decent bondage straps";
-		player.armorDef = 0;
-		player.armorPerk = "Light";
-		player.armorValue = itemValue("barely-decent bondage straps");
+		player.armor = armors.BONSTRP;
 		if(player.hasPerk("Slutty Seduction") < 0) player.createPerk("Slutty Seduction",10,0,0,0,"Your fetishy bondage outfit allows you access to an improved form of 'Tease'.");
-		player.weaponName = "inscribed spellblade";
+		player.weapon = weapons.S_BLADE;
 		if(player.hasPerk("Wizard's Focus") < 0) player.createPerk("Wizard's Focus",.5,0,0,0,"Your wizard's staff grants you additional focus, reducing the use of fatigue for spells.");
-		player.weaponPerk = "Wizard's Focus";
-		player.weaponAttack = 8;
+
 	}
 	if(player.short == "Navorn") {
 		outputText("There's been something special about you since day one, whether it's your numerous sexual endowments or your supernatural abilities.  You're a natural pick for champion.");
 		//Character Creation	"Herm same number and types of cocks from email sent earlier. 
 		//Special abilities: Fire breath, fox fire?
-		player.createPerk("Dragonfire",0,0,0,0,"You're a cheater, cheater.")
+		player.createPerk("Dragonfire",0,0,0,0,"You're a cheater, cheater.");
 		//equipment: Large claymore, and platemail
 		//-Chainmail armor
-		player.armorName = "full platemail";
-		player.armorDef = 21;
-		player.armorPerk = "";
-		player.armorValue = itemValue("full platemail");
+		player.armor = armors.FULLPLT;
 		//-Large Claymore (i understand 40 Strength is need so if he could start with that would be great if not hit the gyms)"
-		player.weaponName = "large claymore";
-		player.weaponVerb = "cleaving sword-slash";
-		player.weaponPerk = "Large";
-		player.weaponValue = itemValue("large claymore");
-		player.weaponAttack = fixedDamage("large claymore");
+		player.weapon = weapons.CLAYMOR;
+
 		player.str = 41;
 		//femininity: 95
 		player.femininity = 95;
@@ -976,10 +907,7 @@ public function customPCSetup():void {
 		if(!player.hasVagina()) player.createVagina();
 		player.breastRows[0].breastRating = 4;
 		player.hairLength = 10;
-		player.armorName = "glistening gel-armor plates";
-		player.armorDef = 10;
-		player.armorPerk = "";
-		player.armorValue = itemValue("glistening gel-armor plates");
+		player.armor = armors.GELARMR;
 		player.gender = 3;
 	}
 	if(player.short == "Isaac") {
@@ -1020,7 +948,7 @@ public function customPCSetup():void {
 		player.cocks[0].pLongDesc = "Fertite cock-jacob's ladder";
 		player.createPerk("Pierced: Fertite",5,0,0,0,"You've been pierced with Fertite and any male or female organs have become more fertile.");
 		//- and one tight asshole
-		player.ass.analLooseness = 0
+		player.ass.analLooseness = 0;
 		//- kitsune
 		//- moderately long white hair (9 inches)
 		player.hairLength = 9;
@@ -1049,16 +977,9 @@ public function customPCSetup():void {
 		//equipment;
 		//- katana (don't suppose you could rename the katana 'Zon'ith' could you? ~.^)
 		//Items: Katana, Leather Armor
-		player.weaponName = "katana";
-		player.weaponVerb = "keen cut";
-		player.weaponPerk = "";
-		player.weaponValue = itemValue("katana");
-		player.weaponAttack = fixedDamage("katana");
+		player.weapon = weapons.KATANA;
 		//- robes
-		player.armorName = "modest robes";
-		player.armorDef = 0;
-		player.armorValue = itemValue("modest robes");
-		player.armorPerk = "Light";
+		player.armor = armors.M_ROBES;
 	}
 	//529315025394020	Character Creation	Neuter (no genitals) "50-50 masculine-feminine ratio. Shark teeth."	Rope
 	if(player.short == "Rope") {
@@ -1094,17 +1015,11 @@ public function customPCSetup():void {
 		player.skinType = SKIN_TYPE_FUR;
 		player.skinDesc = "fur";
 		//-Chainmail armor
-		player.armorName = "full-body chainmail";
-		player.armorDef = 8;
-		player.armorPerk = "Medium";
-		player.armorValue = itemValue("full-body chainmail");
+		player.armor = armors.FULLCHN;
 		//-Large Claymore (i understand 40 Strength is need so if he could start with that would be great if not hit the gyms)"
 		player.str = 41;
-		player.weaponName = "large claymore";
-		player.weaponVerb = "cleaving sword-slash";
-		player.weaponPerk = "Large";
-		player.weaponValue = itemValue("large claymore");
-		player.weaponAttack = fixedDamage("large claymore");
+		player.weapon = weapons.CLAYMOR;
+
 	}
 	if(player.short == "Annetta") {
 		outputText("You're a rather well-endowed hermaphrodite that sports a thick, dog-knotted cock, an unused pussy, and a nice, stretchy butt-hole.  You've also got horns and demonic high-heels on your feet.  It makes you wonder why you would ever get chosen to be champion!");
@@ -1146,11 +1061,7 @@ public function customPCSetup():void {
 		player.breastRows[0].lactationMultiplier += 20;
 		
 		//Equipment: Starts with spiked fist
-		player.weaponName = "spiked gauntlet";
-		player.weaponVerb = "spiked punch";
-		player.weaponPerk = "";
-		player.weaponValue = itemValue("spiked gauntlet");
-		player.weaponAttack = fixedDamage("spiked gauntlet");
+		player.weapon = weapons.S_GAUNT;
 		//Perks: Fighter and Lotsa Jizz"	Annetta
 		player.createPerk("History: Fighter",0,0,0,0,"");
 		player.createPerk("Messy Orgasms", 1.25, 0, 0, 0,"Produces 50% more cum volume.");
@@ -1236,16 +1147,8 @@ public function customPCSetup():void {
 		
 		//While we're on the subject, would glowing eyes be possible? I'll take normal eyes if not.
 		//Beautiful Sword
-		player.weaponName = "beautiful sword";
-		player.weaponAttack = fixedDamage("beautiful sword");
-		player.weaponVerb = "slash";
-		player.weaponPerk = "holySword";
-		player.weaponValue = itemValue("beautiful sword");
-		player.weaponAttack = fixedDamage("beautiful sword");
-		player.armorName = "spider-silk armor";
-		player.armorDef = 25;
-		player.armorPerk = "";
-		player.armorValue = itemValue("spider-silk armor");
+		player.weapon = weapons.B_SWORD;
+		player.armor = armors.SSARMOR;
 		//Beautiful Armor (Or just Spider Silk Armor)
 		//Pure Pearl
 		//Tallness 84 (8 feet 0 inches)
@@ -1346,15 +1249,8 @@ public function customPCSetup():void {
 		player.wingType = WING_TYPE_BAT_LIKE_LARGE;
 		player.wingDesc = "large, bat-like";
 		//Items: Katana, Leather Armor
-		player.weaponName = "katana";
-		player.weaponVerb = "keen cut";
-		player.weaponPerk = "";
-		player.weaponValue = itemValue("katana");
-		player.weaponAttack = fixedDamage("katana");
-		player.armorName = "leather armor segments";
-		player.armorDef = 5;
-		player.armorPerk = "Light";
-		player.armorValue = itemValue("leather armor segments");
+		player.weapon = weapons.KATANA;
+		player.armor = armors.URTALTA;
 		//Key Item: Deluxe Dildo
 		player.createKeyItem("Deluxe Dildo",0,0,0,0);
 	}
@@ -1411,18 +1307,9 @@ public function customPCSetup():void {
 		//Vulva Type = Equine
 		
 		//Beautiful Sword & Wizard Robe
-		player.weaponName = "beautiful sword";
-		player.weaponAttack = fixedDamage("beautiful sword");
-		player.weaponVerb = "slash";
-		player.weaponPerk = "holySword";
-		player.weaponValue = itemValue("beautiful sword");
-		player.weaponAttack = fixedDamage("beautiful sword");
-		player.armorDef = 1;
-		player.armorPerk = "Light";
-		player.armorValue = itemValue("wizard's robes");
+		player.weapon = weapons.B_SWORD;
 		if(player.hasPerk("Wizard's Endurance") < 0) player.createPerk("Wizard's Endurance",0,0,0,0,"Your spellcasting equipment makes it harder for spell-casting to fatigue you!");
-		player.armorName = "wizard's robes";
-		
+		player.armor = armors.W_ROBES;
 		//Herm, lots of jizz.
 		player.femininity -= 2;
 		player.cumMultiplier = 5.5;

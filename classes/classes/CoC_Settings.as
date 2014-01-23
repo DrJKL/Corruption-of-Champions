@@ -12,8 +12,25 @@
 		
 		// Horrible static abuse FTW
 		public static var haltOnErrors:Boolean = false;
-		public static var buttonEvents:Array = new Array();
+		public static var buttonEvents:Array = [];
 		private static const bufferSize:int = 50;
+
+		/**
+		 * trace("ERROR "+description);
+		 * If haltOnErrors=true, throws Error
+		 */
+		public static function error(description:String=""):void {
+			trace("ERROR "+description);
+			if (haltOnErrors) throw Error(description);
+		}
+
+		/**
+		 * trace("ERROR Abstract method call: "+clazz+"."+method+"(). "+description);
+		 * If haltOnErrors=true, throws Error
+		 */
+		public static function errorAMC(clazz:String,method:String,description:String=""):void{
+			error("Abstract method call: "+clazz+"."+method+"(). "+description);
+		}
 		
 		public static function appendButtonEvent(inString:String):void
 		{
@@ -27,7 +44,7 @@
 		}
 		public static function getButtonEvents():String
 		{
-			var retStr:String = ""
+			var retStr:String = "";
 			for (var x:String in CoC_Settings.buttonEvents)
 			{
 				retStr += CoC_Settings.buttonEvents[x] + "\n";

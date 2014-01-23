@@ -47,7 +47,7 @@
 						outputText(" hotly, expelling a few of your own worms in response along with a dribble of thick pre-cum.   You wonder what it would feel like to let his worms crawl inside you…", false);
 						game.dynStats("lus", 10);
 					} else {
-						if (CoC_Settings.haltOnErrors) throw Error("Infested but no cock!");
+						CoC_Settings.error("Infested but no cock!");
 						game.dynStats("lus", 5);
 						outputText("  The idea of being covered in the beast's infested seed arouses you slightly, but you shake your head violently and clear away the unwelcome thought.", false);
 					}
@@ -110,6 +110,13 @@
 			init11Armor("thick fur");
 			init12Combat(0, 50, 0.87, Monster.TEMPERMENT_LOVE_GRAPPLES);
 			init13Level(5, 10 + rand(10));
+            init14WeightedDrop()
+            					.add(consumables.CANINEP, 3)
+            					.addMany(1, consumables.BULBYPP,
+            							consumables.KNOTTYP,
+            							consumables.BLACKPP,
+            							consumables.DBLPEPP,
+            							consumables.LARGEPP);
 			initX_Specials(hellhoundFire, hellhoundScent, hellHoundWormCannon);
 			initX_Tail(TAIL_TYPE_DOG);
 		}

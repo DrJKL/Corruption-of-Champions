@@ -4,7 +4,7 @@ import classes.internals.Utils;
 
 public function sackDescript():String
 {
-	return Appearance.sackDescript(player);
+	return Appearance.sackDescription(player);
 }
 
 public function cockClit(number:int = 0):String {
@@ -162,7 +162,7 @@ public function allVaginaDescript():String {
 	return "ERROR: allVaginaDescript called with no vaginas.";
 }
 public function multiCockDescript():String {
-	return Appearance.multiCockDescript(player);
+	return Appearance.multiCockDescriptLight(player);
 }
 
 public function multiCockDescriptLight():String {

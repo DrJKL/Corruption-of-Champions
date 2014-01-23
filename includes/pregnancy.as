@@ -1891,7 +1891,7 @@
 		}
 		//FUCKING BIRTH SHIT HERE.
 		amilyScene.pcBirthsAmilysKidsQuestVersion();
-		cuntChange(60, true, true, false);
+		player.cuntChange(60, true, true, false);
 		if (player.vaginas[0].vaginalWetness == VAGINA_WETNESS_DRY) {
 			player.vaginas[0].vaginalWetness++;
 		}
@@ -1919,7 +1919,7 @@
 			outputText("And your breasts won't seem to stop dribbling milk, lactating more heavily than before.", false);
 			player.boostLactation(.5);
 		}
-		cuntChange(60, true,true,false);
+		player.cuntChange(60, true,true,false);
 		if (player.vaginas[0].vaginalWetness == VAGINA_WETNESS_DRY) {
 			player.vaginas[0].vaginalWetness++;
 		}

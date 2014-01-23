@@ -1507,44 +1507,44 @@
 			return description;
 		}
 
-		private static function humanDescript(cockNum:Number):String {
+		public static function humanDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.HUMAN);
 		}
-		private static function kangaDescript(cockNum:Number):String {
+		public static function kangaDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.KANGAROO);
 		}
-		private static function dogDescript(cockNum:Number):String {
+		public static function dogDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.DOG);
 		}
-		private static function foxDescript(cockNum:Number):String {
+		public static function foxDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.FOX);
 		}
-		private static function tentacleDescript(cockNum:Number):String {
+		public static function tentacleDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.TENTACLE);
 		}
-		private static function demonDescript(cockNum:Number):String {
+		public static function demonDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.DEMON);
 		}
 
 		//Horsecock + Descript
-		private static function horseDescript(cockNum:Number):String {
+		public static function horseDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.HORSE);
 		}
 
-		private static function catDescript(cockNum:Number):String {
+		public static function catDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.CAT);
 		}
 
-		private static function anemoneDescript(cockNum:Number):String {
+		public static function anemoneDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.ANEMONE);
 		}
-		private static function dragonDescript(cockNum:Number):String {
+		public static function dragonDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.DRAGON);
 		}
-		private static function displacerDescript(cockNum:Number):String {
+		public static function displacerDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.DISPLACER);
 		}
-		private static function snakeDescript(cockNum:Number):String {
+		public static function snakeDescript(cockNum:Number):String {
 			return cockNoun(CockTypesEnum.LIZARD);
 		}
 

@@ -5,6 +5,7 @@ package classes.Scenes.Areas.Lake
 {
 	import classes.BaseContent;
 	import classes.GlobalFlags.kGAMECLASS;
+	import classes.Items.Armors.LustyMaidensArmor;
 
 	public class FetishZealotScene extends AbstractLakeContent
 	{
@@ -91,7 +92,7 @@ package classes.Scenes.Areas.Lake
 			if (broseph == "dude") {
 				//set the player's armor to their new male teacher outfit, see lower down for a full description.
 				if (player.armorValue <= 0) {
-					player.armorName = "formal vest, tie, and crotchless pants";  //can you think of a better way of putting this?
+					player.modArmorName = "backless female teacher's clothes";  //can you think of a better way of putting this?
 				}
 				outputText("You smooth down your detached pants, and look at your exposed dick for a few moments, wondering if there was anything you said that may have upset him.  ", false);
 			}
@@ -99,7 +100,7 @@ package classes.Scenes.Areas.Lake
 			else {
 				//Set armour to female teacher outfit with no back side.
 				if (player.armorValue == 0) {
-					player.armorName = "backless female teacher's clothes";  // again, change this if you've got a better name
+					player.modArmorName = "backless female teacher's clothes";  // again, change this if you've got a better name
 				}
 				outputText("You smooth out your half-skirt, trying to busy yourself as you try to remember if there was anything you said to upset him.  ", false);
 			}
@@ -248,8 +249,8 @@ package classes.Scenes.Areas.Lake
 			else outputText("The zealot quivers for a moment before collapsing, his desires becoming too great for even him to control.", false);
 			if (player.lust >= 33 && player.gender > 0) {
 				outputText("\n\nDo you want to take advantage of his vulnerable state to sate your lusts?", false);
-				var bikiniTits:int = 0;
-				if (player.hasVagina() && player.biggestTitSize() >= 4 && player.armorName == "lusty maiden's armor") bikiniTits = 3988;
+				var bikiniTits:Function = null;
+				if (player.hasVagina() && player.biggestTitSize() >= 4 && player.armorName == "lusty maiden's armor") bikiniTits = createCallBackFunction2((player.armor as LustyMaidensArmor).lustyMaidenPaizuri,player,monster);
 				simpleChoices("Yes", zealotWinRape, "", 0, "", 0, "B.Titfuck", bikiniTits, "Leave", cleanupAfterCombat);
 			}
 			else cleanupAfterCombat();

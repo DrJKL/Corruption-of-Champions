@@ -211,7 +211,7 @@ package classes.Scenes.NPCs{
 			addButton(5, "Get Eaten Out", getEatenOut);
 			addButton(6, "Penetrate Her", penetrateHer);
 			addButton(7, "Get Penetrated", getPenetrated);
-			if (emberAffection() >= 95 && player.hasCock() && player.cockThatFits(emberVaginalCapacity()) >= 0 && (hasItem("L.Draft", 1) || player.lib >= 50 || player.minLust() >= 40))
+			if (emberAffection() >= 95 && player.hasCock() && player.cockThatFits(emberVaginalCapacity()) >= 0 && (player.hasItem(consumables.L_DRAFT) || player.lib >= 50 || player.minLust() >= 40))
 				addButton(8, "LustyFuck", highAffectionEmberLustFuck);
 			addButton(9, "Leave", emberCampMenu);
 
@@ -293,12 +293,11 @@ package classes.Scenes.NPCs{
 			outputText("\n\nYou tell the armorsmith that a shield will be fine, and she sets to work smoothing the edges.  After nearly an hour of idle browsing through armor you don't really care about, she attracts your attention.  \"<i>It's done, cutie.  Payment up front.</i>\"");
 			outputText("\n\nHanding over the gems, you take the white shell back from her; true to her word, she's rounded it into a proper shield and fitted adjustable straps to the back.  Its hardness is indisputable, but you can only wonder if its liquid absorption properties are still intact.  Worth a test, right?");
 			//this is where the Dragonshell Shield lives, git you one!
-			shortName = "DrgnShl";
 			player.gems -= 200;
 			statScreenRefresh();
 			player.removeKeyItem("Dragon Eggshell");
 			menuLoc = 9;
-			takeItem();
+			inventory.takeItem(weapons.DRGNSHL);
 		}
 
 //Suggested Reward: 
@@ -459,19 +458,19 @@ package classes.Scenes.NPCs{
 			var fap:Function =null;
 			if (player.lust >= 33) fap = masturbateOntoAnEgg;
 			var draft:Function =null;
-			if (hasItem("IncubiD", 1)) draft = createCallBackFunction(useIncubusDraftOnEmber,false);
+			if (player.hasItem(consumables.INCUBID)) draft = createCallBackFunction(useIncubusDraftOnEmber,false);
 			var pDraft:Function =null;
-			if (hasItem("P.Draft", 1)) pDraft = createCallBackFunction(useIncubusDraftOnEmber,true);
+			if (player.hasItem(consumables.P_DRAFT)) pDraft = createCallBackFunction(useIncubusDraftOnEmber,true);
 			var milk:Function =null;
-			if (hasItem("SucMilk", 1)) milk = createCallBackFunction(useSuccubiMilkOnEmber,false);
+			if (player.hasItem(consumables.SUCMILK)) milk = createCallBackFunction(useSuccubiMilkOnEmber,false);
 			var pMilk:Function =null;
-			if (hasItem("P.S.Mlk", 1)) pMilk = createCallBackFunction(useSuccubiMilkOnEmber,true);
+			if (player.hasItem(consumables.P_S_MLK)) pMilk = createCallBackFunction(useSuccubiMilkOnEmber,true);
 			var hair:Function =null;
-			if (hasItem("ExtSerm", 1)) hair = hairExtensionSerum;
+			if (player.hasItem(consumables.EXTSERM)) hair = hairExtensionSerum;
 			var ovi:Function =null;
-			if (hasItem("OviElix", 1)) ovi = useOviElixerOnEmber;
+			if (player.hasItem(consumables.OVIELIX)) ovi = useOviElixerOnEmber;
 			var lactaid:Function =null;
-			if (hasItem("Lactaid", 1)) lactaid = useLactaidOnEmber;
+			if (player.hasItem(consumables.LACTAID)) lactaid = useLactaidOnEmber;
 			var hatch:Function =null;
 			if (flags[kFLAGS.EMBER_EGG_FLUID_COUNT] >= 5 && flags[kFLAGS.EMBER_JACKED_ON] > 0 && flags[kFLAGS.EMBER_GENDER] > 0) {
 				hatch = hatchZeMuzzles;
@@ -492,19 +491,19 @@ package classes.Scenes.NPCs{
 			var fap:Function =null;
 			if (player.lust >= 33) fap = masturbateOntoAnEgg;
 			var draft:Function =null;
-			if (hasItem("IncubiD", 1)) draft = createCallBackFunction(useIncubusDraftOnEmber,false);
+			if (player.hasItem(consumables.INCUBID)) draft = createCallBackFunction(useIncubusDraftOnEmber,false);
 			var pDraft:Function =null;
-			if (hasItem("P.Draft", 1)) pDraft = createCallBackFunction(useIncubusDraftOnEmber,true);
+			if (player.hasItem(consumables.P_DRAFT)) pDraft = createCallBackFunction(useIncubusDraftOnEmber,true);
 			var milk:Function =null;
-			if (hasItem("SucMilk", 1)) milk = createCallBackFunction(useSuccubiMilkOnEmber,false);
+			if (player.hasItem(consumables.SUCMILK)) milk = createCallBackFunction(useSuccubiMilkOnEmber,false);
 			var pMilk:Function =null;
-			if (hasItem("P.S.Mlk", 1)) pMilk = createCallBackFunction(useSuccubiMilkOnEmber,true);
+			if (player.hasItem(consumables.P_S_MLK)) pMilk = createCallBackFunction(useSuccubiMilkOnEmber,true);
 			var hair:Function =null;
-			if (hasItem("ExtSerm", 1)) hair = hairExtensionSerum;
+			if (player.hasItem(consumables.EXTSERM)) hair = hairExtensionSerum;
 			var ovi:Function =null;
-			if (hasItem("OviElix", 1)) ovi = useOviElixerOnEmber;
+			if (player.hasItem(consumables.OVIELIX)) ovi = useOviElixerOnEmber;
 			var lactaid:Function =null;
-			if (hasItem("Lactaid", 1)) lactaid = useLactaidOnEmber;
+			if (player.hasItem(consumables.LACTAID)) lactaid = useLactaidOnEmber;
 			var hatch:Function =null;
 			if (flags[kFLAGS.EMBER_EGG_FLUID_COUNT] >= 5 && flags[kFLAGS.EMBER_JACKED_ON] > 0 && flags[kFLAGS.EMBER_GENDER] > 0) hatch = hatchZeMuzzles;
 
@@ -530,12 +529,12 @@ package classes.Scenes.NPCs{
 		{
 			clearOutput();
 			if (purified) {
-				consumeItem("P.Draft", 1);
+				player.consumeItem(consumables.P_DRAFT);
 				flags[kFLAGS.EMBER_COR] -= 10;
 				if (flags[kFLAGS.EMBER_COR] < 0) flags[kFLAGS.EMBER_COR] = 0;
 			}
 			else {
-				consumeItem("IncubiD", 1);
+				player.consumeItem(consumables.INCUBID);
 				flags[kFLAGS.EMBER_COR] += 10;
 				if (flags[kFLAGS.EMBER_COR] > 100) flags[kFLAGS.EMBER_COR] = 100;
 			}
@@ -557,12 +556,12 @@ package classes.Scenes.NPCs{
 		{
 			clearOutput();
 			if (purified) {
-				consumeItem("P.S.Mlk", 1);
+				player.consumeItem(consumables.P_S_MLK);
 				flags[kFLAGS.EMBER_COR] -= 10;
 				if (flags[kFLAGS.EMBER_COR] < 0) flags[kFLAGS.EMBER_COR] = 0;
 			}
 			else {
-				consumeItem("SucMilk", 1);
+				player.consumeItem(consumables.SUCMILK);
 				flags[kFLAGS.EMBER_COR] += 10;
 				if (flags[kFLAGS.EMBER_COR] > 100) flags[kFLAGS.EMBER_COR] = 100;
 			}
@@ -585,7 +584,7 @@ package classes.Scenes.NPCs{
 		private function useOviElixerOnEmber():void
 		{
 			clearOutput();
-			consumeItem("OviElix", 1);
+			player.consumeItem(consumables.OVIELIX);
 			//max uses 1
 			outputText("Uncorking the crystalline bottle, you pour the strange green liquid inside onto the egg, briefly wondering what on earth it could want with this stuff, before catching your fallacy.  It's an egg, right?  It can't want things...  The fluid spills all over the shell, coating it, and then seeps inside, leaving the egg's previously pale surface marked with small green splotches.");
 			flags[kFLAGS.EMBER_OVIPOSITION] = 1;
@@ -597,7 +596,7 @@ package classes.Scenes.NPCs{
 		private function useLactaidOnEmber():void
 		{
 			clearOutput();
-			consumeItem("Lactaid", 1);
+			player.consumeItem(consumables.LACTAID);
 			//max uses 1
 			outputText("Feeling a little bemused, you pour the creamy fluid onto the egg.  It is absorbed through the shell, and a spiderwork of creamy yellow vein-like markings suddenly forms on the shell's surface.");
 			flags[kFLAGS.EMBER_MILK] = 1;
@@ -609,7 +608,7 @@ package classes.Scenes.NPCs{
 		private function hairExtensionSerum():void
 		{
 			clearOutput();
-			consumeItem("ExtSerm", 1);
+			player.consumeItem(consumables.EXTSERM);
 			//max uses 2
 			outputText("Wondering at your motivations, you pour the goblin gunk onto the egg.  Most rolls harmlessly off of the shell, leaving you annoyed at the waste... until you see ");
 			if (flags[kFLAGS.EMBER_HAIR] == 0) {
@@ -1716,8 +1715,7 @@ package classes.Scenes.NPCs{
 				//git a dragon egg, small libido-based lust damage
 				dynStats("lus", 10 + player.lib / 10);
 				menuLoc = 2;
-				shortName = "DrgnEgg";
-				takeItem();
+				inventory.takeItem(consumables.DRGNEGG);
 			}
 			//(Medium Affection)
 			else if (emberAffection() < 75) {
@@ -1768,8 +1766,7 @@ package classes.Scenes.NPCs{
 				//git a dragon egg, small libido-based lust damage
 				dynStats("lus", 10 + player.lib / 10);
 				menuLoc = 2;
-				shortName = "DrgnEgg";
-				takeItem();
+				inventory.takeItem(consumables.DRGNEGG);
 			}
 		}
 
@@ -1783,8 +1780,7 @@ package classes.Scenes.NPCs{
 			outputText("  \"<i>H-here's your egg.  Use it while it's fresh, okay?</i>\"  Her eyes glaze over a bit at the suggestion, and she giggles.  ");
 			//git a dragon egg, no Ember affection change
 			menuLoc = 2;
-			shortName = "DrgnEgg";
-			takeItem();
+			inventory.takeItem(consumables.DRGNEGG);
 		}
 
 //[Watch]
@@ -1832,8 +1828,7 @@ package classes.Scenes.NPCs{
 			outputText("\n\nYou shake your head and sigh softly.  ");
 			//git an egg, moderate lib-based lust damage, Ember affection up
 			menuLoc = 2;
-			shortName = "DrgnEgg";
-			takeItem();
+			inventory.takeItem(consumables.DRGNEGG);
 			emberAffection(5);
 		}
 
@@ -4033,7 +4028,7 @@ package classes.Scenes.NPCs{
 				}
 				else {
 					outputText("\n\nEven if you can't, stamina won't be a problem.  You casually rummage through your pouches and fetch a vial of Lust Draft, displaying it to the dragon.");
-					consumeItem("L.Draft", 1);
+					player.consumeItem(consumables.L_DRAFT);
 				}
 			}
 			else {
@@ -4042,7 +4037,7 @@ package classes.Scenes.NPCs{
 				outputText("\n\nYou nod");
 				if (player.lib < 50 && player.minLust() < 40) {
 					outputText(", grabbing a vial of Lust Draft from your pouches");
-					consumeItem("L.Draft", 1);
+					player.consumeItem(consumables.L_DRAFT);
 				}
 				outputText(".");
 			}

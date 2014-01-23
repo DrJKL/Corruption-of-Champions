@@ -408,7 +408,7 @@ private function consensualHotSophieDickings():void {
 	var x:Number = player.cockThatFits(232);
 	if(x < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		outputText("ERROR: No cock found that fits, yet 'fits' scene was called.", true);
 		doNext(1);
 		gameState = 0;
@@ -416,7 +416,7 @@ private function consensualHotSophieDickings():void {
 	}
 	else if(x > player.cocks.length-1) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		outputText("ERROR: Cock above max cocks selected for Sophie sex.  Please report bug on fen's bug report forum.", true);
 		doNext(1);
 		gameState = 0;
@@ -743,7 +743,7 @@ internal function sophieLostCombat():void {
 			//big clit girls
 			if(player.clitLength >= 5) clitFuck = fuckDatClit;
 		}
-		if(hasItem("BimboLq",1)) bimbo = sophieBimbo.bimbotizeMeCaptainSophie;
+		if(player.hasItem(consumables.BIMBOLQ)) bimbo = sophieBimbo.bimbotizeMeCaptainSophie;
 	}
 	if(dickRape != null || cuntFuck != null || clitFuck != null || bimbo != null) {
 		outputText("  What do you do to her?", false);

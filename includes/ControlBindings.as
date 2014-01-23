@@ -1,3 +1,7 @@
+import classes.GlobalFlags.kGAMECLASS;
+
+use namespace kGAMECLASS;
+
 inputManager.AddBindableControl(
 	"Show Stats",
 	"Show the stats pane when available",
@@ -25,7 +29,7 @@ inputManager.AddBindableControl(
 		if (mainView.menuButtonIsVisible(MainView.MENU_DATA) && player.str > 0)
 		{
 			mainView.nameBox.text = "";
-			saveGame("CoC_1");
+			saves.saveGame("CoC_1");
 			outputText("Game saved to slot 1!", true);
 			doNext(1);
 		}
@@ -38,7 +42,7 @@ inputManager.AddBindableControl(
 		if (mainView.menuButtonIsVisible(MainView.MENU_DATA) && player.str > 0)
 		{
 			mainView.nameBox.text = "";
-			saveGame("CoC_2");
+			saves.saveGame("CoC_2");
 			outputText("Game saved to slot 2!", true);
 			doNext(1);
 		}
@@ -51,7 +55,7 @@ inputManager.AddBindableControl(
 		if (mainView.menuButtonIsVisible(MainView.MENU_DATA) && player.str > 0)
 		{
 			mainView.nameBox.text = "";
-			saveGame("CoC_3");
+			saves.saveGame("CoC_3");
 			outputText("Game saved to slot 3!", true);
 			doNext(1);
 		}
@@ -64,7 +68,7 @@ inputManager.AddBindableControl(
 		if (mainView.menuButtonIsVisible(MainView.MENU_DATA) && player.str > 0)
 		{
 			mainView.nameBox.text = "";
-			saveGame("CoC_4");
+			saves.saveGame("CoC_4");
 			outputText("Game saved to slot 4!", true);
 			doNext(1);
 		}
@@ -77,7 +81,7 @@ inputManager.AddBindableControl(
 		if (mainView.menuButtonIsVisible(MainView.MENU_DATA) && player.str > 0)
 		{
 			mainView.nameBox.text = "";
-			saveGame("CoC_5");
+			saves.saveGame("CoC_5");
 			outputText("Game saved to slot 5!", true);
 			doNext(1);
 		}
@@ -92,7 +96,7 @@ inputManager.AddBindableControl(
 			var saveFile:* = SharedObject.getLocal("CoC_1", "/");
 			if (saveFile.data.exists)
 			{
-				if (loadGame("CoC_1"))
+				if (saves.loadGame("CoC_1"))
 				{
 					showStats();
 					statScreenRefresh();
@@ -112,7 +116,7 @@ inputManager.AddBindableControl(
 			var saveFile:* = SharedObject.getLocal("CoC_2", "/");
 			if (saveFile.data.exists)
 			{
-				if (loadGame("CoC_2"))
+				if (saves.loadGame("CoC_2"))
 				{
 					showStats();
 					statScreenRefresh();
@@ -132,7 +136,7 @@ inputManager.AddBindableControl(
 			var saveFile:* = SharedObject.getLocal("CoC_3", "/");
 			if (saveFile.data.exists)
 			{
-				if (loadGame("CoC_3"))
+				if (saves.loadGame("CoC_3"))
 				{
 					showStats();
 					statScreenRefresh();
@@ -152,7 +156,7 @@ inputManager.AddBindableControl(
 			var saveFile:* = SharedObject.getLocal("CoC_4", "/");
 			if (saveFile.data.exists)
 			{
-				if (loadGame("CoC_4"))
+				if (saves.loadGame("CoC_4"))
 				{
 					showStats();
 					statScreenRefresh();
@@ -172,7 +176,7 @@ inputManager.AddBindableControl(
 			var saveFile:* = SharedObject.getLocal("CoC_5", "/");
 			if (saveFile.data.exists)
 			{
-				if (loadGame("CoC_5"))
+				if (saves.loadGame("CoC_5"))
 				{
 					showStats();
 					statScreenRefresh();
@@ -199,7 +203,7 @@ inputManager.AddBindableControl(
 	function():void {
 		if (mainView.menuButtonIsVisible(MainView.MENU_DATA))
 		{
-			saveLoad(undefined);
+			saves.saveLoad(undefined);
 		}
 	});
 	
@@ -465,7 +469,7 @@ inputManager.AddBindableControl(
 			{
 				if (player.str > 0 && mainView.getButtonText(0).indexOf("Game Over") == -1)
 				{
-					giveHumanizer();
+					kGAMECLASS.inventory.giveHumanizer();
 				}
 			}
 			else

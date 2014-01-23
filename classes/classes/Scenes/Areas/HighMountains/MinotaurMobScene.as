@@ -2,6 +2,7 @@
 	import classes.Appearance;
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
+	import classes.ItemType;
 	import classes.PregnancyType;
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
@@ -288,7 +289,7 @@ private function nonAddictMinotaurGangBang():void {
 	outputText("\n\n", false);
 	
 	outputText("The pressure on your " + assholeDescript() + " suddenly subsides, not because the minotaur is pulling back, but because part of the flare suddenly slipped through the ring of your tightly-stretched hole.  You swoon and try to relax, fighting with your sphincter's natural reaction to squeeze shut against the intruder.  A pleased rumble echoes behind you, and the minotaur penetrating your " + assholeDescript() + " pushes hard.  His flare slips inside with an audible, gut-stretching 'pop'.  ", false);
-	buttChange(60,true,true,false);
+	player.buttChange(60,true,true,false);
 	if(flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00326] >= 10) outputText("The assembled beasts snicker at the noise, stroking themselves slowly while awaiting a chance at your hungry holes.", false);
 	else outputText("The minitaur giggles at the noise, stroking himself and mewling while he waits permission to join.", false);
 	outputText("  You can do naught but gurgle as the dual minotaur dicks each push deeper and completely, utterly spit-roasting you on their incestuous hardnesses.\n\n", false);
@@ -318,7 +319,7 @@ private function nonAddictMinotaurGangBang():void {
 	outputText(" as he laughs, \"<i>You can have Mom's backdoor.  I went ahead and opened it for you.</i>\"  A crestfallen look spreads over the minitaur's face, but it doesn't stop him for walking up behind you to line his smaller shaft up with your gaping, sloppy asshole.\n\n", false);
 	
 	outputText("The rock-solid mass of muscle holding you aloft softens, and your body weight drags you down.  Your juicy twat and abused anus throb, impaled on your own offspring's penises.  ", false);
-	cuntChange(60,true,false,true);
+	player.cuntChange(60,true,false,true);
 	outputText("They part your flesh with ease, sheathing themselves deeply in your body and rubbing against each other through the narrow divide inside you.  Your asshole tingles, actually finding more pleasure from the act than your suddenly-stretched vagina thanks to the more comfortable pole residing in its depths.  They go deeper and deeper, until the stud supporting you is pushing on your distended cervix while his sheath bunches up against your outer lips.\n\n", false);
 	
 	outputText("\"<i>Fuck, Mom, your pussy is great!  ", false);
@@ -328,7 +329,7 @@ private function nonAddictMinotaurGangBang():void {
 	outputText("I can feel it coming, are you ready, Ma?</i>\" asks the beast-man.  You nod enthusiastically, rocking back and forth while the minitaur clutches your " + buttDescript() + " and fucks your stationary form.\n\n", false);
 	
 	outputText("A huge, bloated mass stretches past your pussy lips, forcing out a squirt of girlcum and feminine lube.  ", false);
-	cuntChange(60,true,false,true);
+	player.cuntChange(60,true,false,true);
 	outputText("The head flares wide as it squirts into your womb; warmth blooms from the uterine cum-deposit, turning your muscles slack, and setting off an orgasm of your own.  Your pussy ripples and squeezes at the invader, matched in its orgasmic contractions by your cock-stuffed asshole.  The minitaur behind you whines and hilts himself as hard as his relatively lithe body will allow, slapping his balls into his brother's slowly emptying cum-sacks.", false);
 	if(player.hasCock()) {
 		outputText("  " + SMultiCockDesc() + " explodes against the minotaur's belly, weakly spurting ", false);
@@ -353,7 +354,7 @@ private function nonAddictMinotaurGangBang():void {
 	}
 	outputText("You black out at that point, but when you wake up soaked in cum with a bottle of it next to you, you know it was a good night.", false);
 	//Force cum bottle loot!
-	flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234] = "MinoCum";
+	flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID] = consumables.MINOCUM.id;
 	//Preggers chance!
 	player.knockUp(PregnancyType.MINOTAUR,432,75);
 	dynStats("spe", -.5, "int", -.5, "lib", .5, "sen", -.5, "lus=", 0, "cor", 1);
@@ -363,8 +364,7 @@ private function nonAddictMinotaurGangBang():void {
 	else {
 		menuLoc = 18;
 		outputText("\n\n", false);
-		shortName = flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234];
-		takeItem();
+		inventory.takeItem(ItemType.lookupItem(flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID]));
 	}
 }
 
@@ -493,7 +493,7 @@ private function analSpearSemiPregMinotaurGangbang():void {
 	if(player.isTaur()) outputText("haunches", false);
 	else outputText(assDescript(), false);
 	outputText(" skyward, your back bowing from the sudden strain.  A wide, drippy tip butts up against your back-door, and though you had heard them talk about fucking your ass through your lusty daze, nothing could prepare you for the feeling of a hot, male member pushing at your pucker.  You relax your " + player.legs() + " and feel your " + assholeDescript() + " loosen, slowly dilating to let the beast's slippery pre-cum inside your rectum.  Yet, even in the face of your complete submission, he holds back, letting you hang there in the air, panting around a cock and aching for greater levels of penetration.", false);
-	buttChange(60,true,true,false);
+	player.buttChange(60,true,true,false);
 	outputText("\n\n", false);
 	
 	outputText("A voice like an avalanche laughs uproariously, \"<i>Look at her squirm!  Okay Mom, hold your horses.</i>\"\n\n", false);
@@ -685,7 +685,7 @@ private function victoryMinotaurGangTitFuck():void {
 		}
 	}
 	//Force cum bottle loot!
-	flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234] = "MinoCum";
+	flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID] = consumables.MINOCUM.id;
 	dynStats("spe", -.5, "int", -.5, "lib", .5, "sen", .5, "lus=", 0, "cor", .5);
 	player.slimeFeed();
 	player.minoCumAddiction(15);
@@ -693,8 +693,7 @@ private function victoryMinotaurGangTitFuck():void {
 	else {
 		menuLoc = 2;
 		outputText("\n\n", false);
-		shortName = flags[kFLAGS.UNKNOWN_FLAG_NUMBER_00234];
-		takeItem();
+		inventory.takeItem(ItemType.lookupItem(flags[kFLAGS.BONUS_ITEM_AFTER_COMBAT_ID]));
 	}
 }
 
@@ -713,7 +712,7 @@ private function victoryAllThePenetrationsMinotaurGangBang():void {
 	else outputText("It stretches your " + vaginaDescript(0) + " with painful force as it penetrates you, forcibly widening your quim until it's able to nestle its sheath against your vulva.", false);
 	outputText("  It pulsates wetly inside you with each beat of the minotaur's hammering heart.", false);
 	//(CUNT CHECK, REGISTER 4! And hymens are out of stock again!)
-	cuntChange(60,true,true,false);
+	player.cuntChange(60,true,true,false);
 	outputText("\n\n", false);
 	
 	outputText("You arch your back and wiggle your exposed rump in the air as you ask, \"<i>Now which of my sons wants to show Mommy how much they love her?</i>\"\n\n", false);
@@ -725,7 +724,7 @@ private function victoryAllThePenetrationsMinotaurGangBang():void {
 	else if(player.analCapacity() < 60) outputText("Your " + assholeDescript() + " slowly widens to accept the cock that's being deposited into its depths.  You find yourself somewhat grateful that you've been stretched enough to prevent this from being painful.", false);
 	else outputText("Your " + assholeDescript() + " devours the cock easily.  The only thing even close to a tight fit is the feeling of your pucker being stretched at his very base.", false);
 	outputText("  Balls gently come to rest against your taint.  You relish the feeling of being so exquisitely stuffed, those thick, ribbed shafts rubbing against each other through your holes, but something's missing.", false);
-	buttChange(60,true,true,false);
+	player.buttChange(60,true,true,false);
 	outputText("\n\n", false);
 	
 	outputText("While beginning to rock your hips, you ask, \"<i>Would any of you boys like to help Momma with her other hole?</i>\"  A dribbling dick appears before your face as if by magic.  You lick your lips as the smell of his pre-cum slowly overpowers your conscious thought and look up at the marvelous cock's owner as you open wide.  He plunges forward, sliding along your tongue as if it's a red carpet laid out for his use.  The dick buries itself into your throat, the leaking pre obliterating your gag reflex along the way. You put your hand on his belly to indicate he should remain still, and he reluctantly agrees, for now.  Deliberately, you rock your " + hipDescript() + " up and down, fucking your sons' twin penises while the action works your throat up and down the dick in your mouth.", false);

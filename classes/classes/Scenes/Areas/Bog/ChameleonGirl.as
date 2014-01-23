@@ -2,6 +2,7 @@ package classes.Scenes.Areas.Bog
 {
 	import classes.Appearance;
 	import classes.Monster;
+	import classes.internals.Utils;
 
 	/**
 	 * ...
@@ -12,14 +13,14 @@ package classes.Scenes.Areas.Bog
 
 		public function chameleonTongueAttack():void
 		{
-			weaponName = "tongue";
-			weaponVerb = "tongue-slap";
-			weaponAttack = 10;
+			setWeaponName("tongue");
+			setWeaponVerb("tongue-slap");
+			setWeaponAttack(10);
 			createStatusAffect("attacks", 1, 0, 0, 0);
 			eAttack();
-			weaponAttack = 30;
-			weaponName = "claws";
-			weaponVerb = "claw";
+			setWeaponAttack(30);
+			setWeaponName("claws");
+			setWeaponVerb("claw");
 			combatRoundOver();
 		}
 
@@ -124,7 +125,7 @@ package classes.Scenes.Areas.Bog
 
 		public function ChameleonGirl()
 		{
-			var skinToneAdj:Array = Appearance.randomChoice(SKIN_VARIATIONS);
+			var skinToneAdj:Array = randomChoice(SKIN_VARIATIONS);
 			init01Names("the ", "chameleon girl", "chameleongirl", "You're faced with a tall lizard-like girl with smooth " + skinToneAdj[0] + " skin and long, " + skinToneAdj[1] + " stripes that run along her body from ankle to shoulder.  An abnormally large tail swishes behind her, and her hands are massive for her frame, built for easily climbing the trees.  A pair of small, cute horns grow from her temples, and a pair of perky B-cups push out through her skimpy drapings.  Large, sharp claws cap her fingers, gesturing menacingly at you.");
 			init02Female(VAGINA_WETNESS_SLAVERING, VAGINA_LOOSENESS_LOOSE);
 			init03BreastRows("B");

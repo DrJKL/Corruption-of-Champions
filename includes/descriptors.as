@@ -1,5 +1,6 @@
 ﻿import classes.Appearance;
 import classes.CockTypesEnum;
+import classes.internals.Utils;
 
 public function sackDescript():String
 {
@@ -157,149 +158,11 @@ public function allVaginaDescript():String {
 	if (player.vaginas.length == 1) return vaginaDescript(rand(player.vaginas.length - 1));
 	if (player.vaginas.length > 1) return (vaginaDescript(rand(player.vaginas.length - 1)) + "s");
 	
-	if (CoC_Settings.haltOnErrors) throw new Error("ERROR: allVaginaDescript called with no vaginas.");
+	CoC_Settings.error("ERROR: allVaginaDescript called with no vaginas.");
 	return "ERROR: allVaginaDescript called with no vaginas.";
 }
 public function multiCockDescript():String {
-	if(player.cocks.length < 1) 
-	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
-		return "<B>Error: multiCockDescript() called with no penises present.</B>";
-	}
-	//Get cock counts
-	var descript:String="";
-	var currCock:Number = 0;
-	var totCock:Number = player.cocks.length;
-	var dogCocks:Number = 0;
-	var horseCocks:Number = 0;
-	var normalCocks:Number = 0;
-	var normalCockKey:Number = 0;
-	var dogCockKey:Number = 0;
-	var horseCockKey:Number = 0;
-	var averageLength:Number = 0;
-	var averageThickness:Number = 0;
-	var same:Boolean = true;
-	//For temp14 random values
-	var rando:Number = 0;
-	var descripted:Boolean = false;
-	//Count cocks & Prep average totals
-	while(currCock <= totCock-1) {
-		//trace("Counting cocks!");
-		if(player.cocks[currCock].cockType == CockTypesEnum.HUMAN) 
-		{
-			normalCocks++;
-			normalCockKey = currCock;
-		}
-		if(player.cocks[currCock].cockType == CockTypesEnum.HORSE) 
-		{
-			horseCocks++;
-			horseCockKey = currCock;
-		}
-		if(player.cocks[currCock].cockType == CockTypesEnum.DOG) 
-		{
-			dogCocks++;
-			dogCockKey = currCock;
-		}
-		averageLength += player.cocks[currCock].cockLength;
-		averageThickness += player.cocks[currCock].cockThickness;
-		//If cocks are matched make sure they still are
-		if(same && currCock > 0 && player.cocks[currCock].cockType != player.cocks[currCock-1].cockType) same = false;
-		currCock++;
-	}
-	//Crunch averages
-	averageLength /= currCock;
-	averageThickness /= currCock;
-	//Quantity descriptors
-	if(currCock == 1) {
-		if(dogCocks == 1) return dogDescript(0);
-		if(horseCocks == 1) return horseDescript(0);
-		if(normalCocks == 1) return cockDescript(0)
-		//Catch-all for when I add more cocks.  Let cock descript do the sorting.
-		if(player.cocks.length == 1) return cockDescript(0);
-	}
-	if(currCock == 2) {
-		//For cocks that are the same
-		if(same) 
-		{
-			descript += randomChoice("a pair of ", "two ", "a brace of ", "matching ", "twin ");
-			descript += Appearance.cockAdjectives(averageLength, averageThickness, player.cocks[0].cockType, player);
-			if(normalCocks == 2) descript += " " + Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
-			if(horseCocks == 2) descript += ", " + Appearance.cockNoun(CockTypesEnum.HORSE) + "s";
-			if(dogCocks == 2) descript += ", " + Appearance.cockNoun(CockTypesEnum.DOG) + "s";
-			//Tentacles
-			if (player.cocks[0].cockType.Index > 2) 
-				descript += ", " + Appearance.cockNoun(player.cocks[0].cockType) + "s";
-		}
-		//Nonidentical
-		else 
-		{
-			descript += randomChoice("a pair of ", "two ", "a brace of ");
-			descript += Appearance.cockAdjectives(averageLength, averageThickness, player.cocks[0].cockType, player) + ", ";
-			descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
-		}
-	}
-	if(currCock == 3) 
-	{
-		//For samecocks
-		if(same) 
-		{
-			descript += randomChoice("three ", "a group of ", "a menage a trois of ", "a triad of ", "a triumvirate of ");
-			descript += Appearance.cockAdjectives(averageLength, averageThickness, player.cocks[currCock-1].cockType, player);
-			if(normalCocks == 3) 
-				descript += " " + Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
-			if(horseCocks == 3) 
-				descript += ", " + Appearance.cockNoun(CockTypesEnum.HORSE) + "s";
-			if(dogCocks == 3) 
-				descript += ", " + Appearance.cockNoun(CockTypesEnum.DOG) + "s";
-			//Tentacles
-			if(player.cocks[0].cockType.Index > 2) descript += ", " + Appearance.cockNoun(player.cocks[0].cockType) + "s";   // Not sure what's going on here, referencing index *may* be a bug.
-
-		}
-		else 
-		{
-			descript += randomChoice("three ", "a group of ");
-			descript += Appearance.cockAdjectives(averageLength, averageThickness, player.cocks[0].cockType, player);
-			descript += randomChoice(", mutated cocks", ", mutated dicks", ", mixed cocks", ", mismatched dicks");
-		}
-	}
-	//Large numbers of cocks!
-	if(currCock > 3)
-	{
-		descript += randomChoice("a bundle of ", "an obscene group of ", "a cluster of ", "a wriggling group of ");
-		//Cock adjectives and nouns
-		descripted = false;
-		//If same types...
-		if(same) {
-			if(player.cocks[0].cockType == CockTypesEnum.HUMAN) {
-				descript += Appearance.cockAdjectives(averageLength, averageThickness, CockTypesEnum.HUMAN, player) + " ";	
-				descript += Appearance.cockNoun(CockTypesEnum.HUMAN) + "s";
-				descripted = true;
-			}
-			if(player.cocks[0].cockType == CockTypesEnum.DOG) {
-				descript += Appearance.cockAdjectives(averageLength, averageThickness, CockTypesEnum.DOG, player) + ", ";
-				descript += Appearance.cockNoun(CockTypesEnum.DOG) + "s";
-				descripted = true;
-			}
-			if(player.cocks[0].cockType == CockTypesEnum.HORSE) {
-				descript += Appearance.cockAdjectives(averageLength, averageThickness, CockTypesEnum.HORSE, player) + ", ";
-				descript += Appearance.cockNoun(CockTypesEnum.HORSE) + "s";
-				descripted = true;			
-			}
-			//TODO More group cock type descriptions!
-			if(player.cocks[0].cockType.Index > 2) {
-				descript += Appearance.cockAdjectives(averageLength, averageThickness, CockTypesEnum.HUMAN, player) + ", ";
-				descript += Appearance.cockNoun(player.cocks[0].cockType) + "s";
-				descripted = true;			
-			}
-		}
-		//If mixed
-		if(!descripted) {
-			descript += Appearance.cockAdjectives(averageLength, averageThickness, player.cocks[0].cockType, player) + ", ";
-			rando = rand(4);
-			descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
-		}
-	}	
-	return descript;
+	return Appearance.multiCockDescriptLight(player);
 }
 
 public function multiCockDescriptLight():String {
@@ -308,7 +171,7 @@ public function multiCockDescriptLight():String {
 public function eMultiCockDescriptLight():String {
 	if(monster.cocks.length < 1) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: eMultiCockDescriptLight() called with no penises present.</B>";
 	}
 	//Get cock counts
@@ -363,7 +226,7 @@ public function eMultiCockDescriptLight():String {
 	if(currCock == 2) {
 		//For cocks that are the same
 		if(same) {
-			descript += randomChoice("pair of ", "two ", "brace of ", "matching ", "twin ");
+			descript += Utils.randomChoice("pair of ", "two ", "brace of ", "matching ", "twin ");
 			descript += eCockAdjectives(averageLength, averageThickness, monster.cocks[0].cockType);
 			if(normalCocks == 2) descript += eCockNoun(CockTypesEnum.HUMAN) + "s";
 			if(horseCocks == 2) descript += eCockNoun(CockTypesEnum.HORSE) + "s";
@@ -373,15 +236,15 @@ public function eMultiCockDescriptLight():String {
 		}
 		//Nonidentical
 		else {
-			descript += randomChoice("pair of ", "two ", "brace of ");
+			descript += Utils.randomChoice("pair of ", "two ", "brace of ");
 			descript += eCockAdjectives(averageLength, averageThickness, monster.cocks[0].cockType);
-			descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
+			descript += Utils.randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
 		}
 	}
 	if(currCock == 3) {
 		//For samecocks
 		if(same) {
-			descript += randomChoice("three ", "group of ", "menage a trois of ", "triad of ", "triumvirate of ");
+			descript += Utils.randomChoice("three ", "group of ", "menage a trois of ", "triad of ", "triumvirate of ");
 			descript += eCockAdjectives(averageLength, averageThickness, monster.cocks[currCock-1].cockType);
 			if(normalCocks == 3) descript += eCockNoun(CockTypesEnum.HUMAN) + "s";
 			if(horseCocks == 3) descript += eCockNoun(CockTypesEnum.HORSE) + "s";
@@ -390,15 +253,15 @@ public function eMultiCockDescriptLight():String {
 			if(monster.cocks[0].cockType.Index > 2) descript += eCockNoun(monster.cocks[0].cockType) + "s";
 		}
 		else {
-			descript += randomChoice("three ", "group of ");
+			descript += Utils.randomChoice("three ", "group of ");
 			descript += eCockAdjectives(averageLength, averageThickness, monster.cocks[0].cockType);
-			descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
+			descript += Utils.randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
 		}
 	}
 	//Large numbers of cocks!
 	if(currCock > 3)
 	{
-		descript += randomChoice("bundle of ", "obscene group of ", "cluster of ", "wriggling bunch of ");
+		descript += Utils.randomChoice("bundle of ", "obscene group of ", "cluster of ", "wriggling bunch of ");
 		//Cock adjectives and nouns
 		descripted = false;
 		//Same
@@ -427,7 +290,7 @@ public function eMultiCockDescriptLight():String {
 		//If mixed
 		if(!descripted) {
 			descript += eCockAdjectives(averageLength, averageThickness, monster.cocks[0].cockType);
-			descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
+			descript += Utils.randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
 		}
 	}	
 	return descript;
@@ -436,12 +299,12 @@ public function eMultiCockDescriptLight():String {
 public function eCockHead(cockNum:Number = 0):String {
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "ERROR";
 	}
 	if(cockNum > monster.cocks.length-1) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "ERROR";
 	}
 	if(monster.cocks[cockNum].cockType == CockTypesEnum.HORSE) {
@@ -614,7 +477,7 @@ public function cockAdjectives(i_cockLength:Number, i_cockThickness:Number, i_co
 {
 	//Just in case...
 	//TODO Remove if never called
-	if (CoC_Settings.haltOnErrors) throw new Error("");
+	CoC_Settings.error("");
 	trace("ERROR: Someone is still calling cockAdjectives with an integer cock type");
 	var cockType:CockTypesEnum = CockTypesEnum.ParseConstantByIndex(int(i_cockType));
 	return Appearance.cockAdjectives(i_cockLength, i_cockThickness, cockType, player);
@@ -631,17 +494,17 @@ public function humanDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: humanDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to kangaDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to kangaDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -655,17 +518,17 @@ public function kangaDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: kangaDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to kangaDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to kangaDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -678,17 +541,17 @@ public function dogDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: CockDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to dogDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to dogDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -701,17 +564,17 @@ public function foxDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: CockDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to foxDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to foxDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -724,17 +587,17 @@ public function tentacleDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: CockDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to tentacleDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to tentacleDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -749,17 +612,17 @@ public function demonDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: CockDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to demonDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to demonDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -779,17 +642,17 @@ public function horseDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: CockDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to horseDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to horseDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -803,17 +666,17 @@ public function catDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: catDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to catDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to catDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -827,17 +690,17 @@ public function anemoneDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: anemoneDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to anemoneDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to anemoneDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -850,17 +713,17 @@ public function dragonDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: dragonDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to dragonDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to dragonDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -874,17 +737,17 @@ public function displacerDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: dragonDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to dragonDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to dragonDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -899,17 +762,17 @@ public function snakeDescript(cockNum:Number):String
 	var descript:String = "";
 	if(player.totalCocks() == 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<b>ERROR: snakeDescript Called But No Cock Present</b>";
 	}
 	if(cockNum > (player.cocks.length - 1)) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cock number (" + cockNum + ") passed to snakeDescript()</b>";
 	}
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "<B>Error: Invalid cockNum (" + cockNum + ") passed to snakeDescript()</b>";
 	}
 	//50% of the time add a descriptor
@@ -922,7 +785,7 @@ public function eVaginaDescript(vaginaNum:Number):String {
 	return Appearance.vaginaDescript(monster,vaginaNum);
 }
 
-//Enemy cock description - value of random cock or 1000 for normal, 1001 horse, 1002 dog.
+//Enemy cock description
 public function eCockDescript(cockIndex:Number = 0):String {
 	return Appearance.cockDescriptionShort(cockIndex, monster);
 }
@@ -945,12 +808,12 @@ public function cockHead(cockNum:Number = 0):String {
 	var temp:int;
 	if(cockNum < 0) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "ERROR";
 	}
 	if(cockNum > player.cocks.length-1) 
 	{
-		if (CoC_Settings.haltOnErrors) throw new Error("");
+		CoC_Settings.error("");
 		return "ERROR";
 	}
 	if(player.cocks[cockNum].cockType == CockTypesEnum.HORSE) {
@@ -1117,13 +980,13 @@ public function NPCCockAdjective(cockType:CockTypesEnum, cockLength:Number = 5, 
 	//Length 1/3 chance
 	if(rand(2) == 0) {
 		if(cockLength < 3) {
-			descript += randomChoice("little", "toy-sized", "mini", "budding", "tiny");
+			descript += Utils.randomChoice("little", "toy-sized", "mini", "budding", "tiny");
 		}
 		else if(cockLength < 5) {
-			descript += randomChoice("short", "small");
+			descript += Utils.randomChoice("short", "small");
 		}
 		else if(cockLength < 7) {
-			descript += randomChoice("fair-sized", "nice");
+			descript += Utils.randomChoice("fair-sized", "nice");
 		}
 		else if(cockLength < 9) {
 			rando = rand(3);
@@ -1148,10 +1011,10 @@ public function NPCCockAdjective(cockType:CockTypesEnum, cockLength:Number = 5, 
 			else descript = "foot-long";
 		}
 		else if(cockLength < 18) {
-			descript += randomChoice("massive", "knee-length", "forearm-length");
+			descript += Utils.randomChoice("massive", "knee-length", "forearm-length");
 		}
 		else if(cockLength < 30) {
-			descript += randomChoice("enormous", "giant", "arm-like");
+			descript += Utils.randomChoice("enormous", "giant", "arm-like");
 		}
 		else {
 			rando = rand(4);
@@ -1174,28 +1037,28 @@ public function NPCCockAdjective(cockType:CockTypesEnum, cockLength:Number = 5, 
 		}
 		//A little less lusty, but still lusty.
 		else if(lust > 75) {
-			descript += randomChoice("turgid", "blood-engorged", "rock-hard", "stiff", "eager");
+			descript += Utils.randomChoice("turgid", "blood-engorged", "rock-hard", "stiff", "eager");
 		}
 	}
 	//Girth - fallback
 	else {
 		if(cockLength/6 <= .75) {
-			descript += randomChoice("thin", "slender", "narrow");
+			descript += Utils.randomChoice("thin", "slender", "narrow");
 		}
 		else if(cockLength/6 <= 1.2) {
 			descript += "ample";
 		}
 		else if(cockLength/6 <= 1.4) {
-			descript += randomChoice("ample", "big");
+			descript += Utils.randomChoice("ample", "big");
 		}
 		else if(cockLength/6 <= 2) {
-			descript += randomChoice("broad", "girthy", "meaty");
+			descript += Utils.randomChoice("broad", "girthy", "meaty");
 		}
 		else if(cockLength/6 <= 3.5) {
-			descript += randomChoice("fat", "wide", "distended");
+			descript += Utils.randomChoice("fat", "wide", "distended");
 		}
 		else if(cockLength/6 > 3.5) {
-			descript += randomChoice("inhumanly distended", "bloated", "monstrously thick");
+			descript += Utils.randomChoice("inhumanly distended", "bloated", "monstrously thick");
 		}
 	}
 	return descript;

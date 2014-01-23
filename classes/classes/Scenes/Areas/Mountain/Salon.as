@@ -1,11 +1,14 @@
 ﻿package classes.Scenes.Areas.Mountain{
+	import classes.GlobalFlags.kFLAGS;
+	import classes.GlobalFlags.kGAMECLASS;
 	import classes.Appearance;
 	import classes.BaseContent;
 	import classes.CockTypesEnum;
+	import classes.ItemType;
 	import classes.PregnancyType;
-	import classes.GlobalFlags.kFLAGS;
-	import classes.GlobalFlags.kGAMECLASS;
-	public class Salon extends BaseContent {
+	
+	public class Salon extends BaseContent{
+
 	public function Salon() {}
 
 //const SALON_PAID:int = 441;
@@ -77,8 +80,7 @@ private function salonPaymentMenu():void {
 				player.gems -= 60;
 				outputText("You happily give Lynnette 60 gems and pick up the bottle full of glistening, heavenly cum.  ", true);
 				statScreenRefresh();
-				shortName = "MinoCum";
-				takeItem();
+				inventory.takeItem(consumables.MINOCUM);
 			}
 		}
 public function salonPurchaseMenu():void {
@@ -379,26 +381,21 @@ private function hairGrow():void {
 	outputText(num2Text(temp) + " more inches of " + player.hairColor + " hair.", false);
 	doNext(13);
 }
-		private function buyDye(itemShortName:String):void{
+		private function buyDye(itype:ItemType):void{
 			outputText("", true);
-			shortName = itemShortName;
-			takeItem();
+			inventory.takeItem(itype);
 		}
 private function dyeMenu():void {
 	spriteSelect(38);
 	outputText("", true);
 	outputText("Lynnette pulls open a cabinet in the corner, displaying a wide array of exotic hair-dyes.  Which kind do you want?", false);
 	menuLoc = 2;
-	choices("Blue",createCallBackFunction(buyDye,"BlueDye"),
-			"Orange",createCallBackFunction(buyDye,"OrangDy"),
-			"Pink",createCallBackFunction(buyDye,"PinkDye"),
-			"Purple",createCallBackFunction(buyDye,"PurpDye"),
+	choices("Blue",createCallBackFunction(buyDye,consumables.BLUEDYE),
+			"Orange",createCallBackFunction(buyDye,consumables.ORANGDY),
+			"Pink",createCallBackFunction(buyDye,consumables.PINKDYE),
+			"Purple",createCallBackFunction(buyDye,consumables.PURPDYE),
 			"Back",hairDressingMainMenu,
-			"Ext.Serum",createCallBackFunction(buyDye,"ExtSerm"),"",0,"",0,"",0,"",0);
-  	/*if(shortName1 == "PinkDye") return "a vial of bright pink hair dye";
-	if(shortName1 == "PurpDye") return "a vial of purple hair dye";
-	if(shortName1 == "BlueDye") return "a vial of blue hair dye";
-	if(shortName1 == "OrangDy") return "a vial of brilliant orange hair dye";*/
+			"Ext.Serum",createCallBackFunction(buyDye,consumables.EXTSERM),"",0,"",0,"",0,"",0);
 }
 
 
@@ -474,7 +471,7 @@ private function minotaurCumBukkakeInSalon():void {
 	else if(player.analCapacity() < 140) outputText("delighting in the feeling of perfect fullness.", false);
 	else outputText("delighting in realizing that you could take far larger than even this virile specimen!", false);
 	//(buttchange here: 90)
-	buttChange(90,true,false);
+	player.buttChange(90,true,false);
 																																																																		  
 	outputText("\n\nYou slide down the twitching bull-shaft until your " + buttDescript() + " slaps the wall, and you draw slowly away, but you push back harder, turned into a lewd, wanting whore by the massive quantity of minotaur seed in your belly, on your skin, and fogging up the air.  The beast pulls out and you whine plaintively, feeling empty and useless until he plunges back inside and reminds you of your purpose.  He starts to fuck you hard, not caring for your pleasure at all, slamming his horse-cock deep and fast.  Each of his three rings of prepuce ", false);
 	if(!player.hasCock()) outputText("drags through your body, touching sensitive nerves you didn't even know you had until you cum, shuddering and shaking like a wanton whore.", false);

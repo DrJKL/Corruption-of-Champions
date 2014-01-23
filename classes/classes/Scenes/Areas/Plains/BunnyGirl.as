@@ -122,9 +122,8 @@ private function rapeBunBun():void {
 	if(player.spe < 60) {
 		outputText("You lunge forward off your " + player.feet() + ", trying to tackle and pin the poor girl, but at the first sign of movement from you, she bounds off in the other direction!  She's hopping so fast there's no way you could possibly catch her, and in a matter of seconds you're left totally alone.  Well, perhaps not TOTALLY alone – there's one small egg nestled in the grass.  It fell from the bunny's basket in her haste to flee!", false);
 		//(pick and loot random egg)
-		shortName = "NPnkEgg";
 		menuLoc = 2;
-		takeItem();
+		inventory.takeItem(consumables.NPNKEGG);
 	}
 	//[Rape Her Faster]
 	else {
@@ -416,8 +415,7 @@ private function bunbunGetsFucked():void {
 	
 	dynStats("lib", 1, "sen", 1, "lus=", 0);
 	menuLoc = 2;
-	shortName = "NPnkEgg";
-	takeItem();
+	inventory.takeItem(consumables.NPNKEGG);
 }
 
 private function bunbun69():void {
@@ -457,9 +455,8 @@ private function bunbun69():void {
 			dynStats("int", -2, "lus=", 0);
 			//+ Lust
 			//+ Pink Egg 
-			shortName = "NPnkEgg";
 			menuLoc = 2;
-			takeItem();
+			inventory.takeItem(consumables.NPNKEGG);
 		}
 		return;
 	}
@@ -799,8 +796,7 @@ private function freeHerOhGodWhyDidYouDoThis():void {
 	//[End Encounter, gain neon pink egg]
 	dynStats("lus", 25);
 	menuLoc = 2;
-	shortName = "NPnkEgg";
-	takeItem();
+	inventory.takeItem(consumables.NPNKEGG);
 }
 
 //[Fuck Her] (Male/Futa Only)

@@ -1,5 +1,4 @@
-﻿package classes
-{
+﻿package classes {
 	// BREAKING ALL THE RULES.
 	import classes.GlobalFlags.kFLAGS;
 	import classes.GlobalFlags.kGAMECLASS;
@@ -8,19 +7,20 @@
 
 	import classes.AssClass;
 	import classes.BreastRowClass;
+	import classes.Items.*;
 
 	import classes.Cock;
 	import classes.Creature;
 	import classes.ImageManager; // This line not necessary, but added because I'm pedantic like that.
 	import classes.InputManager;
 	import classes.ItemSlotClass;
+	import classes.Parser.Main.Parser; 	// import getting long enough yet?
 	import classes.PerkClass;
 	import classes.Player;
 	import classes.PregnancyType;
 	import classes.StatusAffectClass;
 	import classes.VaginaClass;
-
-	import classes.Parser.Main.Parser; 	// import getting long enough yet?
+	import classes.internals.Utils;
 
 	import classes.Scenes.*;
 	import classes.Scenes.Areas.*;
@@ -82,7 +82,6 @@
 	public class CoC extends MovieClip {
 
 		// Include the functions. ALL THE FUNCTIONS
-		include "../../includes/charCreation.as";
 		include "../../includes/customCharCreation.as";
 		
 		include "../../includes/descriptors.as";
@@ -105,15 +104,25 @@
 		include "../../includes/transform.as";
 		
 		include "../../includes/engineCore.as";
-		include "../../includes/saves.as";
-		
+
 		// Lots of constants
 		//include "../../includes/flagDefs.as";
 		include "../../includes/appearanceDefs.as";
 
+		// /
+		public var charCreation:CharCreation = new CharCreation();
+		public var saves:Saves = new Saves();
+		// Items/
+		public var mutations:Mutations = new Mutations();
+		public var consumables:ConsumableLib = new ConsumableLib();
+		public var useables:UseableLib = new UseableLib();
+		public var weapons:WeaponLib = new WeaponLib();
+		public var armors:ArmorLib = new ArmorLib();
+		public var miscItems:MiscItemLib = new MiscItemLib();
 		// Scenes/
 		public var camp:Camp = new Camp();
 		public var exploration:Exploration = new Exploration();
+		public var inventory:Inventory = new Inventory();
 		public var followerInteractions:FollowerInteractions = new FollowerInteractions();
 		// Scenes/Areas/
 		public var bog:Bog = new Bog();
@@ -189,7 +198,6 @@
 		include "../../includes/dungeonHelSupplimental.as";
 		include "../../includes/dungeonSandwitch.as";
 		include "../../includes/fera.as";
-		include "../../includes/items.as";
 		include "../../includes/masturbation.as";
 		include "../../includes/perkPicker.as";
 		include "../../includes/pregnancy.as";
@@ -250,15 +258,8 @@
 		public var sand:Number;
 		public var giacomo:Number;
 		public var beeProgress:Number;
-		public var itemSlot1:ItemSlotClass;
-		public var itemSlot2:ItemSlotClass;
-		public var itemSlot3:ItemSlotClass;
-		public var itemSlot4:ItemSlotClass;
-		public var itemSlot5:ItemSlotClass;
-		public var itemSlots:Array;
 		public var itemStorage:Array;
 		public var gearStorage:Array;
-		public var shortName:String;
 		public var temp:int;
 		public var args:Array;
 		public var funcs:Array;
@@ -270,14 +271,16 @@
 
 		public var kFLAGS_REF:*;
 
+		public function rand(max:int):int {
+			return Utils.rand(max);
+		}
+
 		// holidayz
-		public function isEaster():Boolean
-		{
+		public function isEaster():Boolean {
 			return plains.bunnyGirl.isItEaster();
 		}
 
-		public function CoC()
-		{
+		public function CoC() {
 			// Cheatmode.
 			kGAMECLASS = this;
 			
@@ -302,9 +305,9 @@
 
 
 			// Hooking things to MainView.
-			this.mainView.onNewGameClick = newGameGo;
+			this.mainView.onNewGameClick = charCreation.newGameGo;
 			this.mainView.onAppearanceClick = appearance;
-			this.mainView.onDataClick = saveLoad;
+			this.mainView.onDataClick = saves.saveLoad;
 			this.mainView.onLevelClick = levelUpGo;
 			this.mainView.onPerksClick = displayPerks;
 			this.mainView.onStatsClick = displayStats;
@@ -333,8 +336,8 @@
 			//model.debug = debug; // TODO: Set on model?
 
 			//Version NUMBER
-			ver = "0.8.4.2";
-			version = ver + " (<b>Fixes and Uma Blowjob Training</b>)";
+			ver = "0.8.4.3";
+			version = ver + " (<b>Fixes and Uma Blowjob Training; Itemz refactored</b>)";
 
 			//Indicates if building for mobile?
 			mobile = false;
@@ -464,19 +467,8 @@
 			giacomo = 0;
 			beeProgress = 0;
 
-			//Item things
-			itemSlot1 = new ItemSlotClass();
-			itemSlot2 = new ItemSlotClass();
-			itemSlot3 = new ItemSlotClass();
-			itemSlot4 = new ItemSlotClass();
-			itemSlot5 = new ItemSlotClass();
-			
-
-			itemSlots = [itemSlot1, itemSlot2, itemSlot3, itemSlot4, itemSlot5];
-
 			itemStorage = [];
 			gearStorage = [];
-			shortName = "";
 			//}endregion
 
 
@@ -548,8 +540,7 @@
 		}
 
 
-		public function run():void
-		{
+		public function run():void{
 			mainMenu();
 			this.stop();
 		}

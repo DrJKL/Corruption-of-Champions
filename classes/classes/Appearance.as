@@ -1188,7 +1188,7 @@
 			var description:String = "";
 			var options:Array;
 			if (i_character.buttRating <= 1) {
-				if (i_character.tone >= 60 {
+				if (i_character.tone >= 60) {
 					description += "incredibly tight, perky ";
 				} else {
 					description = randomChoice("tiny", "very small", "dainty");

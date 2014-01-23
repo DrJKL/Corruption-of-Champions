@@ -1453,7 +1453,7 @@
 		player.buttPregnancyIncubation = 0;
 		player.buttPregnancyType=0;
 		dynStats("int", 1, "lib", 4, "sen", 3, "lus=", 0);
-		if (buttChange(20, true)) {
+		if (player.buttChange(20, true)) {
 			outputText("\n", false);
 		}
 		if (player.buttRating < 17) {
@@ -1837,7 +1837,7 @@
 			outputText("And your breasts won't seem to stop dribbling milk, lactating more heavily than before.", false);
 			player.boostLactation(1);
 		}
-		cuntChange(120, true,true,false);
+		player.cuntChange(120, true,true,false);
 		if (player.vaginas[0].vaginalWetness == VAGINA_WETNESS_DRY) {
 			player.vaginas[0].vaginalWetness++;
 		}

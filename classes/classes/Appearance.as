@@ -31,9 +31,7 @@
 		}
 		
 		public static function failMaybe(errorDesc:String):String {
-			if (CoC_Settings.haltOnErrors) {
-				throw new Error(errorDesc);
-			}
+			CoC_Settings.error(errorDesc)
 			return errorDesc;
 		}
 

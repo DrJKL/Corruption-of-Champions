@@ -334,7 +334,6 @@
 					"canine member",
 					"canine cock",
 					"knotted dog-cock"];
-
 				description += randomChoice(options);
 			} else if (cockType == CockTypesEnum.FOX) {
 				options = ["fox-shaped dong",
@@ -2074,6 +2073,107 @@
 				}	
 				descript += cockAdjective(creature) + ", ";
 				descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
+			}
+			return descript;
+		}
+		
+		public static function multiCockDescript(creature:Creature):String
+		{
+			if (creature.cocks.length < 1)
+			{
+				failMaybe("<B>Error: multiCockDescript() called with no penises present.</B>");
+			}
+			//Get cock counts
+			var descript:String = "";
+			var averageLength:Number = creature.averageCockLength();
+			var averageThickness:Number = creature.averageCockThickness();
+			var same:Boolean = creature.homogenousCocks();
+			//Quantity descriptors
+			if (creature.totalCocks() == 1)
+			{
+				return cockDescript(creature,0);
+			}
+			else if (creature.totalCocks() == 2)
+			{
+				if (same)
+				{
+					descript += randomChoice("a pair of ", "two ", "a brace of ", "matching ", "twin ");
+					descript += Appearance.cockAdjectives(averageLength, averageThickness, creature.cocks[0].cockType, creature);
+					descript += (creature.cocks[0].cockType == CockTypesEnum.HUMAN) ? " " : ", ";
+					descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
+				}
+				else //Nonidentical
+				{
+					descript += randomChoice("a pair of ", "two ", "a brace of ");
+					descript += Appearance.cockAdjectives(averageLength, averageThickness, creature.cocks[0].cockType, creature) + ", ";
+					descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
+				}
+			}
+			else if (creature.totalCocks() == 3)
+			{
+				if (same)
+				{
+					descript += randomChoice("three ", "a group of ", "a menage a trois of ", "a triad of ", "a triumvirate of ");
+					descript += Appearance.cockAdjectives(averageLength, averageThickness, creature.cocks[0].cockType, creature);
+					descript += (creature.cocks[0].cockType == CockTypesEnum.HUMAN) ? " " : ", ";
+					descript += ", " + Appearance.cockNoun(creature.cocks[0].cockType) + "s";
+				}
+				else 
+				{
+					descript += randomChoice("three ", "a group of ");
+					descript += Appearance.cockAdjectives(averageLength, averageThickness, creature.cocks[0].cockType, creature);
+					descript += randomChoice(", mutated cocks", ", mutated dicks", ", mixed cocks", ", mismatched dicks");
+				}
+			}
+			else if (creature.totalCocks() > 3) //Large numbers of cocks!
+			{
+				descript += randomChoice("a bundle of ", "an obscene group of ", "a cluster of ", "a wriggling group of ");
+				if (same)
+				{
+					descript += Appearance.cockAdjectives(averageLength, averageThickness, creature.cocks[0].cockType, creature) + " ";
+					descript += Appearance.cockNoun(creature.cocks[0].cockType) + "s";
+				}
+				else //If mixed
+				{
+					descript += Appearance.cockAdjectives(averageLength, averageThickness, creature.cocks[0].cockType, creature) + ", ";
+					descript += randomChoice("mutated cocks", "mutated dicks", "mixed cocks", "mismatched dicks");
+				}
+			}
+			return descript;
+	}
+
+		public static function cockDescript(creature:Creature, cockIndex:Number = 0):String
+		{
+			//trace("WRONG COCKDESCRIPT FUNCTION CALLED");
+			if (creature.totalCocks() == 0)
+			{
+				return "<b>ERROR: CockDescript Called But No Cock Present</b>";
+			}
+			if (creature.cockTotal() <= cockIndex && cockIndex != 99)
+			{
+				return "<b>ERROR: CockDescript called with index of " + cockIndex + " - out of BOUNDS</b>";
+			}
+			//Cocknum 99 to default to boring descriptions!
+			var descript:String = "";
+			if (cockIndex != 99)
+			{
+				if (rand(2) == 0)
+				{
+					descript += cockAdjective(creature, cockIndex) + ", ";
+				}
+				descript += Appearance.cockNoun(creature.cocks[cockIndex].cockType);
+			} else {
+				cockIndex = 0;
+				//50% of the time add a descriptor
+				if (rand(2) == 0)
+				{
+					descript += cockAdjective(creature, cockIndex) + " ";
+				}
+				descript += randomChoice(
+					"cock", "cock", "cock", "cock", "cock",
+					"prick", "prick",
+					"pecker",
+					"shaft", "shaft", "shaft");
 			}
 			return descript;
 		}

@@ -1438,7 +1438,7 @@ package classes
 		}
 
 		public function cockDescript(cockIndex:Number = 0):String {
-			return Appearance.cockDescription(this,cockIndex);
+			return Appearance.cockDescript(this,cockIndex);
 		}
 		
 		
@@ -3955,7 +3955,7 @@ package classes
 
 		public function multiCockDescript():String
 		{
-			return Appearance.multiCockDescriptLight(this);
+			return Appearance.multiCockDescript(this);
 		}
 
 		public function ballsDescriptLight(forcedSize:Boolean = true):String
